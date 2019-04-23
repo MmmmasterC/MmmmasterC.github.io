@@ -17,7 +17,7 @@
 <meta property="og:description" content="##博主是一个小小的blog爱好者">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/img/xx.jpg">
-<meta property="og:updated_time" content="2019-04-23T04:16:11.172Z">
+<meta property="og:updated_time" content="2019-04-23T06:01:23.725Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="个人小简介">
 <meta name="twitter:description" content="##博主是一个小小的blog爱好者">
@@ -67,6 +67,8 @@
 				<li><a href="/tags/casual/">随笔</a></li>
 	        
 				<li><a href="/categories/">分类</a></li>
+	        
+				<li><a href="/music.html">music</a></li>
 	        
 			</ul>
 		</nav>
@@ -128,6 +130,8 @@
 			
 				
 			
+				
+			
 			
 			
 			<nav class="header-nav">
@@ -148,11 +152,13 @@
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 33.333333333333336%"><a href="/">主页</a></li>
+					<li style="width: 25%"><a href="/">主页</a></li>
 		        
-					<li style="width: 33.333333333333336%"><a href="/tags/casual/">随笔</a></li>
+					<li style="width: 25%"><a href="/tags/casual/">随笔</a></li>
 		        
-					<li style="width: 33.333333333333336%"><a href="/categories/">分类</a></li>
+					<li style="width: 25%"><a href="/categories/">分类</a></li>
+		        
+					<li style="width: 25%"><a href="/music.html">music</a></li>
 		        
 				</ul>
 			</nav>
@@ -187,7 +193,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>##博主是一个小小的blog爱好者</p>
+        <p>##博主是一个小小的blog爱好者  </p>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="298" height="52" src="//music.163.com/outchain/player?type=2&id=504017347&auto=1&height=32"></iframe>  
+
+
 <a id="more"></a>
 <ul>
 <li><p>这是我的头像<br><img src="/img/xx.jpg" alt="12">   </p>
@@ -347,6 +356,19 @@
         </div>
         
         
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    目录，不存在的…
+                    </div>
+                </span>
+            </div>
+        </div>
+        
     </div>
 </aside>
 
@@ -362,6 +384,34 @@
 
   
 
+
+		<!-- 目录内容 -->
+        
+            <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+            <span class="btn-bg"></span>
+            <span class="btn-text">文章导航</span>
+            </p>
+            <div id="toc-article" class="toc-article">
+                <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+                <strong class="toc-title">文章目录</strong>
+                
+           </div>
+           <script type="text/javascript">
+            function showToc(){
+                var toc_article = document.getElementById("toc-article");
+                var show_toc_btn = document.getElementById("show-toc-btn");
+                toc_article.setAttribute("style","display:block");
+                show_toc_btn.setAttribute("style","display:none");
+                };
+            function showBtn(){
+                var toc_article = document.getElementById("toc-article");
+                var show_toc_btn = document.getElementById("show-toc-btn");
+                toc_article.setAttribute("style","display:none");
+                show_toc_btn.setAttribute("style","display:block");
+                };
+           </script>
+             
+        <!-- 目录内容结束 -->
 
           </div>
         </div>
@@ -461,11 +511,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">GC</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">GC</a>
+                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
               </li>
             
             <div class="clearfix"></div>
