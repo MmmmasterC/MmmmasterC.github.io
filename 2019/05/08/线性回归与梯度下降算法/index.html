@@ -31,7 +31,7 @@
 <meta property="og:image" content="http://yoursite.com/images/13.jpg">
 <meta property="og:image" content="http://yoursite.com/images/14.jpg">
 <meta property="og:image" content="http://yoursite.com/images/15.jpg">
-<meta property="og:updated_time" content="2019-05-08T06:13:46.810Z">
+<meta property="og:updated_time" content="2019-05-08T06:26:40.905Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="线性回归与梯度下降算法">
 <meta name="twitter:description" content="知识点：  线性回归概念 梯度下降算法  ​        l  批量梯度下降算法 ​        l  随机梯度下降算法 ​        l  算法收敛判断方法">
@@ -216,17 +216,27 @@
 <p>在统计学中，线性回归(Linear Regression)是利用称为线性回归方程的最小平方函数对一个或多个自变量和因变量之间关系进行建模的一种回归分析。这种函数是一个或多个称为回归系数的模型参数的线性组合。</p>
 <p>回归分析中，只包括一个自变量和一个因变量，且二者的关系可用一条直线近似表示，这种回归分析称为一元线性回归分析。如果回归分析中包括两个或两个以上的自变量，且因变量和自变量之间是线性关系，则称为多元线性回归分析。</p>
 <p>下面我们来举例何为一元线性回归分析，图1为某地区的房屋面积(feet)与价格($)的一个数据集，在该数据集中，只有一个自变量面积(feet)，和一个因变量价格($)，所以我们可以将数据集呈现在二维空间上，如图2所示。利用该数据集，我们的目的是训练一个线性方程，无限逼近所有数据点，然后利用该方程与给定的某一自变量（本例中为面积），可以预测因变量（本例中为房价）。本例中，训练所得的线性方程如图3所示。</p>
-<p><img src="/images/1.jpg" alt="img"></p>
-<p>​                                                                  图1、房价与面积对应数据集</p>
-<p><img src="/images/2.jpg" alt="img"></p>
-<p>​                                                                   图2、二维空间上的房价与面积对应图</p>
-<p><img src="/images/3.jpg" alt="img"></p>
-<p>​                                                                             图3、线性逼近</p>
+<div align="center"><img src="/images/1.jpg" alt="img"></div>
+
+<center>图1、房价与面积对应数据集</center>
+
+
+<div align="center"><img src="/images/2.jpg" alt="img"></div>
+
+<center>图2、二维空间上的房价与面积对应图</center>
+
+
+<div align="center"><img src="/images/3.jpg" alt="img"></div>
+
+<center>图3、线性逼近</center>
+
+
 <p>同时，分析得到的线性方程为：</p>
 <p><img src="/images/4.jpg" alt="img"></p>
 <p>接下来还是该案例，举一个多元线性回归的例子。如果增添了一个自变量：房间数，那么数据集可以如下所示：</p>
 <p><img src="/images/5.jpg" alt="img"></p>
-<p>​                                 图4、房价与面积、房间数对应数据集</p>
+<center>图4、房价与面积、房间数对应数据集</center>
+
 <p>那么，分析得到的线性方程应如下所示：</p>
 <p><img src="/images/6.jpg" alt="img"></p>
 <p>因此，无论是一元线性方程还是多元线性方程，可统一写成如下的格式：</p>
@@ -588,19 +598,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Frist meeting</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">casual</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">线性回归与梯度下降算法</a>
+                <a href="javascript:void(0)" class="js-tag color4">Frist meeting</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">线性回归与梯度下降算法</a>
               </li>
              
               <li class="article-tag-list-item">
