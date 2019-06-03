@@ -167,6 +167,128 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-http1.0和http2.0的区别" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/06/03/http1.0和http2.0的区别/">不看不懂一看秒懂的http</a>
+    </h1>
+  
+
+        
+        <a href="/2019/06/03/http1.0和http2.0的区别/" class="archive-article-date">
+  	<time datetime="2019-06-03T02:49:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="http1-0和http1-1的区别"><a href="#http1-0和http1-1的区别" class="headerlink" title="http1.0和http1.1的区别"></a>http1.0和http1.1的区别</h2><p> ①HTTP 1.0需要使用keep-alive参数来告知服务器端要建立一个长连接，而HTTP1.1默认支持长连接。</p>
+<p> ②在HTTP1.0中主要使用header里的If-Modified-Since,Expires来做为缓存判断的标准，HTTP1.1则引入了更多的缓存控制策略例如Entity tag，If-Unmodified-Since, If-Match, If-None-Match等更多可供选择的缓存头来控制缓存策略</p>
+<p> ③在HTTP1.1中新增了24个错误状态响应码，如409（Conflict）表示请求的资源与资源的当前状态发生冲突；410（Gone）表示服务器上的某个资源被永久性的删除</p>
+        
+          <a class="article-more-a" href="/2019/06/03/http1.0和http2.0的区别/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">http协议</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+	  <span id="busuanzi_container_page_pv">
+	    本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	  </span>
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Java//" class="article-tag-list-link color5">Java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/06/03/http1.0和http2.0的区别/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
+
+
+		<!-- 目录内容 -->
+             
+        <!-- 目录内容结束 -->
+
+  
+    <section id="comments" style="margin:10px;padding:10px;background:#fff;">
+      <div id="vcomment" class="comment"></div> 
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+   var notify = 'true' == true ? true : false;
+   var verify = 'false' == true ? true : false;
+    window.onload = function() {
+        new Valine({
+            el: '.comment',
+            notify: notify,
+            verify: verify,
+            app_id: "kdu1FK6Cd4WD9NYHr5lR0iaL-gzGzoHsz",
+            app_key: "I6uqM2ESbwMiTsEuSYwLuEJG",
+            placeholder: "Just go go",
+            avatar:"monsterid"
+        });
+    }
+</script>
+    </section>
+  
+
+  
     <article id="post-行人检测(Pedestrian Detection Resource)" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -187,7 +309,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong>一、纸</strong><br>评论文章分类：<br>[1] D. Geronimo, and A. M.Lopez. Vision-based Pedestrian Protection Systems for Intelligent Vehicles, BOOK, 2014.<br>[2] P.Dollar, C. Wojek,B. Schiele, et al. Pedestrian detection: an evaluation of the state of the art [J].IEEE Transactions on PatternAnalysis andMachine Intelligence, 2012, 34(4): 743-761.<br>[3]苏松志, 李绍滋, 陈淑媛等. 行人检測技术综述[J]. 电子学报, 2012, 40(4): 814-820.<br>[4]M. Enzweiler, and D.Gavrila. Monocular pedestrian detection: survey and experiments [J]. IEEE Transactions on Pattern Analysis andMachine Intelligence, 2009, 31(12): 2179-2195.<br>[5] D. Geronimo, A. M.Lopez and A. D. Sappa, et al. Survey of pedestrian detection for advanced driverassistance systems [J]. IEEE Transactionson Pattern Analysis and Machine Intelligence, 2010, 32(7): 1239-1258.<br>[6]贾慧星, 章毓晋.车辆辅助驾驶系统中基于计算机视觉的行人检測研究综述[J], 自己主动化学报, 2007, 33(1): 84-90.<br>[7] 许言午, 曹先彬,乔红. 行人检測系统研究新进展及关键技术展望[J], 电子学报, 2008, 36(5): 368-376.<br>[8] 杜友田; 陈峰;徐文立; 李永彬;基于视觉的人的运动识别综述, 电子学报, 2007. 35(1): 84-90.</p>
+        <h2 id="一、纸"><a href="#一、纸" class="headerlink" title="一、纸"></a>一、纸</h2><p>评论文章分类：<br>[1] D. Geronimo, and A. M.Lopez. Vision-based Pedestrian Protection Systems for Intelligent Vehicles, BOOK, 2014.<br>[2] P.Dollar, C. Wojek,B. Schiele, et al. Pedestrian detection: an evaluation of the state of the art [J].IEEE Transactions on PatternAnalysis andMachine Intelligence, 2012, 34(4): 743-761.<br>[3]苏松志, 李绍滋, 陈淑媛等. 行人检測技术综述[J]. 电子学报, 2012, 40(4): 814-820.<br>[4]M. Enzweiler, and D.Gavrila. Monocular pedestrian detection: survey and experiments [J]. IEEE Transactions on Pattern Analysis andMachine Intelligence, 2009, 31(12): 2179-2195.<br>[5] D. Geronimo, A. M.Lopez and A. D. Sappa, et al. Survey of pedestrian detection for advanced driverassistance systems [J]. IEEE Transactionson Pattern Analysis and Machine Intelligence, 2010, 32(7): 1239-1258.<br>[6]贾慧星, 章毓晋.车辆辅助驾驶系统中基于计算机视觉的行人检測研究综述[J], 自己主动化学报, 2007, 33(1): 84-90.<br>[7] 许言午, 曹先彬,乔红. 行人检測系统研究新进展及关键技术展望[J], 电子学报, 2008, 36(5): 368-376.<br>[8] 杜友田; 陈峰;徐文立; 李永彬;基于视觉的人的运动识别综述, 电子学报, 2007. 35(1): 84-90.</p>
 <p>[9]朱文佳. 基于机器学习的行人检測关键技术研究[D]. 第一章, 硕士学位论文, 上海交通大学. 2008. 指导教师: 戚飞虎.</p>
         
           <a class="article-more-a" href="/2019/05/21/行人检测(Pedestrian Detection Resource)/#more">more >></a>
@@ -1248,15 +1370,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">http协议</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">casual</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+                <a href="javascript:void(0)" class="js-tag color2">线性回归与梯度下降算法</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">线性回归与梯度下降算法</a>
+                <a href="javascript:void(0)" class="js-tag color5">姿态估计</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1268,7 +1394,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">姿态估计</a>
+                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
               </li>
              
               <li class="article-tag-list-item">
