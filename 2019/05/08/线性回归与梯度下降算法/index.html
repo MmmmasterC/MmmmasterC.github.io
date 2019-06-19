@@ -31,7 +31,7 @@
 <meta property="og:image" content="http://yoursite.com/images/13.jpg">
 <meta property="og:image" content="http://yoursite.com/images/14.jpg">
 <meta property="og:image" content="http://yoursite.com/images/15.jpg">
-<meta property="og:updated_time" content="2019-05-08T06:26:40.905Z">
+<meta property="og:updated_time" content="2019-06-03T07:45:59.866Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="线性回归与梯度下降算法">
 <meta name="twitter:description" content="知识点：  线性回归概念 梯度下降算法  ​        l  批量梯度下降算法 ​        l  随机梯度下降算法 ​        l  算法收敛判断方法">
@@ -212,8 +212,7 @@
 <p>​        l  随机梯度下降算法</p>
 <p>​        l  算法收敛判断方法</p>
 <a id="more"></a>
-<p><strong>1.1</strong>   <strong>线性回归</strong></p>
-<p>在统计学中，线性回归(Linear Regression)是利用称为线性回归方程的最小平方函数对一个或多个自变量和因变量之间关系进行建模的一种回归分析。这种函数是一个或多个称为回归系数的模型参数的线性组合。</p>
+<h2 id="1-1-线性回归"><a href="#1-1-线性回归" class="headerlink" title="1.1   线性回归"></a>1.1   <strong>线性回归</strong></h2><p>在统计学中，线性回归(Linear Regression)是利用称为线性回归方程的最小平方函数对一个或多个自变量和因变量之间关系进行建模的一种回归分析。这种函数是一个或多个称为回归系数的模型参数的线性组合。</p>
 <p>回归分析中，只包括一个自变量和一个因变量，且二者的关系可用一条直线近似表示，这种回归分析称为一元线性回归分析。如果回归分析中包括两个或两个以上的自变量，且因变量和自变量之间是线性关系，则称为多元线性回归分析。</p>
 <p>下面我们来举例何为一元线性回归分析，图1为某地区的房屋面积(feet)与价格($)的一个数据集，在该数据集中，只有一个自变量面积(feet)，和一个因变量价格($)，所以我们可以将数据集呈现在二维空间上，如图2所示。利用该数据集，我们的目的是训练一个线性方程，无限逼近所有数据点，然后利用该方程与给定的某一自变量（本例中为面积），可以预测因变量（本例中为房价）。本例中，训练所得的线性方程如图3所示。</p>
 <div align="center"><img src="/images/1.jpg" alt="img"></div>
@@ -243,12 +242,10 @@
 <p><img src="/images/7.jpg" alt="img"></p>
 <p>上式中x0=1，而求线性方程则演变成了求方程的参数ΘT。</p>
 <p>线性回归假设特征和结果满足线性关系。其实线性关系的表达能力非常强大，每个特征对结果的影响强弱可以有前面的参数体现，而且每个特征变量可以首先映射到一个函数，然后再参与线性计算，这样就可以表达特征与结果之间的非线性关系。</p>
-<p><strong>1.2</strong>   <strong>梯度下降算法</strong></p>
-<p>为了得到目标线性方程，我们只需确定公式（3）中的ΘT，同时为了确定所选定的的ΘT效果好坏，通常情况下，我们使用一个损失函数(loss function)或者说是错误函数(error function)来评估h(x)函数的好坏。该错误函数如公式(4)所示。</p>
+<h2 id="1-2-梯度下降算法"><a href="#1-2-梯度下降算法" class="headerlink" title="1.2   梯度下降算法"></a>1.2   <strong>梯度下降算法</strong></h2><p>为了得到目标线性方程，我们只需确定公式（3）中的ΘT，同时为了确定所选定的的ΘT效果好坏，通常情况下，我们使用一个损失函数(loss function)或者说是错误函数(error function)来评估h(x)函数的好坏。该错误函数如公式(4)所示。</p>
 <p><img src="/images/8.jpg" alt="img"></p>
 <p>如何调整ΘT以使得J(Θ)取得最小值有很多方法，其中有完全用数学描述的最小二乘法(min square)和梯度下降法。</p>
-<p><strong>1.2.1</strong>   <strong>批量梯度下降算法</strong></p>
-<p>由之前所述，求ΘT的问题演变成了求J(Θ)的极小值问题，这里使用梯度下降法。而梯度下降法中的梯度方向由J(Θ)对Θ的偏导数确定，由于求的是极小值，因此梯度方向是偏导数的反方向。</p>
+<h3 id="1-2-1-批量梯度下降算法"><a href="#1-2-1-批量梯度下降算法" class="headerlink" title="1.2.1   批量梯度下降算法"></a>1.2.1   <strong>批量梯度下降算法</strong></h3><p>由之前所述，求ΘT的问题演变成了求J(Θ)的极小值问题，这里使用梯度下降法。而梯度下降法中的梯度方向由J(Θ)对Θ的偏导数确定，由于求的是极小值，因此梯度方向是偏导数的反方向。</p>
 <p><img src="/images/9.jpg" alt="img"></p>
 <p>公式(5)中α为学习速率，当α过大时，有可能越过最小值，而α当过小时，容易造成迭代次数较多，收敛速度较慢。假如数据集中只有一条样本，那么样本数量，所以公式(5)中</p>
 <p> <img src="/images/10.jpg" alt="img"></p>
@@ -257,19 +254,16 @@
 <p>当样本数量m不为1时，将公式(5)中<img src="/images/12.jpg" alt="img">由公式(4)带入求偏导，那么每个参数沿梯度方向的变化值由公式(7)求得。</p>
 <p><img src="/images/13.jpg" alt="img"></p>
 <p>初始时ΘT可设为<img src="/images/14.jpg" alt="img">，然后迭代使用公式(7)计算ΘT中的每个参数，直至收敛为止。由于每次迭代计算ΘT时，都使用了整个样本集，因此我们称该梯度下降算法为批量梯度下降算法(batch gradient descent)。</p>
-<p><strong>1.2.2</strong>  <strong>随机梯度下降算法</strong></p>
-<p>当样本集数据量m很大时，批量梯度下降算法每迭代一次的复杂度为O(mn),复杂度很高。因此，为了减少复杂度，当m很大时，我们更多时候使用随机梯度下降算法(stochastic gradient descent),算法如下所示：</p>
+<h3 id="1-2-2-随机梯度下降算法"><a href="#1-2-2-随机梯度下降算法" class="headerlink" title="1.2.2  随机梯度下降算法"></a>1.2.2  <strong>随机梯度下降算法</strong></h3><p>当样本集数据量m很大时，批量梯度下降算法每迭代一次的复杂度为O(mn),复杂度很高。因此，为了减少复杂度，当m很大时，我们更多时候使用随机梯度下降算法(stochastic gradient descent),算法如下所示：</p>
 <p><img src="/images/15.jpg" alt="img"></p>
 <p>即每读取一条样本，就迭代对ΘT进行更新，然后判断其是否收敛，若没收敛，则继续读取样本进行处理，如果所有样本都读取完毕了，则循环重新从头开始读取样本进行处理。</p>
 <p>这样迭代一次的算法复杂度为O(n)。对于大数据集，很有可能只需读取一小部分数据，函数J(Θ)就收敛了。比如样本集数据量为100万，有可能读取几千条或几万条时，函数就达到了收敛值。所以当数据量很大时，更倾向于选择随机梯度下降算法。</p>
 <p>但是，相较于批量梯度下降算法而言，随机梯度下降算法使得J(Θ)趋近于最小值的速度更快，但是有可能造成永远不可能收敛于最小值，有可能一直会在最小值周围震荡，但是实践中，大部分值都能够接近于最小值，效果也都还不错。</p>
-<p><strong>1.2.3</strong>  <strong>算法收敛判断方法</strong></p>
-<ul>
+<h3 id="1-2-3-算法收敛判断方法"><a href="#1-2-3-算法收敛判断方法" class="headerlink" title="1.2.3  算法收敛判断方法"></a>1.2.3  <strong>算法收敛判断方法</strong></h3><ul>
 <li>参数ΘT的变化距离为0，或者说变化距离小于某一阈值（ΘT中每个参数的变化绝对值都小于一个阈值）。为减少计算复杂度，该方法更为推荐使用。</li>
 <li>J(Θ)不再变化，或者说变化程度小于某一阈值。计算复杂度较高，但是如果为了精确程度，那么该方法更为推荐使用。</li>
 </ul>
-<p><strong>梯度下降算法的优缺点</strong></p>
-<hr>
+<h2 id="梯度下降算法的优缺点"><a href="#梯度下降算法的优缺点" class="headerlink" title="梯度下降算法的优缺点"></a>梯度下降算法的优缺点</h2><hr>
 <p>第一种，遍历全部数据集算一次损失函数，然后算函数对各个参数的梯度，更新梯度。这种方法每更新一次参数都要把数据集里的所有样本都看一遍，计算量开销大，计算速度慢，不支持在线学习，这称为Batch gradient descent，批梯度下降。</p>
 <p>另一种，每看一个数据就算一下损失函数，然后求梯度更新参数，这个称为随机梯度下降，stochastic gradient descent。这个方法速度比较快，但是收敛性能不太好，可能在最优点附近晃来晃去，hit不到最优点。两次参数的更新也有可能互相抵消掉，造成目标函数震荡的比较剧烈。</p>
 <p>为了克服两种方法的缺点，现在一般采用的是一种折中手段，mini-batch gradient decent，小批的梯度下降，这种方法把数据分为若干个批，按批来更新参数，这样，一个批中的一组数据共同决定了本次梯度的方向，下降起来就不容易跑偏，减少了随机性。另一方面因为批的样本数与整个数据集相比小了很多，计算量也不是很大。</p>
@@ -439,7 +433,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录，不存在的…
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-线性回归"><span class="toc-number">1.</span> <span class="toc-text">1.1   线性回归</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-梯度下降算法"><span class="toc-number">2.</span> <span class="toc-text">1.2   梯度下降算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-1-批量梯度下降算法"><span class="toc-number">2.1.</span> <span class="toc-text">1.2.1   批量梯度下降算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-2-随机梯度下降算法"><span class="toc-number">2.2.</span> <span class="toc-text">1.2.2  随机梯度下降算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-3-算法收敛判断方法"><span class="toc-number">2.3.</span> <span class="toc-text">1.2.3  算法收敛判断方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#梯度下降算法的优缺点"><span class="toc-number">3.</span> <span class="toc-text">梯度下降算法的优缺点</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -473,7 +467,7 @@
             <div id="toc-article" class="toc-article">
                 <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
                 <strong class="toc-title">文章目录</strong>
-                
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-线性回归"><span class="toc-number">1.</span> <span class="toc-text">1.1   线性回归</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-梯度下降算法"><span class="toc-number">2.</span> <span class="toc-text">1.2   梯度下降算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-1-批量梯度下降算法"><span class="toc-number">2.1.</span> <span class="toc-text">1.2.1   批量梯度下降算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-2-随机梯度下降算法"><span class="toc-number">2.2.</span> <span class="toc-text">1.2.2  随机梯度下降算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-3-算法收敛判断方法"><span class="toc-number">2.3.</span> <span class="toc-text">1.2.3  算法收敛判断方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#梯度下降算法的优缺点"><span class="toc-number">3.</span> <span class="toc-text">梯度下降算法的优缺点</span></a></li></ol>
            </div>
            <script type="text/javascript">
             function showToc(){
@@ -611,27 +605,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">http协议</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">casual</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">线性回归与梯度下降算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">姿态估计</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">GC</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">行人检测</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -639,7 +613,27 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">http协议</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">线性回归与梯度下降算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">GC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">姿态估计</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">行人检测</a>
               </li>
             
             <div class="clearfix"></div>

@@ -6,20 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>CMS垃圾回收器 | MmmmasterC的小博客</title>
+  <title>Category: java设计模式 | MmmmasterC的小博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="介绍 CMS垃圾回收器的全称是Concurrent Mark-Sweep Collector，从名字上可以看出两点，一个是使用的是并发收集，第二个是使用的收集算法是Mark-Sweep。从而也可以推测出该收集器的特点是低延迟并且会有浮动垃圾的问题。下面详细介绍一下这个收集器的特点。  CMS收集器 CMS收集器是为了低延迟而生，通过尽可能的并行执行垃圾回收的几个阶段来把延迟控制到最低。CMS收集器">
-<meta name="keywords" content="GC">
-<meta property="og:type" content="article">
-<meta property="og:title" content="CMS垃圾回收器">
-<meta property="og:url" content="http://yoursite.com/2019/04/22/CMS垃圾收集器/index.html">
+  <meta name="description" content="sss">
+<meta property="og:type" content="website">
+<meta property="og:title" content="MmmmasterC的小博客">
+<meta property="og:url" content="http://yoursite.com/categories/java设计模式/index.html">
 <meta property="og:site_name" content="MmmmasterC的小博客">
-<meta property="og:description" content="介绍 CMS垃圾回收器的全称是Concurrent Mark-Sweep Collector，从名字上可以看出两点，一个是使用的是并发收集，第二个是使用的收集算法是Mark-Sweep。从而也可以推测出该收集器的特点是低延迟并且会有浮动垃圾的问题。下面详细介绍一下这个收集器的特点。  CMS收集器 CMS收集器是为了低延迟而生，通过尽可能的并行执行垃圾回收的几个阶段来把延迟控制到最低。CMS收集器">
+<meta property="og:description" content="sss">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-04-23T04:53:38.295Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CMS垃圾回收器">
-<meta name="twitter:description" content="介绍 CMS垃圾回收器的全称是Concurrent Mark-Sweep Collector，从名字上可以看出两点，一个是使用的是并发收集，第二个是使用的收集算法是Mark-Sweep。从而也可以推测出该收集器的特点是低延迟并且会有浮动垃圾的问题。下面详细介绍一下这个收集器的特点。  CMS收集器 CMS收集器是为了低延迟而生，通过尽可能的并行执行垃圾回收的几个阶段来把延迟控制到最低。CMS收集器">
+<meta name="twitter:title" content="MmmmasterC的小博客">
+<meta name="twitter:description" content="sss">
   
     <link rel="alternative" href="/atom.xml" title="MmmmasterC的小博客" type="application/atom+xml">
   
@@ -167,352 +165,72 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-CMS垃圾收集器" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      CMS垃圾回收器
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2019" class="archive-year">2019</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2019/06/19/java中单例模式是一种常见的设计模式，单例模式分三种：懒汉式单例、饿汉式单例、登记式单例三种/" class="archive-article-date">
+  	<time datetime="2019-06-19T02:49:34.015Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-19</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2019/06/19/java中单例模式是一种常见的设计模式，单例模式分三种：懒汉式单例、饿汉式单例、登记式单例三种/">java单例模式</a>
     </h1>
   
 
-        
-        <a href="/2019/04/22/CMS垃圾收集器/" class="archive-article-date">
-  	<time datetime="2019-04-22T07:07:31.001Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><ul>
-<li>CMS垃圾回收器的全称是Concurrent Mark-Sweep Collector，从名字上可以看出两点，一个是使用的是并发收集，第二个是使用的收集算法是Mark-Sweep。从而也可以推测出该收集器的特点是低延迟并且会有浮动垃圾的问题。下面详细介绍一下这个收集器的特点。</li>
-</ul>
-<h2 id="CMS收集器"><a href="#CMS收集器" class="headerlink" title="CMS收集器"></a>CMS收集器</h2><ul>
-<li>CMS收集器是为了低延迟而生，通过尽可能的并行执行垃圾回收的几个阶段来把延迟控制到最低。CMS收集器是老年代的垃圾收集器，一般情况下会有ParNew来配合执行(默认情况下也是ParNew)，ParNew也是使用并行的算法来执行年轻代的回收。当然除此之外，你还可以选择使用Serial收集器来收集年轻代，不过一般很少这样使用。通过咱们说的CMS收集器是指广义上的CMS收集器，包含以下几个：ParNew（Young）GC + CMS（Old）GC ＋ Serial GC 算法（应对核心的CMS GC某些时候的不赶趟，开销很大）。本文重点介绍一些CMS在Old区域的回收。</li>
-</ul>
-<h2 id="触发条件"><a href="#触发条件" class="headerlink" title="触发条件"></a>触发条件</h2><p>CMS垃圾收集器的触发条件有以下几个：  </p>
-<ol>
-<li>如果没有设置-XX:+UseCMSInitiatingOccupancyOnly，虚拟机会根据收集的数据决定是否触发（建议带上这个参数）。   </li>
-<li>老年代使用率达到阈值 CMSInitiatingOccupancyFraction，默认92%，前提是配置了第一个参数。  </li>
-<li>永久代的使用率达到阈值CMSInitiatingPermOccupancyFraction，默认92%，前提是开启 CMSClassUnloadingEnabled并且配置了第一个参数。  </li>
-<li>新生代的晋升担保失败。</li>
-</ol>
-<h2 id="CMS的收集阶段"><a href="#CMS的收集阶段" class="headerlink" title="CMS的收集阶段"></a>CMS的收集阶段</h2><p>CMS收集器在收集老年代的时候分为以下几个阶段：初始标记、并发标记、预清理、可中断预清理、最终标记、并发清除、并发重置。每个阶段的运行过程如下：<br><a id="more"></a></p>
-<ul>
-<li><strong>下面分别从这几个阶段来介绍CMS收集器。</strong></li>
-</ul>
-<h2 id="初始标记"><a href="#初始标记" class="headerlink" title="初始标记"></a>初始标记</h2><ul>
-<li>初始标记阶段主要做两件事：一是遍历GCRoot可直达的老年代对象；二是遍历新生代直达的老年代对象。这里的直达是指直接关联到GCRoot的一级对象。初始标记阶段是完全STW的，引用程序会暂停。通过-XX:+CMSParallelInitialMarkEnabled参数可以开启该阶段的并行标记，使用多个线程进行标记，减少暂停时间。<br>  哪些对象可以作为GCRoot：<br>1、所有Java线程当前栈帧引用的，也就是正在被调用的方法的引用类型的参数、局部变量以及临时值。<br>2、所有的静态数据结构引用的对象<br>3、String常量池里的引用<br>4、运行时常量池里引用的类型</li>
-</ul>
-<h2 id="并发标记"><a href="#并发标记" class="headerlink" title="并发标记"></a>并发标记</h2><p><strong>并发标记阶段是与应用程序一起执行的，这个阶段主要做两件事:</strong>  </p>
-<ol>
-<li>对初始标记中标记的存活对象进行trace，标记这些对象为可达对象，例如A-&gt;B，A在初始标记被识别，而B就是在并发标记阶段被识别。    </li>
-<li>将在并发阶段新生代晋升到老年代的对象、直接在老年代分配的对象以及老年代引用关系发生变化的对象所在的card标记为dirty，避免在重新标记阶段扫描整个老年代。<br>因为并发标记阶段与引用程序一起执行，因此会出现之前A-&gt;B-&gt;C变成A-&gt;C的情况，这种情况下C对象时无法在并发标记阶段被标记的。在标记阶段会使用三色标记算法。<br>三色标记法把 GC 中的对象划分成三种情况：<br>白色：还没有搜索过的对象（白色对象会被当成垃圾对象）<br>灰色：正在搜索的对象<br>黑色：搜索完成的对象（不会当成垃圾对象，不会被 GC）<br>假设刚开始的对象图如下：</li>
-</ol>
-<p>在并发标记阶段，B对象引用C对象变为A对象引用C对象，如下</p>
-<p>这时候再扫描的时候就会变成如下的图</p>
-<p>此时C对象变成了白色的，但是显然是不正确的，于是就有两种方式来处理这种情况：  </p>
-<ol>
-<li>在对象引用发生变化之前记录对象引用关系  </li>
-<li>在对象引用发生变化之后记录对象引用关系<br>这两种思路正好对应了CMS和G1的两种处理方式。在CMS采用的是增量更新（Incremental update），只要在写屏障（write barrier）里发现要有一个白对象的引用被赋值到一个黑对象 的字段里，那就把这个白对象变成灰色的。即插入的时候记录下来。在G1中，使用的是STAB（snapshot-at-the-beginning）的方式，删除的时候记录所有的对象</li>
-</ol>
-<h2 id="预清理"><a href="#预清理" class="headerlink" title="预清理"></a>预清理</h2><ul>
-<li>通过参数CMSPrecleaningEnabled选择关闭该阶段，默认启用，主要做两件事情</li>
-</ul>
-<ol>
-<li>并发标记阶段在Eden分配了对象A，并且A引用了老年代对象B，那么这个阶段标记B为活跃对象</li>
-<li>扫描并发标记阶段的Dirty Card，重新标记那些在并发标记阶段引用被更新的对象</li>
-</ol>
-<h2 id="可中断预清理"><a href="#可中断预清理" class="headerlink" title="可中断预清理"></a>可中断预清理</h2><ul>
-<li>该阶段存在的目的是减轻重新标记的工作量，减少暂停时间，主要做两件事情：<br>– 扫描处理DirtyCard中的对象<br>– 处理新生代引用到的老年代的对象<br><strong><em>该阶段退出的条件有三个</em></strong>：<br>1、CMSMaxAbortablePrecleanTime参数控制的5秒退出<br>2、Eden区达到CMSScheduleRemarkEdenPenetration参数配置的值(默认50%)<br>3、CMSMaxAbortablePrecleanLoops控制的扫描次数(默认是0，不退出)<br>该阶段是希望能发生一次Young GC，这样就可以减少Eden区对象的数量，降低重新标记的工作量，因为重新标记会扫描整个Eden区的</li>
-</ul>
-<h2 id="最终标记"><a href="#最终标记" class="headerlink" title="最终标记"></a>最终标记</h2><ul>
-<li>最终标记又叫重新标记，该阶段也是STW的，主要会遍历三个地方：<br>1、 遍历Eden区，重新标记<br>2、 遍历DirtyCard，重新标记<br>3、 遍历GC Root，重新标记<br>由于该阶段遍历的区域很多，因此有可能会耗时比较长，并且该阶段是完全的STW的。通过CMSScavengeBeforeRemark参数可以强制在重新标记阶段之前强制进行一次YoungGC，通过设置CMSParallelRemarkEnabled参数可以开启并行的Remark，加快remark的速度。</li>
-</ul>
-<h2 id="并发清理"><a href="#并发清理" class="headerlink" title="并发清理"></a>并发清理</h2><ul>
-<li>移除那些不用的对象，回收他们占用的空间并且为将来使用。该阶段有可能产生浮动垃圾，可以通过参数UseCMSCompactAtFullCollection和CMSFullGCsBeforeCompaction来控制压缩次数。</li>
-</ul>
-<h2 id="并发重置"><a href="#并发重置" class="headerlink" title="并发重置"></a>并发重置</h2><ul>
-<li>该阶段是最后一个阶段，重置CMS的数据结构。</li>
-</ul>
-<h2 id="CMS日志说明"><a href="#CMS日志说明" class="headerlink" title="CMS日志说明"></a>CMS日志说明</h2><ul>
-<li>这是一段完整的CMS日志：</li>
-</ul>
-<p><code>2018-04-28T01:18:00.485+0800: 30991.893: [GC (CMS Initial Mark) [1 CMS-initial-mark: 845243K(1228800K)] 893692K(2611200K), 0.0195530 secs] [Times: user=0.04 sys=0.00, real=0.02 secs]
-2018-04-28T01:18:00.505+0800: 30991.913: [CMS-concurrent-mark-start]
-2018-04-28T01:18:00.944+0800: 30992.353: [CMS-concurrent-mark: 0.429/0.439 secs] [Times: user=0.94 sys=0.00, real=0.44 secs]
-2018-04-28T01:18:00.944+0800: 30992.353: [CMS-concurrent-preclean-start]
-2018-04-28T01:18:00.953+0800: 30992.362: [CMS-concurrent-preclean: 0.009/0.009 secs] [Times: user=0.01 sys=0.00, real=0.01 secs]
-2018-04-28T01:18:00.953+0800: 30992.362: [CMS-concurrent-abortable-preclean-start]
- CMS: abort preclean due to time 2018-04-28T01:18:06.050+0800: 30997.459: [CMS-concurrent-abortable-preclean: 5.089/5.097 secs] [Times: user=5.92 sys=
-0.17, real=5.09 secs]
-2018-04-28T01:18:06.053+0800: 30997.462: [GC (CMS Final Remark) [YG occupancy: 222099 K (1382400 K)]30997.462: [Rescan (parallel) , 0.0285059 secs]309
-97.491: [weak refs processing, 0.0334976 secs]30997.524: [class unloading, 0.0806913 secs]30997.605: [scrub symbol table, 0.0359491 secs]30997.641: [scrub string table, 0.0035671 secs][1 CMS-remark: 845243K(1228800K)] 1067342K(2611200K), 0.1878564 secs] [Times: user=0.38 sys=0.00, real=0.18 secs]
-2018-04-28T01:18:06.242+0800: 30997.650: [CMS-concurrent-sweep-start]
-2018-04-28T01:18:06.659+0800: 30998.068: [CMS-concurrent-sweep: 0.417/0.417 secs] [Times: user=0.55 sys=0.00, real=0.42 secs]
-2018-04-28T01:18:06.660+0800: 30998.069: [CMS-concurrent-reset-start]
-2018-04-28T01:18:06.663+0800: 30998.072: [CMS-concurrent-reset: 0.003/0.003 secs] [Times: user=0.00 sys=0.00, real=0.01 secs]</code>  </p>
-<p><strong>这段日志展示了CMS回收时的各个阶段，在CMS Initial Mark阶段，老年代容量是1228800K，目前使用了845243K，该阶段耗时0.0195530秒，这段时间是STW的；接下来进行concurrent-mark阶段，耗时0.429秒；preClean阶段耗时0.009秒；再往下是abortable-preclean阶段，这个阶段耗时5秒，结束的原因是最长配置的该阶段运行时间是5s，这个阶段并没有发生YoungGC；接下来是第二个STW，Final Remark阶段，222099 K (1382400 K)分别是年轻代的占用和总空间情况，该阶段还会进行弱引用的处理、class卸载以及符号表的扫描，845243K(1228800K)是老年代的使用量和总空间，这个阶段总共耗时0.1878564秒；标记完成之后就开始concurrent-sweep阶段进行并发清除，然后运行concurrent-reset重置CMS数据结构。</strong></p>
-<h2 id="CMS失败处理"><a href="#CMS失败处理" class="headerlink" title="CMS失败处理"></a>CMS失败处理</h2><ul>
-<li><p>在运行CMS收集器的时候，可能会出现两种类型的失败</p>
-</li>
-<li><p>并发模式失败日志(concurrent mode failure)<br> 当老年代无法容纳新生代GC晋升的对象时发生并发模式失败，并发模式失败意味着CMS退化成完全STW的Full GC，也就是Serial GC。下面的图片揭示了在发生并发模式失败时的日志：  </p>
-</li>
-</ul>
-<p>针对这种情况，有两个方面需要考虑：<br>1、给后台线程更多的运行机会。也就是说更早的启动并发收集周期。CMS收集器在老年代使用占到60%的时候启动比占到70%才启动，显然前者完成垃圾回收的几率更大。为了实现这种配置，可以同时设置以下两个参数：-XX:CMSInitiatingOccupancyFraction=N和-XX:+UseCMSInitiatingOccupancyOnly。如果同时设置了这两个参数就可以让CMS只根据老年代的使用比例来决定是否启动CMS垃圾收集。<br>2、更多的线程来运行CMS。之所以出现并发模式失败，是因为CMS的速度跑不赢对象晋升到老年代的速度了。所以可以通过给CMS更多的线程来加快CMS的速度。可以通过-XX:ConGCThreads=N来设置后台线程的数量。默认情况下线程数ConcGCThreads=(3+ParallelGCThreads)/4，是根据ParallelGCThreads来计算的，ParallelGCThreads的值可以通过-XX:ParallelGCThreads参数来设置。并不是说设置越多的线程来运行CMS越好，因为CMS在运行的时候会完整的占用一颗CPU，所以在CPU比较紧张的情况下，这个值还是要谨慎设置的。</p>
-<h2 id="晋升失败-promoration-failure"><a href="#晋升失败-promoration-failure" class="headerlink" title="晋升失败(promoration failure)"></a>晋升失败(promoration failure)</h2><ul>
-<li><p>老年代有足够的空间，但是由于碎片化严重，无法容纳新生代中晋升的对象，发生晋升失败。下面的图片揭示了在发生晋升失败时的日志：</p>
-</li>
-<li><p>晋升失败的原因是碎片化严重，所以这个问题的解决方案就是如何减少碎片化的问题。CMS提供了两个参数来对碎片进行整理和压缩。-XX:+UseCMSCompactAtFullCollection这个设置的作用是在进行FullGC的时候对碎片进行整理和压缩。-XX:CMSFullGCsBeforeCompaction=*这个参数是设置在进行多少次FullGC的时候对老年代的内存进行一次碎片整理压缩。通过设置这两个参数可以有效的对碎片问题进行优化。同样需要注意的是对碎片进行整理压缩是一个比较耗时的操作，所以也需要谨慎设置。</p>
-</li>
-</ul>
-<h2 id="CMS的一些参数说明"><a href="#CMS的一些参数说明" class="headerlink" title="CMS的一些参数说明"></a>CMS的一些参数说明</h2><p>结合上面已经讲过的参数配置，下面给出CMS的一些参数说明：  </p>
-<p><code>-XX:+UseConcMarkSweepGC 激活CMS收集器</code><br><code>-XX:ConcGCThreads 设置CMS线程的数量</code><br><code>-XX:+UseCMSInitiatingOccupancyOnly 只根据老年代使用比例来决定是否进行CMS</code><br><code>-XX:CMSInitiatingOccupancyFraction 设置触发CMS老年代回收的内存使用率占比</code><br><code>-XX:+CMSParallelRemarkEnabled 并行运行最终标记阶段，加快最终标记的速度</code><br><code>-XX:+UseCMSCompactAtFullCollection 每次触发CMS Full GC的时候都整理一次碎片</code><br><code>-XX:CMSFullGCsBeforeCompaction=* 经过几次CMS Full GC的时候整理一次碎片</code><br><code>-XX:+CMSClassUnloadingEnabled 让CMS可以收集永久带，默认不会收集</code><br><code>-XX:+CMSScavengeBeforeRemark 最终标记之前强制进行一个Minor GC</code><br><code>-XX:+ExplicitGCInvokesConcurrent 当调用System.gc()的时候，执行并行gc，只有在CMS或者G1下该参数才有效</code></p>
-<p>Thanks for your reading!<br>这是我的blog主页:<a href="https://mmmmasterc.github.io" target="_blank" rel="noopener">https://mmmmasterc.github.io</a></p>
-
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/img/alipay.jpg">
-                      <span class="reward-type">支付宝</span>
-                    </div>
-                    
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/img/wechatpay.png">
-                      <span class="reward-type">微信</span>
-                    </div>
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">GC</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
         		</li>
       		
 		</ul>
 	</div>
 
-	  <span id="busuanzi_container_page_pv">
-	    本文总阅读量<span id="busuanzi_value_page_pv"></span>次
-	  </span>
-      
+          
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/Java//" class="article-tag-list-link color5">Java</a>
+        			<a href="/categories/java设计模式//" class="article-tag-list-link color4">java设计模式</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/04/22/CMS垃圾收集器/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2019/04/23/aboutme/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          个人小简介
-        
-      </div>
-    </a>
   
   
-    <a href="/2019/04/19/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Hello World</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-        <div class="toc-container tooltip-left">
-            <i class="icon-font icon-category"></i>
-            <div class="tooltip tooltip-east">
-                <span class="tooltip-item">
-                </span>
-                <span class="tooltip-content">
-                    <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#介绍"><span class="toc-number">1.</span> <span class="toc-text">介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#CMS收集器"><span class="toc-number">1.1.</span> <span class="toc-text">CMS收集器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#触发条件"><span class="toc-number">1.2.</span> <span class="toc-text">触发条件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CMS的收集阶段"><span class="toc-number">1.3.</span> <span class="toc-text">CMS的收集阶段</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#初始标记"><span class="toc-number">1.4.</span> <span class="toc-text">初始标记</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#并发标记"><span class="toc-number">1.5.</span> <span class="toc-text">并发标记</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#预清理"><span class="toc-number">1.6.</span> <span class="toc-text">预清理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#可中断预清理"><span class="toc-number">1.7.</span> <span class="toc-text">可中断预清理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#最终标记"><span class="toc-number">1.8.</span> <span class="toc-text">最终标记</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#并发清理"><span class="toc-number">1.9.</span> <span class="toc-text">并发清理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#并发重置"><span class="toc-number">1.10.</span> <span class="toc-text">并发重置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CMS日志说明"><span class="toc-number">1.11.</span> <span class="toc-text">CMS日志说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CMS失败处理"><span class="toc-number">1.12.</span> <span class="toc-text">CMS失败处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#晋升失败-promoration-failure"><span class="toc-number">1.13.</span> <span class="toc-text">晋升失败(promoration failure)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CMS的一些参数说明"><span class="toc-number">1.14.</span> <span class="toc-text">CMS的一些参数说明</span></a></li></ol></li></ol>
-                    </div>
-                </span>
-            </div>
-        </div>
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
+    
 
-  
-
-  
-
-
-
-
-
-		<!-- 目录内容 -->
-        
-            <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
-            <span class="btn-bg"></span>
-            <span class="btn-text">文章导航</span>
-            </p>
-            <div id="toc-article" class="toc-article">
-                <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
-                <strong class="toc-title">文章目录</strong>
-                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#介绍"><span class="toc-number">1.</span> <span class="toc-text">介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#CMS收集器"><span class="toc-number">1.1.</span> <span class="toc-text">CMS收集器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#触发条件"><span class="toc-number">1.2.</span> <span class="toc-text">触发条件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CMS的收集阶段"><span class="toc-number">1.3.</span> <span class="toc-text">CMS的收集阶段</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#初始标记"><span class="toc-number">1.4.</span> <span class="toc-text">初始标记</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#并发标记"><span class="toc-number">1.5.</span> <span class="toc-text">并发标记</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#预清理"><span class="toc-number">1.6.</span> <span class="toc-text">预清理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#可中断预清理"><span class="toc-number">1.7.</span> <span class="toc-text">可中断预清理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#最终标记"><span class="toc-number">1.8.</span> <span class="toc-text">最终标记</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#并发清理"><span class="toc-number">1.9.</span> <span class="toc-text">并发清理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#并发重置"><span class="toc-number">1.10.</span> <span class="toc-text">并发重置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CMS日志说明"><span class="toc-number">1.11.</span> <span class="toc-text">CMS日志说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CMS失败处理"><span class="toc-number">1.12.</span> <span class="toc-text">CMS失败处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#晋升失败-promoration-failure"><span class="toc-number">1.13.</span> <span class="toc-text">晋升失败(promoration failure)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CMS的一些参数说明"><span class="toc-number">1.14.</span> <span class="toc-text">CMS的一些参数说明</span></a></li></ol></li></ol>
-           </div>
-           <script type="text/javascript">
-            function showToc(){
-                var toc_article = document.getElementById("toc-article");
-                var show_toc_btn = document.getElementById("show-toc-btn");
-                toc_article.setAttribute("style","display:block");
-                show_toc_btn.setAttribute("style","display:none");
-                };
-            function showBtn(){
-                var toc_article = document.getElementById("toc-article");
-                var show_toc_btn = document.getElementById("show-toc-btn");
-                toc_article.setAttribute("style","display:none");
-                show_toc_btn.setAttribute("style","display:block");
-                };
-           </script>
-             
-        <!-- 目录内容结束 -->
-
-  
-    <section id="comments" style="margin:10px;padding:10px;background:#fff;">
-      <div id="vcomment" class="comment"></div> 
-<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
-<script>
-   var notify = 'true' == true ? true : false;
-   var verify = 'false' == true ? true : false;
-    window.onload = function() {
-        new Valine({
-            el: '.comment',
-            notify: notify,
-            verify: verify,
-            app_id: "kdu1FK6Cd4WD9NYHr5lR0iaL-gzGzoHsz",
-            app_key: "I6uqM2ESbwMiTsEuSYwLuEJG",
-            placeholder: "Just go go",
-            avatar:"monsterid"
-        });
-    }
-</script>
-    </section>
-  
 
           </div>
         </div>
@@ -536,10 +254,10 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
 		isTag: false,
-		isCategory: false,
+		isCategory: true,
 		open_in_new: false,
 		toc_hide_index: true,
 		root: "/",
