@@ -6,20 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>CMS垃圾回收器 | MmmmasterC的小博客</title>
+  <title>HashMap,HashSet,HasTable | MmmmasterC的小博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="介绍 CMS垃圾回收器的全称是Concurrent Mark-Sweep Collector，从名字上可以看出两点，一个是使用的是并发收集，第二个是使用的收集算法是Mark-Sweep。从而也可以推测出该收集器的特点是低延迟并且会有浮动垃圾的问题。下面详细介绍一下这个收集器的特点。  CMS收集器 CMS收集器是为了低延迟而生，通过尽可能的并行执行垃圾回收的几个阶段来把延迟控制到最低。CMS收集器">
-<meta name="keywords" content="GC">
+  <meta name="description" content="HashMap相关问题1234567891011121314151、你用过HashMap吗？什么是HashMap？你为什么用到它？用过，HashMap是基于哈希表的Map接口的非同步实现，它允许null键和null值，且HashMap依托于它的数据结构的设计，存储效率特别高，这是我用它的原因2、你知道HashMap的工作原理吗？你知道HashMap的get()方法的工作原理吗？上面两个问题属于同一">
+<meta name="keywords" content="java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CMS垃圾回收器">
-<meta property="og:url" content="http://yoursite.com/2019/04/22/CMS垃圾收集器/index.html">
+<meta property="og:title" content="HashMap,HashSet,HasTable">
+<meta property="og:url" content="http://yoursite.com/2019/06/20/HashMap,HashSet,HashTable等相关问题/index.html">
 <meta property="og:site_name" content="MmmmasterC的小博客">
-<meta property="og:description" content="介绍 CMS垃圾回收器的全称是Concurrent Mark-Sweep Collector，从名字上可以看出两点，一个是使用的是并发收集，第二个是使用的收集算法是Mark-Sweep。从而也可以推测出该收集器的特点是低延迟并且会有浮动垃圾的问题。下面详细介绍一下这个收集器的特点。  CMS收集器 CMS收集器是为了低延迟而生，通过尽可能的并行执行垃圾回收的几个阶段来把延迟控制到最低。CMS收集器">
+<meta property="og:description" content="HashMap相关问题1234567891011121314151、你用过HashMap吗？什么是HashMap？你为什么用到它？用过，HashMap是基于哈希表的Map接口的非同步实现，它允许null键和null值，且HashMap依托于它的数据结构的设计，存储效率特别高，这是我用它的原因2、你知道HashMap的工作原理吗？你知道HashMap的get()方法的工作原理吗？上面两个问题属于同一">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-04-23T04:53:38.295Z">
+<meta property="og:image" content="http://yoursite.com/images/segment.png">
+<meta property="og:updated_time" content="2019-06-20T08:36:06.234Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CMS垃圾回收器">
-<meta name="twitter:description" content="介绍 CMS垃圾回收器的全称是Concurrent Mark-Sweep Collector，从名字上可以看出两点，一个是使用的是并发收集，第二个是使用的收集算法是Mark-Sweep。从而也可以推测出该收集器的特点是低延迟并且会有浮动垃圾的问题。下面详细介绍一下这个收集器的特点。  CMS收集器 CMS收集器是为了低延迟而生，通过尽可能的并行执行垃圾回收的几个阶段来把延迟控制到最低。CMS收集器">
+<meta name="twitter:title" content="HashMap,HashSet,HasTable">
+<meta name="twitter:description" content="HashMap相关问题1234567891011121314151、你用过HashMap吗？什么是HashMap？你为什么用到它？用过，HashMap是基于哈希表的Map接口的非同步实现，它允许null键和null值，且HashMap依托于它的数据结构的设计，存储效率特别高，这是我用它的原因2、你知道HashMap的工作原理吗？你知道HashMap的get()方法的工作原理吗？上面两个问题属于同一">
+<meta name="twitter:image" content="http://yoursite.com/images/segment.png">
   
     <link rel="alternative" href="/atom.xml" title="MmmmasterC的小博客" type="application/atom+xml">
   
@@ -167,111 +169,64 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-CMS垃圾收集器" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-HashMap,HashSet,HashTable等相关问题" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      CMS垃圾回收器
+      HashMap,HashSet,HasTable
     </h1>
   
 
         
-        <a href="/2019/04/22/CMS垃圾收集器/" class="archive-article-date">
-  	<time datetime="2019-04-22T07:07:31.001Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-22</time>
+        <a href="/2019/06/20/HashMap,HashSet,HashTable等相关问题/" class="archive-article-date">
+  	<time datetime="2019-06-20T07:35:56.594Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-20</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><ul>
-<li>CMS垃圾回收器的全称是Concurrent Mark-Sweep Collector，从名字上可以看出两点，一个是使用的是并发收集，第二个是使用的收集算法是Mark-Sweep。从而也可以推测出该收集器的特点是低延迟并且会有浮动垃圾的问题。下面详细介绍一下这个收集器的特点。</li>
-</ul>
-<h2 id="CMS收集器"><a href="#CMS收集器" class="headerlink" title="CMS收集器"></a>CMS收集器</h2><ul>
-<li>CMS收集器是为了低延迟而生，通过尽可能的并行执行垃圾回收的几个阶段来把延迟控制到最低。CMS收集器是老年代的垃圾收集器，一般情况下会有ParNew来配合执行(默认情况下也是ParNew)，ParNew也是使用并行的算法来执行年轻代的回收。当然除此之外，你还可以选择使用Serial收集器来收集年轻代，不过一般很少这样使用。通过咱们说的CMS收集器是指广义上的CMS收集器，包含以下几个：ParNew（Young）GC + CMS（Old）GC ＋ Serial GC 算法（应对核心的CMS GC某些时候的不赶趟，开销很大）。本文重点介绍一些CMS在Old区域的回收。</li>
-</ul>
-<h2 id="触发条件"><a href="#触发条件" class="headerlink" title="触发条件"></a>触发条件</h2><p>CMS垃圾收集器的触发条件有以下几个：  </p>
-<ol>
-<li>如果没有设置-XX:+UseCMSInitiatingOccupancyOnly，虚拟机会根据收集的数据决定是否触发（建议带上这个参数）。   </li>
-<li>老年代使用率达到阈值 CMSInitiatingOccupancyFraction，默认92%，前提是配置了第一个参数。  </li>
-<li>永久代的使用率达到阈值CMSInitiatingPermOccupancyFraction，默认92%，前提是开启 CMSClassUnloadingEnabled并且配置了第一个参数。  </li>
-<li>新生代的晋升担保失败。</li>
-</ol>
-<h2 id="CMS的收集阶段"><a href="#CMS的收集阶段" class="headerlink" title="CMS的收集阶段"></a>CMS的收集阶段</h2><p>CMS收集器在收集老年代的时候分为以下几个阶段：初始标记、并发标记、预清理、可中断预清理、最终标记、并发清除、并发重置。每个阶段的运行过程如下：<br><a id="more"></a></p>
-<ul>
-<li><strong>下面分别从这几个阶段来介绍CMS收集器。</strong></li>
-</ul>
-<h2 id="初始标记"><a href="#初始标记" class="headerlink" title="初始标记"></a>初始标记</h2><ul>
-<li>初始标记阶段主要做两件事：一是遍历GCRoot可直达的老年代对象；二是遍历新生代直达的老年代对象。这里的直达是指直接关联到GCRoot的一级对象。初始标记阶段是完全STW的，引用程序会暂停。通过-XX:+CMSParallelInitialMarkEnabled参数可以开启该阶段的并行标记，使用多个线程进行标记，减少暂停时间。<br>  哪些对象可以作为GCRoot：<br>1、所有Java线程当前栈帧引用的，也就是正在被调用的方法的引用类型的参数、局部变量以及临时值。<br>2、所有的静态数据结构引用的对象<br>3、String常量池里的引用<br>4、运行时常量池里引用的类型</li>
-</ul>
-<h2 id="并发标记"><a href="#并发标记" class="headerlink" title="并发标记"></a>并发标记</h2><p><strong>并发标记阶段是与应用程序一起执行的，这个阶段主要做两件事:</strong>  </p>
-<ol>
-<li>对初始标记中标记的存活对象进行trace，标记这些对象为可达对象，例如A-&gt;B，A在初始标记被识别，而B就是在并发标记阶段被识别。    </li>
-<li>将在并发阶段新生代晋升到老年代的对象、直接在老年代分配的对象以及老年代引用关系发生变化的对象所在的card标记为dirty，避免在重新标记阶段扫描整个老年代。<br>因为并发标记阶段与引用程序一起执行，因此会出现之前A-&gt;B-&gt;C变成A-&gt;C的情况，这种情况下C对象时无法在并发标记阶段被标记的。在标记阶段会使用三色标记算法。<br>三色标记法把 GC 中的对象划分成三种情况：<br>白色：还没有搜索过的对象（白色对象会被当成垃圾对象）<br>灰色：正在搜索的对象<br>黑色：搜索完成的对象（不会当成垃圾对象，不会被 GC）<br>假设刚开始的对象图如下：</li>
-</ol>
-<p>在并发标记阶段，B对象引用C对象变为A对象引用C对象，如下</p>
-<p>这时候再扫描的时候就会变成如下的图</p>
-<p>此时C对象变成了白色的，但是显然是不正确的，于是就有两种方式来处理这种情况：  </p>
-<ol>
-<li>在对象引用发生变化之前记录对象引用关系  </li>
-<li>在对象引用发生变化之后记录对象引用关系<br>这两种思路正好对应了CMS和G1的两种处理方式。在CMS采用的是增量更新（Incremental update），只要在写屏障（write barrier）里发现要有一个白对象的引用被赋值到一个黑对象 的字段里，那就把这个白对象变成灰色的。即插入的时候记录下来。在G1中，使用的是STAB（snapshot-at-the-beginning）的方式，删除的时候记录所有的对象</li>
-</ol>
-<h2 id="预清理"><a href="#预清理" class="headerlink" title="预清理"></a>预清理</h2><ul>
-<li>通过参数CMSPrecleaningEnabled选择关闭该阶段，默认启用，主要做两件事情</li>
-</ul>
-<ol>
-<li>并发标记阶段在Eden分配了对象A，并且A引用了老年代对象B，那么这个阶段标记B为活跃对象</li>
-<li>扫描并发标记阶段的Dirty Card，重新标记那些在并发标记阶段引用被更新的对象</li>
-</ol>
-<h2 id="可中断预清理"><a href="#可中断预清理" class="headerlink" title="可中断预清理"></a>可中断预清理</h2><ul>
-<li>该阶段存在的目的是减轻重新标记的工作量，减少暂停时间，主要做两件事情：<br>– 扫描处理DirtyCard中的对象<br>– 处理新生代引用到的老年代的对象<br><strong><em>该阶段退出的条件有三个</em></strong>：<br>1、CMSMaxAbortablePrecleanTime参数控制的5秒退出<br>2、Eden区达到CMSScheduleRemarkEdenPenetration参数配置的值(默认50%)<br>3、CMSMaxAbortablePrecleanLoops控制的扫描次数(默认是0，不退出)<br>该阶段是希望能发生一次Young GC，这样就可以减少Eden区对象的数量，降低重新标记的工作量，因为重新标记会扫描整个Eden区的</li>
-</ul>
-<h2 id="最终标记"><a href="#最终标记" class="headerlink" title="最终标记"></a>最终标记</h2><ul>
-<li>最终标记又叫重新标记，该阶段也是STW的，主要会遍历三个地方：<br>1、 遍历Eden区，重新标记<br>2、 遍历DirtyCard，重新标记<br>3、 遍历GC Root，重新标记<br>由于该阶段遍历的区域很多，因此有可能会耗时比较长，并且该阶段是完全的STW的。通过CMSScavengeBeforeRemark参数可以强制在重新标记阶段之前强制进行一次YoungGC，通过设置CMSParallelRemarkEnabled参数可以开启并行的Remark，加快remark的速度。</li>
-</ul>
-<h2 id="并发清理"><a href="#并发清理" class="headerlink" title="并发清理"></a>并发清理</h2><ul>
-<li>移除那些不用的对象，回收他们占用的空间并且为将来使用。该阶段有可能产生浮动垃圾，可以通过参数UseCMSCompactAtFullCollection和CMSFullGCsBeforeCompaction来控制压缩次数。</li>
-</ul>
-<h2 id="并发重置"><a href="#并发重置" class="headerlink" title="并发重置"></a>并发重置</h2><ul>
-<li>该阶段是最后一个阶段，重置CMS的数据结构。</li>
-</ul>
-<h2 id="CMS日志说明"><a href="#CMS日志说明" class="headerlink" title="CMS日志说明"></a>CMS日志说明</h2><ul>
-<li>这是一段完整的CMS日志：</li>
-</ul>
-<p><code>2018-04-28T01:18:00.485+0800: 30991.893: [GC (CMS Initial Mark) [1 CMS-initial-mark: 845243K(1228800K)] 893692K(2611200K), 0.0195530 secs] [Times: user=0.04 sys=0.00, real=0.02 secs]
-2018-04-28T01:18:00.505+0800: 30991.913: [CMS-concurrent-mark-start]
-2018-04-28T01:18:00.944+0800: 30992.353: [CMS-concurrent-mark: 0.429/0.439 secs] [Times: user=0.94 sys=0.00, real=0.44 secs]
-2018-04-28T01:18:00.944+0800: 30992.353: [CMS-concurrent-preclean-start]
-2018-04-28T01:18:00.953+0800: 30992.362: [CMS-concurrent-preclean: 0.009/0.009 secs] [Times: user=0.01 sys=0.00, real=0.01 secs]
-2018-04-28T01:18:00.953+0800: 30992.362: [CMS-concurrent-abortable-preclean-start]
- CMS: abort preclean due to time 2018-04-28T01:18:06.050+0800: 30997.459: [CMS-concurrent-abortable-preclean: 5.089/5.097 secs] [Times: user=5.92 sys=
-0.17, real=5.09 secs]
-2018-04-28T01:18:06.053+0800: 30997.462: [GC (CMS Final Remark) [YG occupancy: 222099 K (1382400 K)]30997.462: [Rescan (parallel) , 0.0285059 secs]309
-97.491: [weak refs processing, 0.0334976 secs]30997.524: [class unloading, 0.0806913 secs]30997.605: [scrub symbol table, 0.0359491 secs]30997.641: [scrub string table, 0.0035671 secs][1 CMS-remark: 845243K(1228800K)] 1067342K(2611200K), 0.1878564 secs] [Times: user=0.38 sys=0.00, real=0.18 secs]
-2018-04-28T01:18:06.242+0800: 30997.650: [CMS-concurrent-sweep-start]
-2018-04-28T01:18:06.659+0800: 30998.068: [CMS-concurrent-sweep: 0.417/0.417 secs] [Times: user=0.55 sys=0.00, real=0.42 secs]
-2018-04-28T01:18:06.660+0800: 30998.069: [CMS-concurrent-reset-start]
-2018-04-28T01:18:06.663+0800: 30998.072: [CMS-concurrent-reset: 0.003/0.003 secs] [Times: user=0.00 sys=0.00, real=0.01 secs]</code>  </p>
-<p><strong>这段日志展示了CMS回收时的各个阶段，在CMS Initial Mark阶段，老年代容量是1228800K，目前使用了845243K，该阶段耗时0.0195530秒，这段时间是STW的；接下来进行concurrent-mark阶段，耗时0.429秒；preClean阶段耗时0.009秒；再往下是abortable-preclean阶段，这个阶段耗时5秒，结束的原因是最长配置的该阶段运行时间是5s，这个阶段并没有发生YoungGC；接下来是第二个STW，Final Remark阶段，222099 K (1382400 K)分别是年轻代的占用和总空间情况，该阶段还会进行弱引用的处理、class卸载以及符号表的扫描，845243K(1228800K)是老年代的使用量和总空间，这个阶段总共耗时0.1878564秒；标记完成之后就开始concurrent-sweep阶段进行并发清除，然后运行concurrent-reset重置CMS数据结构。</strong></p>
-<h2 id="CMS失败处理"><a href="#CMS失败处理" class="headerlink" title="CMS失败处理"></a>CMS失败处理</h2><ul>
-<li><p>在运行CMS收集器的时候，可能会出现两种类型的失败</p>
-</li>
-<li><p>并发模式失败日志(concurrent mode failure)<br> 当老年代无法容纳新生代GC晋升的对象时发生并发模式失败，并发模式失败意味着CMS退化成完全STW的Full GC，也就是Serial GC。下面的图片揭示了在发生并发模式失败时的日志：  </p>
-</li>
-</ul>
-<p>针对这种情况，有两个方面需要考虑：<br>1、给后台线程更多的运行机会。也就是说更早的启动并发收集周期。CMS收集器在老年代使用占到60%的时候启动比占到70%才启动，显然前者完成垃圾回收的几率更大。为了实现这种配置，可以同时设置以下两个参数：-XX:CMSInitiatingOccupancyFraction=N和-XX:+UseCMSInitiatingOccupancyOnly。如果同时设置了这两个参数就可以让CMS只根据老年代的使用比例来决定是否启动CMS垃圾收集。<br>2、更多的线程来运行CMS。之所以出现并发模式失败，是因为CMS的速度跑不赢对象晋升到老年代的速度了。所以可以通过给CMS更多的线程来加快CMS的速度。可以通过-XX:ConGCThreads=N来设置后台线程的数量。默认情况下线程数ConcGCThreads=(3+ParallelGCThreads)/4，是根据ParallelGCThreads来计算的，ParallelGCThreads的值可以通过-XX:ParallelGCThreads参数来设置。并不是说设置越多的线程来运行CMS越好，因为CMS在运行的时候会完整的占用一颗CPU，所以在CPU比较紧张的情况下，这个值还是要谨慎设置的。</p>
-<h2 id="晋升失败-promoration-failure"><a href="#晋升失败-promoration-failure" class="headerlink" title="晋升失败(promoration failure)"></a>晋升失败(promoration failure)</h2><ul>
-<li><p>老年代有足够的空间，但是由于碎片化严重，无法容纳新生代中晋升的对象，发生晋升失败。下面的图片揭示了在发生晋升失败时的日志：</p>
-</li>
-<li><p>晋升失败的原因是碎片化严重，所以这个问题的解决方案就是如何减少碎片化的问题。CMS提供了两个参数来对碎片进行整理和压缩。-XX:+UseCMSCompactAtFullCollection这个设置的作用是在进行FullGC的时候对碎片进行整理和压缩。-XX:CMSFullGCsBeforeCompaction=*这个参数是设置在进行多少次FullGC的时候对老年代的内存进行一次碎片整理压缩。通过设置这两个参数可以有效的对碎片问题进行优化。同样需要注意的是对碎片进行整理压缩是一个比较耗时的操作，所以也需要谨慎设置。</p>
-</li>
-</ul>
-<h2 id="CMS的一些参数说明"><a href="#CMS的一些参数说明" class="headerlink" title="CMS的一些参数说明"></a>CMS的一些参数说明</h2><p>结合上面已经讲过的参数配置，下面给出CMS的一些参数说明：  </p>
-<p><code>-XX:+UseConcMarkSweepGC 激活CMS收集器</code><br><code>-XX:ConcGCThreads 设置CMS线程的数量</code><br><code>-XX:+UseCMSInitiatingOccupancyOnly 只根据老年代使用比例来决定是否进行CMS</code><br><code>-XX:CMSInitiatingOccupancyFraction 设置触发CMS老年代回收的内存使用率占比</code><br><code>-XX:+CMSParallelRemarkEnabled 并行运行最终标记阶段，加快最终标记的速度</code><br><code>-XX:+UseCMSCompactAtFullCollection 每次触发CMS Full GC的时候都整理一次碎片</code><br><code>-XX:CMSFullGCsBeforeCompaction=* 经过几次CMS Full GC的时候整理一次碎片</code><br><code>-XX:+CMSClassUnloadingEnabled 让CMS可以收集永久带，默认不会收集</code><br><code>-XX:+CMSScavengeBeforeRemark 最终标记之前强制进行一个Minor GC</code><br><code>-XX:+ExplicitGCInvokesConcurrent 当调用System.gc()的时候，执行并行gc，只有在CMS或者G1下该参数才有效</code></p>
-<p>Thanks for your reading!<br>这是我的blog主页:<a href="https://mmmmasterc.github.io" target="_blank" rel="noopener">https://mmmmasterc.github.io</a></p>
+        <h2 id="HashMap相关问题"><a href="#HashMap相关问题" class="headerlink" title="HashMap相关问题"></a>HashMap相关问题</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">1、你用过HashMap吗？什么是HashMap？你为什么用到它？</span><br><span class="line">用过，HashMap是基于哈希表的Map接口的非同步实现，它允许null键和null值，且HashMap依托于它的数据结构的设计，存储效率特别高，这是我用它的原因</span><br><span class="line">2、你知道HashMap的工作原理吗？你知道HashMap的get()方法的工作原理吗？</span><br><span class="line">上面两个问题属于同一答案的问题</span><br><span class="line">HashMap是基于hash算法实现的，通过put(key,value)存储对象到HashMap中，也可以通过get(key)从HashMap中获取对象。当我们使用put的时候，首先HashMap会对key的hashCode()的值进行hash计算，根据hash值得到这个元素在数组中的位置，将元素存储在该位置的链表上。当我们使用get的时候，首先HashMap会对key的hashCode()的值进行hash计算，根据hash值得到这个元素在数组中的位置，将元素从该位置上的链表中取出</span><br><span class="line">3、当两个对象的hashcode相同会发生什么？</span><br><span class="line">hashcode相同，说明两个对象HashMap数组的同一位置上，接着HashMap会遍历链表中的每个元素，通过key的equals方法来判断是否为同一个key，如果是同一个key，则新的value会覆盖旧的value，并且返回旧的value。如果不是同一个key，则存储在该位置上的链表的链头</span><br><span class="line">4、如果两个键的hashcode相同，你如何获取值对象？</span><br><span class="line">遍历HashMap链表中的每个元素，并对每个key进行hash计算，最后通过get方法获取其对应的值对象</span><br><span class="line">5、如果HashMap的大小超过了负载因子(load factor)定义的容量，怎么办？</span><br><span class="line">负载因子默认是0.75，HashMap超过了负载因子定义的容量，也就是说超过了（HashMap的大小*负载因子）这个值，那么HashMap将会创建为原来HashMap大小两倍的数组大小，作为自己新的容量，这个过程叫resize或者rehash</span><br><span class="line">6、你了解重新调整HashMap大小存在什么问题吗？</span><br><span class="line">当多线程的情况下，可能产生条件竞争。当重新调整HashMap大小的时候，确实存在条件竞争，如果两个线程都发现HashMap需要重新调整大小了，它们会同时试着调整大小。在调整大小的过程中，存储在链表中的元素的次序会反过来，因为移动到新的数组位置的时候，HashMap并不会将元素放在LinkedList的尾部，而是放在头部，这是为了避免尾部遍历(tail traversing)。如果条件竞争发生了，那么就死循环了。</span><br><span class="line">7、我们可以使用自定义的对象作为键吗？</span><br><span class="line">可以，只要它遵守了equals()和hashCode()方法的定义规则，并且当对象插入到Map中之后将不会再改变了。如果这个自定义对象时不可变的，那么它已经满足了作为键的条件，因为当它创建之后就已经不能改变了。</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h2 id="HashSet与HashMap区别"><a href="#HashSet与HashMap区别" class="headerlink" title="HashSet与HashMap区别"></a>HashSet与HashMap区别</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">HashMap实现了Map接口 </span><br><span class="line">HashSet实现了Set接口</span><br><span class="line">HashMap储存键值对 </span><br><span class="line">HashSet仅仅存储对象</span><br><span class="line">HashMap使用put()方法将元素放入map中 </span><br><span class="line">HashSet使用add()方法将元素放入set中</span><br><span class="line">HashMap中使用键对象来计算hashcode值 </span><br><span class="line">HashSet使用成员对象来计算hashcode值</span><br><span class="line">HashMap比较快，因为是使用唯一的键来获取对象 </span><br><span class="line">HashSet较HashMap来说比较慢</span><br></pre></td></tr></table></figure>
+<h2 id="HashTable与HashMap的区别"><a href="#HashTable与HashMap的区别" class="headerlink" title="HashTable与HashMap的区别"></a>HashTable与HashMap的区别</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Hashtable方法是同步的 </span><br><span class="line">HashMap方法是非同步的</span><br><span class="line">Hashtable基于Dictionary类 </span><br><span class="line">HashMap基于AbstractMap，而AbstractMap基于Map接口的实现</span><br><span class="line">Hashtable中key和value都不允许为null，遇到null，直接返回 NullPointerException </span><br><span class="line">HashMap中key和value都允许为null，遇到key为null的时候，调用putForNullKey方法进行处理，而对value没有处理</span><br><span class="line">Hashtable中hash数组默认大小是11，扩充方式是old*2+1 </span><br><span class="line">HashMap中hash数组的默认大小是16，而且一定是2的指数</span><br></pre></td></tr></table></figure>
+<h2 id="LinkedHashMap的有序性"><a href="#LinkedHashMap的有序性" class="headerlink" title="LinkedHashMap的有序性"></a>LinkedHashMap的有序性</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">LinkedHashMap底层使用哈希表与双向链表来保存所有元素，它维护着一个运行于所有条目的双向链表（如果学过双向链表的同学会更好的理解它的源代码），此链表定义了迭代顺序，该迭代顺序可以是插入顺序或者是访问顺序 </span><br><span class="line">1.按插入顺序的链表：在LinkedHashMap调用get方法后，输出的顺序和输入时的相同，这就是按插入顺序的链表，默认是按插入顺序排序</span><br><span class="line">2.按访问顺序的链表：在LinkedHashMap调用get方法后，会将这次访问的元素移至链表尾部，不断访问可以形成按访问顺序排序的链表。简单的说，按最近最少访问的元素进行排序（类似LRU算法）</span><br></pre></td></tr></table></figure>
+<p>我们可以通过例子来理解我们上面所说的LinkedHashMap的插入顺序和访问顺序</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    Map&lt;String, String&gt; map = <span class="keyword">new</span> HashMap&lt;String, String&gt;();</span><br><span class="line">    map.put(<span class="string">"apple"</span>, <span class="string">"苹果"</span>);</span><br><span class="line">    map.put(<span class="string">"watermelon"</span>, <span class="string">"西瓜"</span>);</span><br><span class="line">    map.put(<span class="string">"banana"</span>, <span class="string">"香蕉"</span>);</span><br><span class="line">    map.put(<span class="string">"peach"</span>, <span class="string">"桃子"</span>);</span><br><span class="line">Iterator iter = map.entrySet().iterator();</span><br><span class="line"><span class="keyword">while</span> (iter.hasNext()) &#123;</span><br><span class="line">    Map.Entry entry = (Map.Entry) iter.next();</span><br><span class="line">    System.out.println(entry.getKey() + <span class="string">"="</span> + entry.getValue());</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面是简单的HashMap代码，通过控制台的输出，我们可以看到HashMap是没有顺序的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">banana=香蕉 </span><br><span class="line">apple=苹果 </span><br><span class="line">peach=桃子 </span><br><span class="line">watermelon=西瓜</span><br></pre></td></tr></table></figure>
+<p>我们现在将HashMap换成LinkedHashMap，其他代码不变<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;String, String&gt; map = new LinkedHashMap&lt;String, String&gt;();</span><br></pre></td></tr></table></figure></p>
+<p>看一下控制台的输出</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">apple=苹果 </span><br><span class="line">watermelon=西瓜 </span><br><span class="line">banana=香蕉 </span><br><span class="line">peach=桃子</span><br></pre></td></tr></table></figure>
+<p>我们可以看到，其输出顺序是完成按照插入顺序的，也就是我们上面所说的保留了插入的顺序。下面我们修改一下代码，通过访问顺序进行排序</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    Map&lt;String, String&gt; map = <span class="keyword">new</span> LinkedHashMap&lt;String, String&gt;(<span class="number">16</span>,<span class="number">0.75f</span>,<span class="keyword">true</span>);</span><br><span class="line">    map.put(<span class="string">"apple"</span>, <span class="string">"苹果"</span>);</span><br><span class="line">    map.put(<span class="string">"watermelon"</span>, <span class="string">"西瓜"</span>);</span><br><span class="line">    map.put(<span class="string">"banana"</span>, <span class="string">"香蕉"</span>);</span><br><span class="line">    map.put(<span class="string">"peach"</span>, <span class="string">"桃子"</span>);</span><br><span class="line">map.get(<span class="string">"banana"</span>);</span><br><span class="line">map.get(<span class="string">"apple"</span>);</span><br><span class="line"></span><br><span class="line">Iterator iter = map.entrySet().iterator();</span><br><span class="line"><span class="keyword">while</span> (iter.hasNext()) &#123;</span><br><span class="line">    Map.Entry entry = (Map.Entry) iter.next();</span><br><span class="line">    System.out.println(entry.getKey() + <span class="string">"="</span> + entry.getValue());</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>代码与之前的相比<br>1.替换了LinkedHashMap的构造函数，使用三个参数的构造函数，第三个参数传进true就是表明用访问顺序来排序，默认是false（即插入顺序） </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//修改的代码</span></span><br><span class="line">Map&lt;String, String&gt; map = <span class="keyword">new</span> LinkedHashMap&lt;String, String&gt;(<span class="number">16</span>,<span class="number">0.75f</span>,<span class="keyword">true</span>);</span><br><span class="line">......</span><br><span class="line">map.get(<span class="string">"banana"</span>);</span><br><span class="line">map.get(<span class="string">"apple"</span>);</span><br></pre></td></tr></table></figure>
+<hr>
+<p>看一下控制台的输出结果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">watermelon=西瓜 </span><br><span class="line">peach=桃子 </span><br><span class="line">banana=香蕉 </span><br><span class="line">apple=苹果</span><br><span class="line">我们可以看到，顺序是先从最少访问的元素开始遍历（西瓜、桃子），而香蕉、苹果是因为分别调用了get方法，香蕉是最先访问的，所以它的比苹果更少用一些。这也就是我们之前提到过的，LinkedHashMap可以选择按照访问顺序进行排序</span><br></pre></td></tr></table></figure>
+<h2 id="LinkedHashMap与HashMap的区别"><a href="#LinkedHashMap与HashMap的区别" class="headerlink" title="LinkedHashMap与HashMap的区别"></a>LinkedHashMap与HashMap的区别</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">LinkedHashMap有序的，有插入顺序和访问顺序 </span><br><span class="line">HashMap无序的</span><br><span class="line">LinkedHashMap内部维护着一个运行于所有条目的双向链表 </span><br><span class="line">HashMap内部维护着一个单链表</span><br></pre></td></tr></table></figure>
+<h2 id="什么是ArrayList"><a href="#什么是ArrayList" class="headerlink" title="什么是ArrayList"></a>什么是ArrayList</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ArrayList可以理解为动态数组，它的容量能动态增长，该容量是指用来存储列表元素的数组的大小，随着向ArrayList中不断添加元素，其容量也自动增长 </span><br><span class="line">ArrayList允许包括null在内的所有元素 </span><br><span class="line">ArrayList是List接口的非同步实现 </span><br><span class="line">ArrayList是有序的</span><br></pre></td></tr></table></figure>
+<p>定义如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ArrayList</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">AbstractList</span>&lt;<span class="title">E</span>&gt;</span></span><br><span class="line"><span class="class">        <span class="keyword">implements</span> <span class="title">List</span>&lt;<span class="title">E</span>&gt;, <span class="title">RandomAccess</span>, <span class="title">Cloneable</span>, <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ArrayList实现了List接口、底层使用数组保存所有元素，其操作基 本上是对数组的操作</span><br><span class="line">ArrayList继承了AbstractList抽象类，它是一个数组队列，提供了相关的添加、删除、修改、遍历等功能</span><br><span class="line">ArrayList实现了RandmoAccess接口，即提供了随机访问功能，RandmoAccess是java中用来被List实现，为List提供快速访问功能的，我们可以通过元素的序号快速获取元素对象，这就是快速随机访问</span><br><span class="line">ArrayList实现了Cloneable接口，即覆盖了函数clone()，能被克隆 </span><br><span class="line">ArrayList实现了java.io.Serializable接口，意味着ArrayList支持序列化</span><br></pre></td></tr></table></figure>
+<h2 id="什么是LinkedList"><a href="#什么是LinkedList" class="headerlink" title="什么是LinkedList"></a>什么是LinkedList</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">LinkedList基于链表的List接口的非同步实现 </span><br><span class="line">LinkedList允许包括null在内的所有元素 </span><br><span class="line">LinkedList是有序的 </span><br><span class="line">LinkedList是fail-fast的</span><br></pre></td></tr></table></figure>
+<h2 id="LinkedList与ArrayList的区别"><a href="#LinkedList与ArrayList的区别" class="headerlink" title="LinkedList与ArrayList的区别"></a>LinkedList与ArrayList的区别</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">LinkedList底层是双向链表 </span><br><span class="line">ArrayList底层是可变数组</span><br><span class="line">LinkedList不允许随机访问，即查询效率低 </span><br><span class="line">ArrayList允许随机访问，即查询效率高</span><br><span class="line">LinkedList插入和删除效率快 </span><br><span class="line">ArrayList插入和删除效率低</span><br></pre></td></tr></table></figure>
+<p>解释一下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">对于随机访问的两个方法，get和set，ArrayList优于LinkedList，因为LinkedList要移动指针 </span><br><span class="line">对于新增和删除两个方法，add和remove，LinedList比较占优势，因为ArrayList要移动数据</span><br></pre></td></tr></table></figure>
+<h2 id="什么是ConcurrentHashMap"><a href="#什么是ConcurrentHashMap" class="headerlink" title="什么是ConcurrentHashMap"></a>什么是ConcurrentHashMap</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ConcurrentHashMap基于双数组和链表的Map接口的同步实现 </span><br><span class="line">ConcurrentHashMap中元素的key是唯一的、value值可重复 </span><br><span class="line">ConcurrentHashMap不允许使用null值和null键 </span><br><span class="line">ConcurrentHashMap是无序的</span><br></pre></td></tr></table></figure>
+<h2 id="为什么使用ConcurrentHashMap"><a href="#为什么使用ConcurrentHashMap" class="headerlink" title="为什么使用ConcurrentHashMap"></a>为什么使用ConcurrentHashMap</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">我们都知道HashMap是非线程安全的，当我们只有一个线程在使用HashMap的时候，自然不会有问题，但如果涉及到多个线程，并且有读有写的过程中，HashMap就会fail-fast。要解决HashMap同步的问题，我们的解决方案有</span><br><span class="line">Hashtable </span><br><span class="line">Collections.synchronizedMap(hashMap) </span><br><span class="line">这两种方式基本都是对整个hash表结构加上同步锁，这样在锁表的期间，别的线程就需要等待了，无疑性能不高，所以我们引入ConcurrentHashMap，既能同步又能多线程访问</span><br></pre></td></tr></table></figure>
+<h2 id="ConcurrentHashMap的数据结构"><a href="#ConcurrentHashMap的数据结构" class="headerlink" title="ConcurrentHashMap的数据结构"></a>ConcurrentHashMap的数据结构</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ConcurrentHashMap的数据结构为一个Segment数组，Segment的数据结构为HashEntry的数组，而HashEntry存的是我们的键值对，可以构成链表。可以简单的理解为数组里装的是HashMap</span><br></pre></td></tr></table></figure>
+<p><img src="\images\segment.png" alt="img"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">从上面的结构我们可以了解到，ConcurrentHashMap定位一个元素的过程需要进行两次Hash操作，第一次Hash定位到Segment，第二次Hash定位到元素所在的链表的头部，因此，这一种结构的带来的副作用是Hash的过程要比普通的HashMap要长，但是带来的好处是写操作的时候可以只对元素所在的Segment进行加锁即可，不会影响到其他的Segment。正是因为其内部的结构以及机制，ConcurrentHashMap在并发访问的性能上要比Hashtable和同步包装之后的HashMap的性能提高很多。在理想状态下，ConcurrentHashMap 可以支持 16 个线程执行并发写操作（如果并发级别设置为 16），及任意数量线程的读操作</span><br></pre></td></tr></table></figure>
+<h2 id="什么是Vector"><a href="#什么是Vector" class="headerlink" title="什么是Vector"></a>什么是Vector</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Vector是基于可变数组的List接口的同步实现 </span><br><span class="line">Vector是有序的 </span><br><span class="line">Vector允许null键和null值 </span><br><span class="line">Vector已经不建议使用了</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Vector</span>&lt;<span class="title">E</span>&gt;</span></span><br><span class="line"><span class="class">    <span class="keyword">extends</span> <span class="title">AbstractList</span>&lt;<span class="title">E</span>&gt;</span></span><br><span class="line"><span class="class">    <span class="keyword">implements</span> <span class="title">List</span>&lt;<span class="title">E</span>&gt;, <span class="title">RandomAccess</span>, <span class="title">Cloneable</span>, <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span></span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Vector实现了List接口、底层使用数组保存所有元素，其操作基本上是对数组的操作 </span><br><span class="line">Vector继承了AbstractList抽象类，它是一个数组队列，提供了相关的添加、删除、修改、遍历等功能 </span><br><span class="line">Vector实现了RandmoAccess接口，即提供了随机访问功能，RandmoAccess是java中用来被List实现，为List提供快速访问功能的，我们可以通过元素的序号快速获取元素对象，这就是快速随机访问 </span><br><span class="line">Vector实现了Cloneable接口，即覆盖了函数clone()，能被克隆 </span><br><span class="line">Vector实现了java.io.Serializable接口，意味着ArrayList支持序列化</span><br></pre></td></tr></table></figure>
+<h2 id="Vector和ArrayList的区别"><a href="#Vector和ArrayList的区别" class="headerlink" title="Vector和ArrayList的区别"></a>Vector和ArrayList的区别</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Vector同步、线程安全的 </span><br><span class="line">ArrayList异步、线程不安全</span><br><span class="line">Vector 需要额外开销来维持同步锁，性能慢 </span><br><span class="line">ArrayList 性能快</span><br><span class="line">Vector 可以使用Iterator、foreach、Enumeration输出  </span><br><span class="line">ArrayList 只能使用Iterator、foreach输出</span><br></pre></td></tr></table></figure>
+<p>原文： <a href="https://blog.csdn.net/lijizhi19950123/article/details/78209278" target="_blank" rel="noopener">https://blog.csdn.net/lijizhi19950123/article/details/78209278</a> </p>
 
       
 
@@ -316,7 +271,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">GC</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
         		</li>
       		
 		</ul>
@@ -331,7 +286,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/Java//" class="article-tag-list-link color5">Java</a>
+        			<a href="/categories/java语法//" class="article-tag-list-link color2">java语法</a>
         		</li>
       		
 		</ul>
@@ -386,7 +341,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/04/22/CMS垃圾收集器/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/06/20/HashMap,HashSet,HashTable等相关问题/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -400,18 +355,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/04/23/aboutme/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/06/20/测试测试/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          个人小简介
+          (no title)
         
       </div>
     </a>
   
   
-    <a href="/2019/04/19/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Hello World</div>
+    <a href="/2019/06/19/java中单例模式是一种常见的设计模式，单例模式分三种：懒汉式单例、饿汉式单例、登记式单例三种/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">java单例模式</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -438,7 +393,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#介绍"><span class="toc-number">1.</span> <span class="toc-text">介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#CMS收集器"><span class="toc-number">1.1.</span> <span class="toc-text">CMS收集器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#触发条件"><span class="toc-number">1.2.</span> <span class="toc-text">触发条件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CMS的收集阶段"><span class="toc-number">1.3.</span> <span class="toc-text">CMS的收集阶段</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#初始标记"><span class="toc-number">1.4.</span> <span class="toc-text">初始标记</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#并发标记"><span class="toc-number">1.5.</span> <span class="toc-text">并发标记</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#预清理"><span class="toc-number">1.6.</span> <span class="toc-text">预清理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#可中断预清理"><span class="toc-number">1.7.</span> <span class="toc-text">可中断预清理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#最终标记"><span class="toc-number">1.8.</span> <span class="toc-text">最终标记</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#并发清理"><span class="toc-number">1.9.</span> <span class="toc-text">并发清理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#并发重置"><span class="toc-number">1.10.</span> <span class="toc-text">并发重置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CMS日志说明"><span class="toc-number">1.11.</span> <span class="toc-text">CMS日志说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CMS失败处理"><span class="toc-number">1.12.</span> <span class="toc-text">CMS失败处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#晋升失败-promoration-failure"><span class="toc-number">1.13.</span> <span class="toc-text">晋升失败(promoration failure)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CMS的一些参数说明"><span class="toc-number">1.14.</span> <span class="toc-text">CMS的一些参数说明</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#HashMap相关问题"><span class="toc-number">1.</span> <span class="toc-text">HashMap相关问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HashSet与HashMap区别"><span class="toc-number">2.</span> <span class="toc-text">HashSet与HashMap区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HashTable与HashMap的区别"><span class="toc-number">3.</span> <span class="toc-text">HashTable与HashMap的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LinkedHashMap的有序性"><span class="toc-number">4.</span> <span class="toc-text">LinkedHashMap的有序性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LinkedHashMap与HashMap的区别"><span class="toc-number">5.</span> <span class="toc-text">LinkedHashMap与HashMap的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是ArrayList"><span class="toc-number">6.</span> <span class="toc-text">什么是ArrayList</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是LinkedList"><span class="toc-number">7.</span> <span class="toc-text">什么是LinkedList</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LinkedList与ArrayList的区别"><span class="toc-number">8.</span> <span class="toc-text">LinkedList与ArrayList的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是ConcurrentHashMap"><span class="toc-number">9.</span> <span class="toc-text">什么是ConcurrentHashMap</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#为什么使用ConcurrentHashMap"><span class="toc-number">10.</span> <span class="toc-text">为什么使用ConcurrentHashMap</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ConcurrentHashMap的数据结构"><span class="toc-number">11.</span> <span class="toc-text">ConcurrentHashMap的数据结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是Vector"><span class="toc-number">12.</span> <span class="toc-text">什么是Vector</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vector和ArrayList的区别"><span class="toc-number">13.</span> <span class="toc-text">Vector和ArrayList的区别</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -472,7 +427,7 @@
             <div id="toc-article" class="toc-article">
                 <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
                 <strong class="toc-title">文章目录</strong>
-                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#介绍"><span class="toc-number">1.</span> <span class="toc-text">介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#CMS收集器"><span class="toc-number">1.1.</span> <span class="toc-text">CMS收集器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#触发条件"><span class="toc-number">1.2.</span> <span class="toc-text">触发条件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CMS的收集阶段"><span class="toc-number">1.3.</span> <span class="toc-text">CMS的收集阶段</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#初始标记"><span class="toc-number">1.4.</span> <span class="toc-text">初始标记</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#并发标记"><span class="toc-number">1.5.</span> <span class="toc-text">并发标记</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#预清理"><span class="toc-number">1.6.</span> <span class="toc-text">预清理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#可中断预清理"><span class="toc-number">1.7.</span> <span class="toc-text">可中断预清理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#最终标记"><span class="toc-number">1.8.</span> <span class="toc-text">最终标记</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#并发清理"><span class="toc-number">1.9.</span> <span class="toc-text">并发清理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#并发重置"><span class="toc-number">1.10.</span> <span class="toc-text">并发重置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CMS日志说明"><span class="toc-number">1.11.</span> <span class="toc-text">CMS日志说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CMS失败处理"><span class="toc-number">1.12.</span> <span class="toc-text">CMS失败处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#晋升失败-promoration-failure"><span class="toc-number">1.13.</span> <span class="toc-text">晋升失败(promoration failure)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CMS的一些参数说明"><span class="toc-number">1.14.</span> <span class="toc-text">CMS的一些参数说明</span></a></li></ol></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#HashMap相关问题"><span class="toc-number">1.</span> <span class="toc-text">HashMap相关问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HashSet与HashMap区别"><span class="toc-number">2.</span> <span class="toc-text">HashSet与HashMap区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HashTable与HashMap的区别"><span class="toc-number">3.</span> <span class="toc-text">HashTable与HashMap的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LinkedHashMap的有序性"><span class="toc-number">4.</span> <span class="toc-text">LinkedHashMap的有序性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LinkedHashMap与HashMap的区别"><span class="toc-number">5.</span> <span class="toc-text">LinkedHashMap与HashMap的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是ArrayList"><span class="toc-number">6.</span> <span class="toc-text">什么是ArrayList</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是LinkedList"><span class="toc-number">7.</span> <span class="toc-text">什么是LinkedList</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LinkedList与ArrayList的区别"><span class="toc-number">8.</span> <span class="toc-text">LinkedList与ArrayList的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是ConcurrentHashMap"><span class="toc-number">9.</span> <span class="toc-text">什么是ConcurrentHashMap</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#为什么使用ConcurrentHashMap"><span class="toc-number">10.</span> <span class="toc-text">为什么使用ConcurrentHashMap</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ConcurrentHashMap的数据结构"><span class="toc-number">11.</span> <span class="toc-text">ConcurrentHashMap的数据结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是Vector"><span class="toc-number">12.</span> <span class="toc-text">什么是Vector</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vector和ArrayList的区别"><span class="toc-number">13.</span> <span class="toc-text">Vector和ArrayList的区别</span></a></li></ol>
            </div>
            <script type="text/javascript">
             function showToc(){
