@@ -167,6 +167,151 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-HashMap并发问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/03/HashMap并发问题/">HashMap并发问题</a>
+    </h1>
+  
+
+        
+        <a href="/2019/07/03/HashMap并发问题/" class="archive-article-date">
+  	<time datetime="2019-07-03T08:14:41.367Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="HashMap并发问题"><a href="#HashMap并发问题" class="headerlink" title="HashMap并发问题"></a>HashMap并发问题</h1><p>在讲HashMap的时候提到过HashMap线程不安全，在并发环境下会发生死锁问题，将导致CPU占用率接近100%。其实死锁的说法并不很贴切，应该说是一种死循环。在JDK 1.8中，Map相关类的实现发生了很大变化，引入了红黑树的概念，本篇以JDK 1.7中的实现方式讲解HashMap的并发问题，以方便理解。</p>
+<p>说明</p>
+<p>JDK 1.8和JDK 1.7中，Map相关类的大体实现思想变化不大，知识引入了红黑树的概念，使得类中增加了生成红黑树的方法，相关的一些重要方法，例如添加元素，重置集合大小等方法也做出相应改变。<br>上述这些变化主要是为了提高集合的查询效率，思想还是原来的思想，因此JDK 1.7中的源代码更能方便理解。</p>
+<p>HashMap并发死锁问题</p>
+<p>该问题的成因涉及到四个方法，最初的起因是调用put()方法，跟着方法走一遍：<br>put()方法源码（只给出核心部分）：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> V <span class="title">put</span><span class="params">(K key, V value)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ......</span><br><span class="line">    <span class="comment">//计算Hash值</span></span><br><span class="line">    <span class="keyword">int</span> hash = hash(key.hashCode());</span><br><span class="line">    <span class="keyword">int</span> i = indexFor(hash, table.length);</span><br><span class="line">    <span class="comment">//如果该key已存在，则替换掉旧的value</span></span><br><span class="line">    <span class="keyword">for</span> (Entry&lt;K,V&gt; e = table[i]; e != <span class="keyword">null</span>; e = e.next) &#123;</span><br><span class="line">        Object k;</span><br><span class="line">        <span class="keyword">if</span> (e.hash == hash &amp;&amp; ((k = e.key) == key || key.equals(k))) &#123;</span><br><span class="line">            V oldValue = e.value;</span><br><span class="line">            e.value = value;</span><br><span class="line">            e.recordAccess(<span class="keyword">this</span>);</span><br><span class="line">            <span class="keyword">return</span> oldValue;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    modCount++;</span><br><span class="line">    <span class="comment">//该key不存在，需要增加一个结点</span></span><br><span class="line">    addEntry(hash, key, value, i);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当key不存在时，调用addEntry()方法添加新节点。方法源码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">addEntry</span><span class="params">(<span class="keyword">int</span> hash, K key, V value, <span class="keyword">int</span> bucketIndex)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Entry&lt;K,V&gt; e = table[bucketIndex];</span><br><span class="line">    table[bucketIndex] = <span class="keyword">new</span> Entry&lt;K,V&gt;(hash, key, value, e);</span><br><span class="line">    <span class="comment">//查看当前的size是否超过了阈值threshold，如果超过，需要resize</span></span><br><span class="line">    <span class="keyword">if</span> (size++ &gt;= threshold)</span><br><span class="line">        resize(<span class="number">2</span> * table.length);</span><br><span class="line">&#125;</span><br><span class="line">resize()方法就是产生并发死锁的原因</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">resize</span><span class="params">(<span class="keyword">int</span> newCapacity)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Entry[] oldTable = table;</span><br><span class="line">    <span class="keyword">int</span> oldCapacity = oldTable.length;</span><br><span class="line">    ......</span><br><span class="line">    <span class="comment">//创建一个新的Hash Table</span></span><br><span class="line">    Entry[] newTable = <span class="keyword">new</span> Entry[newCapacity];</span><br><span class="line">    <span class="comment">//将Old Hash Table上的数据迁移到New Hash Table上</span></span><br><span class="line">    transfer(newTable);</span><br><span class="line">    table = newTable;</span><br><span class="line">    threshold = (<span class="keyword">int</span>)(newCapacity * loadFactor);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>resize()方法的本质就是创建新的Entry数组，将原Map中的元素重新计算位置，加入到新的Map中。虽然死锁的成因是扩充时调用resize()方法，但真正的产生是发生在倒数第三行的transfer()方法中。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">transfer</span><span class="params">(Entry[] newTable)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Entry[] src = table;</span><br><span class="line">    <span class="keyword">int</span> newCapacity = newTable.length;</span><br><span class="line">    <span class="comment">//从OldTable将元素一个个拿出来，然后放到NewTable中</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; src.length; j++) &#123;</span><br><span class="line">        Entry&lt;K,V&gt; e = src[j];</span><br><span class="line">        <span class="keyword">if</span> (e != <span class="keyword">null</span>) &#123;</span><br><span class="line">            src[j] = <span class="keyword">null</span>;</span><br><span class="line">            <span class="keyword">do</span> &#123;</span><br><span class="line">                Entry&lt;K,V&gt; next = e.next;</span><br><span class="line">                <span class="comment">//计算节点在新的Map中的位置</span></span><br><span class="line">                <span class="keyword">int</span> i = indexFor(e.hash, newCapacity);</span><br><span class="line">                e.next = newTable[i];</span><br><span class="line">                newTable[i] = e;</span><br><span class="line">                e = next;</span><br><span class="line">            &#125; <span class="keyword">while</span> (e != <span class="keyword">null</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>大体过程如下（摘自网上大神的博客）</p>
+<p>transfe过程</p>
+<p>假设hash算法就是简单的用key mod Entry数组的长度。这里一定注意e和next的指向，当并发resize()时，这两个指针对于死锁产生起着至关重要的作用。根据方法执行情况，原Map中的链表元素在新的Map中将顺序颠倒，如上图所示，经过一次resize()后key为7的节点排在了key为3的节点之前。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">  Entry&lt;K,V&gt; next = e.next;</span><br><span class="line">  <span class="comment">//计算节点在新的Map中的位置</span></span><br><span class="line">  <span class="keyword">int</span> i = indexFor(e.hash, newCapacity);</span><br><span class="line">  e.next = newTable[i];</span><br><span class="line">  newTable[i] = e;</span><br><span class="line">   e = next;</span><br><span class="line">&#125; <span class="keyword">while</span> (e != <span class="keyword">null</span>);</span><br></pre></td></tr></table></figure>
+<p>再次黏贴这段代码就是强调这个do while循环就是产生死锁的罪魁祸首。下面模拟死锁产生的过程。<br>注意，并非所有情况下都会产生死锁，这也需要线程之间的默契配合，怎么讲呢，如图所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">  Entry&lt;K,V&gt; next = e.next; <span class="comment">//假设线程一执行至此被挂起，执行线程二</span></span><br><span class="line">  <span class="keyword">int</span> i = indexFor(e.hash, newCapacity);</span><br><span class="line">  e.next = newTable[i];</span><br><span class="line">  newTable[i] = e;</span><br><span class="line">   e = next;</span><br><span class="line">&#125; <span class="keyword">while</span> (e != <span class="keyword">null</span>);</span><br></pre></td></tr></table></figure>
+<p>线程一的记录状态</p>
+<p>此时线程一，e指向key为3的节点，next指向key为7的节点。这点很重要，记下来。去执行线程二。<br>假设线程二正常执行，结束后的状态如下：</p>
+<p>线程二正常执行</p>
+<p>此时线程一被唤醒，线程一的工作空间里，e和next指向的元素依旧是key为3和7的节点。线程一开始执行。</p>
+<p>先是执行 newTalbe[i] = e。<br>然后是e = next，导致了e指向了key(7)。<br>而下一次循环的next = e.next导致了next指向了key(3)。</p>
+<p>线程一执行</p>
+<p>目前还没发生问题，线程一接着工作。把key(7)摘下来，放到newTable[i]的第一个，然后把e和next往下移。</p>
+<p>线程一执行</p>
+<p>e.next = newTable[i] 导致 key(3).next 指向了 key(7)。注意：此时的key(7).next 已经指向了key(3)， 环形链表就这样出现了。</p>
+<p>死锁产生<br>这个过程不好理解，最好多读几遍，当产生带环链表后，如果调用get()方法，将会陷入死循环，CPU占用将达到100%。解决这一问题的方式有多种。比较low的可以使用HashTable和调用Collections工具类的synchronizedMap()方法达到线程安全的目的。但由于synchronized是串行执行，在访问量很大的情况下效率很低，不推荐使用。</p>
+<p>另外一种方式就是使用JUC包下的ConcurrentHashMap类，这个类很好的解决了多线程环境下的并发问题</p>
+<p>原文：<a href="https://blog.csdn.net/lby0307/article/details/81836307" target="_blank" rel="noopener">https://blog.csdn.net/lby0307/article/details/81836307</a> </p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+	  <span id="busuanzi_container_page_pv">
+	    本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	  </span>
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/java语法//" class="article-tag-list-link color2">java语法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/07/03/HashMap并发问题/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
+
+
+		<!-- 目录内容 -->
+             
+        <!-- 目录内容结束 -->
+
+  
+    <section id="comments" style="margin:10px;padding:10px;background:#fff;">
+      <div id="vcomment" class="comment"></div> 
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+   var notify = 'true' == true ? true : false;
+   var verify = 'false' == true ? true : false;
+    window.onload = function() {
+        new Valine({
+            el: '.comment',
+            notify: notify,
+            verify: verify,
+            app_id: "kdu1FK6Cd4WD9NYHr5lR0iaL-gzGzoHsz",
+            app_key: "I6uqM2ESbwMiTsEuSYwLuEJG",
+            placeholder: "Just go go",
+            avatar:"monsterid"
+        });
+    }
+</script>
+    </section>
+  
+
+  
     <article id="post-测试测试" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1231,139 +1376,6 @@
   
 
   
-    <article id="post-CMS垃圾收集器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/22/CMS垃圾收集器/">CMS垃圾回收器</a>
-    </h1>
-  
-
-        
-        <a href="/2019/04/22/CMS垃圾收集器/" class="archive-article-date">
-  	<time datetime="2019-04-22T07:07:31.001Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><ul>
-<li>CMS垃圾回收器的全称是Concurrent Mark-Sweep Collector，从名字上可以看出两点，一个是使用的是并发收集，第二个是使用的收集算法是Mark-Sweep。从而也可以推测出该收集器的特点是低延迟并且会有浮动垃圾的问题。下面详细介绍一下这个收集器的特点。</li>
-</ul>
-<h2 id="CMS收集器"><a href="#CMS收集器" class="headerlink" title="CMS收集器"></a>CMS收集器</h2><ul>
-<li>CMS收集器是为了低延迟而生，通过尽可能的并行执行垃圾回收的几个阶段来把延迟控制到最低。CMS收集器是老年代的垃圾收集器，一般情况下会有ParNew来配合执行(默认情况下也是ParNew)，ParNew也是使用并行的算法来执行年轻代的回收。当然除此之外，你还可以选择使用Serial收集器来收集年轻代，不过一般很少这样使用。通过咱们说的CMS收集器是指广义上的CMS收集器，包含以下几个：ParNew（Young）GC + CMS（Old）GC ＋ Serial GC 算法（应对核心的CMS GC某些时候的不赶趟，开销很大）。本文重点介绍一些CMS在Old区域的回收。</li>
-</ul>
-<h2 id="触发条件"><a href="#触发条件" class="headerlink" title="触发条件"></a>触发条件</h2><p>CMS垃圾收集器的触发条件有以下几个：  </p>
-<ol>
-<li>如果没有设置-XX:+UseCMSInitiatingOccupancyOnly，虚拟机会根据收集的数据决定是否触发（建议带上这个参数）。   </li>
-<li>老年代使用率达到阈值 CMSInitiatingOccupancyFraction，默认92%，前提是配置了第一个参数。  </li>
-<li>永久代的使用率达到阈值CMSInitiatingPermOccupancyFraction，默认92%，前提是开启 CMSClassUnloadingEnabled并且配置了第一个参数。  </li>
-<li>新生代的晋升担保失败。</li>
-</ol>
-<h2 id="CMS的收集阶段"><a href="#CMS的收集阶段" class="headerlink" title="CMS的收集阶段"></a>CMS的收集阶段</h2><p>CMS收集器在收集老年代的时候分为以下几个阶段：初始标记、并发标记、预清理、可中断预清理、最终标记、并发清除、并发重置。每个阶段的运行过程如下：<br>
-        
-          <a class="article-more-a" href="/2019/04/22/CMS垃圾收集器/#more">more >></a>
-        
-      
-
-      
-    </p></div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">GC</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-	  <span id="busuanzi_container_page_pv">
-	    本文总阅读量<span id="busuanzi_value_page_pv"></span>次
-	  </span>
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Java//" class="article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/04/22/CMS垃圾收集器/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-
-
-
-		<!-- 目录内容 -->
-             
-        <!-- 目录内容结束 -->
-
-  
-    <section id="comments" style="margin:10px;padding:10px;background:#fff;">
-      <div id="vcomment" class="comment"></div> 
-<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
-<script>
-   var notify = 'true' == true ? true : false;
-   var verify = 'false' == true ? true : false;
-    window.onload = function() {
-        new Valine({
-            el: '.comment',
-            notify: notify,
-            verify: verify,
-            app_id: "kdu1FK6Cd4WD9NYHr5lR0iaL-gzGzoHsz",
-            app_key: "I6uqM2ESbwMiTsEuSYwLuEJG",
-            placeholder: "Just go go",
-            avatar:"monsterid"
-        });
-    }
-</script>
-    </section>
-  
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1467,11 +1479,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+                <a href="javascript:void(0)" class="js-tag color2">casual</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">casual</a>
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1484,10 +1500,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">GC</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
