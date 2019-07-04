@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="MmmmasterC的小博客">
 <meta property="og:description" content="ReenTrantLock可重入锁（和synchronized的区别）总结可重入性： 从名字上理解，ReenTrantLock的字面意思就是再进入的锁，其实synchronized关键字所使用的锁也是可重入的，两者关于这个的区别不大。两者都是同一个线程没进入一次，锁的计数器都自增1，所以要等到锁的计数器下降为0时才能释放锁。 锁的实现： Synchronized是依赖于JVM实现的，而ReenTr">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-07-04T03:30:40.539Z">
+<meta property="og:updated_time" content="2019-07-04T06:45:55.423Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MmmmasterC的小博客">
 <meta name="twitter:description" content="ReenTrantLock可重入锁（和synchronized的区别）总结可重入性： 从名字上理解，ReenTrantLock的字面意思就是再进入的锁，其实synchronized关键字所使用的锁也是可重入的，两者关于这个的区别不大。两者都是同一个线程没进入一次，锁的计数器都自增1，所以要等到锁的计数器下降为0时才能释放锁。 锁的实现： Synchronized是依赖于JVM实现的，而ReenTr">
@@ -175,6 +175,7 @@
 <p>从名字上理解，ReenTrantLock的字面意思就是再进入的锁，其实synchronized关键字所使用的锁也是可重入的，两者关于这个的区别不大。两者都是同一个线程没进入一次，锁的计数器都自增1，所以要等到锁的计数器下降为0时才能释放锁。</p>
 <p><strong>锁的实现：</strong></p>
 <p>Synchronized是依赖于JVM实现的，而ReenTrantLock是JDK实现的，有什么区别，说白了就类似于<a href="http://lib.csdn.net/base/operatingsystem" target="_blank" rel="noopener">操作系统</a>来控制实现和用户自己敲代码实现的区别。前者的实现是比较难见到的，后者有直接的源码可供阅读。</p>
+ <a id="more"></a>
 <p><strong>性能的区别：</strong></p>
 <p>在Synchronized优化以前，synchronized的性能是比ReenTrantLock差很多的，但是自从Synchronized引入了偏向锁，轻量级锁（自旋锁）后，两者的性能就差不多了，在两种方法都可用的情况下，官方甚至建议使用synchronized，其实synchronized的优化我感觉就借鉴了ReenTrantLock中的CAS技术。都是试图在用户态就把加锁问题解决，避免进入内核态的线程阻塞。</p>
 <p><strong>功能区别：</strong></p>
