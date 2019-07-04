@@ -167,6 +167,133 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-java后端研发经典面试题总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/24/java后端研发经典面试题总结/">java后端研发经典面试题总结</a>
+    </h1>
+  
+
+        
+        <a href="/2019/04/24/java后端研发经典面试题总结/" class="archive-article-date">
+  	<time datetime="2019-04-24T07:00:52.391Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="垃圾回收算法"><a href="#垃圾回收算法" class="headerlink" title="垃圾回收算法"></a><strong>垃圾回收算法</strong></h1><p><strong>1.标记-清除算法</strong></p>
+<p>标记-清除算法是最基本的算法，和他的名字一样，分为两个步骤，一个步骤是标记需要回收的对象。在标记完成后统一回收被标记的对象。这个算法两个问题。一个是效率问题，标记和清除的效率不高。第二个问题是标记-清除之后会有大量不连续的碎片空间，如果我们需要更大的连续内存就必须GC。</p>
+<p><strong>2.复制算法</strong></p>
+<p>复制算法，不同于标记-清除，复制算法大多数用于新生代，它需要大小相等的两块内存，每次只使用一块内存，当GC的时候会把这块内存存活的对象复制到另外一块内存上面，解决了时间效率和空间碎片问题。在新生代中会把他分为三个内存一个Eden 两个Survivor默认是8比1，开始会使用一个Eden和一个Surivivor装载内存，清除时会将这两个保留的对象都保存另外在Survivor中，并且年龄加1（以后提升为老年代），如果超出了Survivor中的限制会用老年代的内存担保。</p>
+<p><strong>3.标记-整理算法</strong></p>
+<p>主要特点是，解决了碎片问题。标记整理算法，标记过程和第一算法一样，但是他处理的时候会让存活的对象向一边移动解决了空间碎片问题，用于老年代的处理。</p>
+<p><strong>4.分代收集算法</strong></p>
+<p>分代收集算法不是新思想，只是把上面的算法结合起来了。</p>
+        
+          <a class="article-more-a" href="/2019/04/24/java后端研发经典面试题总结/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+	  <span id="busuanzi_container_page_pv">
+	    本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	  </span>
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/java后端//" class="article-tag-list-link color2">java后端</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/04/24/java后端研发经典面试题总结/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
+
+
+		<!-- 目录内容 -->
+             
+        <!-- 目录内容结束 -->
+
+  
+    <section id="comments" style="margin:10px;padding:10px;background:#fff;">
+      <div id="vcomment" class="comment"></div> 
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+   var notify = 'true' == true ? true : false;
+   var verify = 'false' == true ? true : false;
+    window.onload = function() {
+        new Valine({
+            el: '.comment',
+            notify: notify,
+            verify: verify,
+            app_id: "kdu1FK6Cd4WD9NYHr5lR0iaL-gzGzoHsz",
+            app_key: "I6uqM2ESbwMiTsEuSYwLuEJG",
+            placeholder: "Just go go",
+            avatar:"monsterid"
+        });
+    }
+</script>
+    </section>
+  
+
+  
     <article id="post-aboutme" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -761,6 +888,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">casual</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
               </li>
              
@@ -770,10 +901,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">线性回归与梯度下降算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">casual</a>
               </li>
              
               <li class="article-tag-list-item">

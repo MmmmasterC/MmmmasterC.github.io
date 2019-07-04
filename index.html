@@ -167,6 +167,108 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-ReenTrantLock可重入锁（和synchronized的区别）总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="ReenTrantLock可重入锁（和synchronized的区别）总结"><a href="#ReenTrantLock可重入锁（和synchronized的区别）总结" class="headerlink" title="ReenTrantLock可重入锁（和synchronized的区别）总结"></a>ReenTrantLock可重入锁（和synchronized的区别）总结</h2><p><strong>可重入性：</strong></p>
+<p>从名字上理解，ReenTrantLock的字面意思就是再进入的锁，其实synchronized关键字所使用的锁也是可重入的，两者关于这个的区别不大。两者都是同一个线程没进入一次，锁的计数器都自增1，所以要等到锁的计数器下降为0时才能释放锁。</p>
+<p><strong>锁的实现：</strong></p>
+<p>Synchronized是依赖于JVM实现的，而ReenTrantLock是JDK实现的，有什么区别，说白了就类似于<a href="http://lib.csdn.net/base/operatingsystem" target="_blank" rel="noopener">操作系统</a>来控制实现和用户自己敲代码实现的区别。前者的实现是比较难见到的，后者有直接的源码可供阅读。</p>
+<p><strong>性能的区别：</strong></p>
+<p>在Synchronized优化以前，synchronized的性能是比ReenTrantLock差很多的，但是自从Synchronized引入了偏向锁，轻量级锁（自旋锁）后，两者的性能就差不多了，在两种方法都可用的情况下，官方甚至建议使用synchronized，其实synchronized的优化我感觉就借鉴了ReenTrantLock中的CAS技术。都是试图在用户态就把加锁问题解决，避免进入内核态的线程阻塞。</p>
+<p><strong>功能区别：</strong></p>
+<p>便利性：很明显Synchronized的使用比较方便简洁，并且由编译器去保证锁的加锁和释放，而ReenTrantLock需要手工声明来加锁和释放锁，为了避免忘记手工释放锁造成死锁，所以最好在finally中声明释放锁。</p>
+<p>锁的细粒度和灵活度：很明显ReenTrantLock优于Synchronized</p>
+<p><strong>ReenTrantLock独有的能力：</strong></p>
+<ol>
+<li><p>ReenTrantLock可以指定是公平锁还是非公平锁。而synchronized只能是非公平锁。所谓的公平锁就是先等待的线程先获得锁。</p>
+</li>
+<li><p>ReenTrantLock提供了一个Condition（条件）类，用来实现分组唤醒需要唤醒的线程们，而不是像synchronized要么随机唤醒一个线程要么唤醒全部线程。</p>
+</li>
+<li><p>ReenTrantLock提供了一种能够中断等待锁的线程的机制，通过lock.lockInterruptibly()来实现这个机制。</p>
+</li>
+</ol>
+<p><strong>ReenTrantLock实现的原理：</strong></p>
+<p>在网上看到相关的源码分析，本来这块应该是本文的核心，但是感觉比较复杂就不一一详解了，简单来说，ReenTrantLock的实现是一种自旋锁，通过循环调用CAS操作来实现加锁。它的性能比较好也是因为避免了使线程进入内核态的阻塞状态。<strong>想尽办法避免线程进入内核的阻塞状态是我们去分析和理解锁设计的关键钥匙。</strong></p>
+<p><strong>什么情况下使用ReenTrantLock：</strong></p>
+<p>答案是，如果你需要实现ReenTrantLock的三个独有功能时。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	  <span id="busuanzi_container_page_pv">
+	    本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	  </span>
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/07/04/ReenTrantLock可重入锁（和synchronized的区别）总结/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
+
+
+		<!-- 目录内容 -->
+             
+        <!-- 目录内容结束 -->
+
+  
+    <section id="comments" style="margin:10px;padding:10px;background:#fff;">
+      <div id="vcomment" class="comment"></div> 
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+   var notify = 'true' == true ? true : false;
+   var verify = 'false' == true ? true : false;
+    window.onload = function() {
+        new Valine({
+            el: '.comment',
+            notify: notify,
+            verify: verify,
+            app_id: "kdu1FK6Cd4WD9NYHr5lR0iaL-gzGzoHsz",
+            app_key: "I6uqM2ESbwMiTsEuSYwLuEJG",
+            placeholder: "Just go go",
+            avatar:"monsterid"
+        });
+    }
+</script>
+    </section>
+  
+
+  
     <article id="post-HashMap的底层实现" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1189,133 +1291,6 @@
   
 
   
-    <article id="post-java后端研发经典面试题总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/24/java后端研发经典面试题总结/">java后端研发经典面试题总结</a>
-    </h1>
-  
-
-        
-        <a href="/2019/04/24/java后端研发经典面试题总结/" class="archive-article-date">
-  	<time datetime="2019-04-24T07:00:52.391Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="垃圾回收算法"><a href="#垃圾回收算法" class="headerlink" title="垃圾回收算法"></a><strong>垃圾回收算法</strong></h1><p><strong>1.标记-清除算法</strong></p>
-<p>标记-清除算法是最基本的算法，和他的名字一样，分为两个步骤，一个步骤是标记需要回收的对象。在标记完成后统一回收被标记的对象。这个算法两个问题。一个是效率问题，标记和清除的效率不高。第二个问题是标记-清除之后会有大量不连续的碎片空间，如果我们需要更大的连续内存就必须GC。</p>
-<p><strong>2.复制算法</strong></p>
-<p>复制算法，不同于标记-清除，复制算法大多数用于新生代，它需要大小相等的两块内存，每次只使用一块内存，当GC的时候会把这块内存存活的对象复制到另外一块内存上面，解决了时间效率和空间碎片问题。在新生代中会把他分为三个内存一个Eden 两个Survivor默认是8比1，开始会使用一个Eden和一个Surivivor装载内存，清除时会将这两个保留的对象都保存另外在Survivor中，并且年龄加1（以后提升为老年代），如果超出了Survivor中的限制会用老年代的内存担保。</p>
-<p><strong>3.标记-整理算法</strong></p>
-<p>主要特点是，解决了碎片问题。标记整理算法，标记过程和第一算法一样，但是他处理的时候会让存活的对象向一边移动解决了空间碎片问题，用于老年代的处理。</p>
-<p><strong>4.分代收集算法</strong></p>
-<p>分代收集算法不是新思想，只是把上面的算法结合起来了。</p>
-        
-          <a class="article-more-a" href="/2019/04/24/java后端研发经典面试题总结/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-	  <span id="busuanzi_container_page_pv">
-	    本文总阅读量<span id="busuanzi_value_page_pv"></span>次
-	  </span>
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/java后端//" class="article-tag-list-link color2">java后端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/04/24/java后端研发经典面试题总结/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-
-
-
-		<!-- 目录内容 -->
-             
-        <!-- 目录内容结束 -->
-
-  
-    <section id="comments" style="margin:10px;padding:10px;background:#fff;">
-      <div id="vcomment" class="comment"></div> 
-<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
-<script>
-   var notify = 'true' == true ? true : false;
-   var verify = 'false' == true ? true : false;
-    window.onload = function() {
-        new Valine({
-            el: '.comment',
-            notify: notify,
-            verify: verify,
-            app_id: "kdu1FK6Cd4WD9NYHr5lR0iaL-gzGzoHsz",
-            app_key: "I6uqM2ESbwMiTsEuSYwLuEJG",
-            placeholder: "Just go go",
-            avatar:"monsterid"
-        });
-    }
-</script>
-    </section>
-  
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1423,6 +1398,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">casual</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
               </li>
              
@@ -1432,10 +1411,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">线性回归与梯度下降算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">casual</a>
               </li>
              
               <li class="article-tag-list-item">
