@@ -6,20 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>java单例模式 | MmmmasterC的小博客</title>
+  <title>分布式与SOA架构 | MmmmasterC的小博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="java中单例模式是一种常见的设计模式，单例模式分三种：懒汉式单例、饿汉式单例、登记式单例三种。 　　单例模式有以下特点： 　　1、单例类只能有一个实例。 　　2、单例类必须自己创建自己的唯一实例。 　　3、单例类必须给所有其他对象提供这一实例。 单例模式确保某个类只有一个实例，而且自行实例化并向整个系统提供这个实例。在计算机系统中，线程池、缓存、日志对象、对话框、打印机、显卡的驱动程序对象常被设">
-<meta name="keywords" content="java">
+  <meta name="description" content="分布式系统​    分布式系统是一个硬件或软件组件分布在不同的网络计算机上，彼此之间仅仅通过消息传递和协调的系统。 ​       简单来说，就是一群独立计算机集合共同对外提供服务，但是对于系统用户来说，就像是一台计算机在提供服务一样。分布式意味着可以采用更多的普通计算机组成分布式集群对外提供服务，计算机越多，CPU、内存、存储资源等也就越多，能够处理的并发访问量也就越大。">
+<meta name="keywords" content="分布式与SOA架构">
 <meta property="og:type" content="article">
-<meta property="og:title" content="java单例模式">
-<meta property="og:url" content="http://yoursite.com/2019/06/19/java中单例模式是一种常见的设计模式，单例模式分三种：懒汉式单例、饿汉式单例、登记式单例三种/index.html">
+<meta property="og:title" content="分布式与SOA架构">
+<meta property="og:url" content="http://yoursite.com/2019/07/13/分布式系统/index.html">
 <meta property="og:site_name" content="MmmmasterC的小博客">
-<meta property="og:description" content="java中单例模式是一种常见的设计模式，单例模式分三种：懒汉式单例、饿汉式单例、登记式单例三种。 　　单例模式有以下特点： 　　1、单例类只能有一个实例。 　　2、单例类必须自己创建自己的唯一实例。 　　3、单例类必须给所有其他对象提供这一实例。 单例模式确保某个类只有一个实例，而且自行实例化并向整个系统提供这个实例。在计算机系统中，线程池、缓存、日志对象、对话框、打印机、显卡的驱动程序对象常被设">
+<meta property="og:description" content="分布式系统​    分布式系统是一个硬件或软件组件分布在不同的网络计算机上，彼此之间仅仅通过消息传递和协调的系统。 ​       简单来说，就是一群独立计算机集合共同对外提供服务，但是对于系统用户来说，就像是一台计算机在提供服务一样。分布式意味着可以采用更多的普通计算机组成分布式集群对外提供服务，计算机越多，CPU、内存、存储资源等也就越多，能够处理的并发访问量也就越大。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-06-19T02:56:56.197Z">
+<meta property="og:image" content="http://yoursite.com/images/20180122090547525.png">
+<meta property="og:image" content="http://yoursite.com/images/20180122092452707.png">
+<meta property="og:image" content="http://yoursite.com/images/20180122101850197.png">
+<meta property="og:updated_time" content="2019-07-13T03:30:27.799Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="java单例模式">
-<meta name="twitter:description" content="java中单例模式是一种常见的设计模式，单例模式分三种：懒汉式单例、饿汉式单例、登记式单例三种。 　　单例模式有以下特点： 　　1、单例类只能有一个实例。 　　2、单例类必须自己创建自己的唯一实例。 　　3、单例类必须给所有其他对象提供这一实例。 单例模式确保某个类只有一个实例，而且自行实例化并向整个系统提供这个实例。在计算机系统中，线程池、缓存、日志对象、对话框、打印机、显卡的驱动程序对象常被设">
+<meta name="twitter:title" content="分布式与SOA架构">
+<meta name="twitter:description" content="分布式系统​    分布式系统是一个硬件或软件组件分布在不同的网络计算机上，彼此之间仅仅通过消息传递和协调的系统。 ​       简单来说，就是一群独立计算机集合共同对外提供服务，但是对于系统用户来说，就像是一台计算机在提供服务一样。分布式意味着可以采用更多的普通计算机组成分布式集群对外提供服务，计算机越多，CPU、内存、存储资源等也就越多，能够处理的并发访问量也就越大。">
+<meta name="twitter:image" content="http://yoursite.com/images/20180122090547525.png">
   
     <link rel="alternative" href="/atom.xml" title="MmmmasterC的小博客" type="application/atom+xml">
   
@@ -167,64 +171,71 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-java中单例模式是一种常见的设计模式，单例模式分三种：懒汉式单例、饿汉式单例、登记式单例三种" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-分布式系统" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      java单例模式
+      分布式与SOA架构
     </h1>
   
 
         
-        <a href="/2019/06/19/java中单例模式是一种常见的设计模式，单例模式分三种：懒汉式单例、饿汉式单例、登记式单例三种/" class="archive-article-date">
-  	<time datetime="2019-06-19T02:49:34.015Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-19</time>
+        <a href="/2019/07/13/分布式系统/" class="archive-article-date">
+  	<time datetime="2019-07-13T03:21:00.878Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-13</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>java中单例模式是一种常见的设计模式，单例模式分三种：懒汉式单例、饿汉式单例、登记式单例三种。</p>
-<p>　　单例模式有以下特点：</p>
-<p>　　1、单例类只能有一个实例。</p>
-<p>　　2、单例类必须自己创建自己的唯一实例。</p>
-<p>　　3、单例类必须给所有其他对象提供这一实例。</p>
-<p>单例模式确保某个类只有一个实例，而且自行实例化并向整个系统提供这个实例。在计算机系统中，线程池、缓存、日志对象、对话框、打印机、显卡的驱动程序对象常被设计成单例。这些应用都或多或少具有资源管理器的功能。每台计算机可以有若干个打印机，但只能有一个Printer Spooler，以避免两个打印作业同时输出到打印机中。每台计算机可以有若干通信端口，系统应当集中管理这些通信端口，以避免一个通信端口同时被两个请求同时调用。总之，选择单例模式就是为了避免不一致状态，避免政出多头。</p>
+        <h2 id="分布式系统"><a href="#分布式系统" class="headerlink" title="分布式系统"></a>分布式系统</h2><p>​    分布式系统是一个硬件或软件组件分布在不同的网络计算机上，彼此之间仅仅通过消息传递和协调的系统。</p>
+<p>​       简单来说，就是一群独立计算机集合共同对外提供服务，但是对于系统用户来说，就像是一台计算机在提供服务一样。分布式意味着可以采用更多的普通计算机组成分布式集群对外提供服务，计算机越多，CPU、内存、存储资源等也就越多，能够处理的并发访问量也就越大。</p>
 <a id="more"></a>
-<h2 id="a、懒汉式单例"><a href="#a、懒汉式单例" class="headerlink" title="a、懒汉式单例"></a>a、懒汉式单例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">//懒汉式单例类.在第一次调用的时候实例化自己   </span><br><span class="line"></span><br><span class="line">package cn.czy.test;</span><br><span class="line">/**</span><br><span class="line"> * Created by czy.</span><br><span class="line"> */</span><br><span class="line">public class Singleton &#123;</span><br><span class="line">    private Singleton()&#123;&#125; //私有的默认构造方法，因此无法使用构造方法实例化</span><br><span class="line">    private static Singleton single = null;    //注意，这里没有final</span><br><span class="line">    public static Singleton getInstance()&#123;    //静态工厂方法</span><br><span class="line">        if(single == null)</span><br><span class="line">            single = new Singleton();</span><br><span class="line">        return single;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Singleton通过将构造方法限定为private避免了类在外部被实例化，在同一个虚拟机范围内，Singleton的唯一实例只能通过getInstance()方法访问。</p>
-<p>（事实上，通过Java反射机制是能够实例化构造方法为private的类的，那基本上会使所有的Java单例实现失效。此问题在此处不做讨论，姑且掩耳盗铃地认为反射机制不存在。）</p>
-<p>但是以上懒汉式单例的实现没有考虑线程安全问题，它是线程不安全的，并发环境下很可能出现多个Singleton实例，下面介绍的饿汉式单例是线程安全的。</p>
-<h2 id="b、饿汉式单例"><a href="#b、饿汉式单例" class="headerlink" title="b、饿汉式单例"></a>b、饿汉式单例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//饿汉式单例类.在类初始化时，已经自行实例化  </span><br><span class="line"></span><br><span class="line"> package cn.czy.test;</span><br><span class="line">/**</span><br><span class="line"> * Created by czy.</span><br><span class="line"> */</span><br><span class="line">public class Singleton &#123;</span><br><span class="line">    private Singleton()&#123;&#125; //私有的默认构造方法，因此无法使用构造方法实例化</span><br><span class="line">    private static final Singleton SINGLE= new Singleton();    //注意，这里有final</span><br><span class="line">    public static Singleton getInstance()&#123;    //静态工厂方法</span><br><span class="line">        return SINGLE;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>饿汉式在类创建的同时就已经创建好一个静态的对象供系统使用，以后不再改变，所以是线程安全的。</p>
-<h2 id="c、登记式单例"><a href="#c、登记式单例" class="headerlink" title="c、登记式单例"></a>c、登记式单例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">//类似Spring里面的方法，将类名注册，下次从里面直接获取。</span><br><span class="line"></span><br><span class="line">import java.util.HashMap;</span><br><span class="line">import java.util.Map;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Created by czy.</span><br><span class="line"> */</span><br><span class="line">public class Singleton &#123;</span><br><span class="line">    private static Map&lt;String,Singleton&gt; map = new HashMap&lt;String,Singleton&gt;();</span><br><span class="line">    static &#123;</span><br><span class="line">        Singleton single = new Singleton();</span><br><span class="line">        map.put(single.getClass().getName(),single);</span><br><span class="line">    &#125;</span><br><span class="line">    //保护的默认构造方法</span><br><span class="line">    protected Singleton()&#123;&#125;</span><br><span class="line">    public static Singleton getInstance(String name)&#123;</span><br><span class="line">        if(name == null || name == &quot;&quot;)&#123;</span><br><span class="line">            name = Singleton.class.getName();</span><br><span class="line">            System.out.println(&quot;name == null&quot; +&quot;--&gt;name&quot;+name);</span><br><span class="line">        &#125;</span><br><span class="line">        if(map.get(name) == null)&#123;</span><br><span class="line">            try&#123;</span><br><span class="line">                map.put(name,(Singleton) Class.forName(name).newInstance());</span><br><span class="line">            &#125;catch (InstantiationException e)&#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;catch (IllegalAccessException e)&#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;catch (ClassNotFoundException e)&#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return map.get(name);</span><br><span class="line">    &#125;</span><br><span class="line">    public String about()&#123;</span><br><span class="line">        return &quot;Hello, I am RegSingleton&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        Singleton single = Singleton.getInstance(null);</span><br><span class="line">        System.out.println(single.about());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>登记式单例实际上维护了一组单例类的实例，将这些实例存放在一个Map（登记薄）中，对于已经登记过的实例，则从Map直接返回，对于没有登记的，则先登记，然后返回。 </p>
-<p>饿汉式和懒汉式区别</p>
-<p>这两种乍看上去非常相似，其实是有区别的，主要两点</p>
-<p>1、线程安全：</p>
-<p>饿汉式是线程安全的，可以直接用于多线程而不会出现问题，懒汉式就不行，它是线程不安全的，如果用于多线程可能会被实例化多次，失去单例的作用。</p>
-<p>如果要把懒汉式用于多线程，有两种方式保证安全性，一种是在getInstance方法上加同步，另一种是在使用该单例方法前后加双锁。</p>
-<p>2、资源加载：</p>
-<p>饿汉式在类创建的同时就实例化一个静态对象出来，不管之后会不会使用这个单例，会占据一定的内存，相应的在调用时速度也会更快，</p>
-<p>而懒汉式顾名思义，会延迟加载，在第一次使用该单例的时候才会实例化对象出来，第一次掉用时要初始化，如果要做的工作比较多，性能上会有些延迟，之后就和饿汉式一样了。</p>
-<p>什么是线程安全？</p>
-<p>如果你的代码所在的进程中有多个线程在同时运行，而这些线程可能会同时运行这段代码。如果每次运行结果和单线程运行的结果是一样的，而且其他的变量的值也和预期的是一样的，就是线程安全的。</p>
-<p>或者说：一个类或者程序所提供的接口对于线程来说是原子操作，或者多个线程之间的切换不会导致该接口的执行结果存在二义性,也就是说我们不用考虑同步的问题，那就是线程安全的。</p>
-<h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><p>以下是一个单例类使用的例子，懒汉式：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">package cn.czy.test;</span><br><span class="line"></span><br><span class="line">public class Singleton &#123;</span><br><span class="line">    String name = null;</span><br><span class="line">    //懒汉式单例模式</span><br><span class="line">    private Singleton()&#123;&#125;</span><br><span class="line">    private static Singleton instance = null;</span><br><span class="line">    public static Singleton getInstance()&#123;</span><br><span class="line">        if(instance == null)</span><br><span class="line">            instance = new Singleton();</span><br><span class="line">        return instance;</span><br><span class="line">    &#125;</span><br><span class="line">    public String getName()&#123;</span><br><span class="line">        return this.name;</span><br><span class="line">    &#125;</span><br><span class="line">    public void setName(String name)&#123;</span><br><span class="line">        this.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    public void printInfo()&#123;</span><br><span class="line">        System.out.println(&quot;The name is &quot;+this.name);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        Singleton ts1 = Singleton.getInstance();</span><br><span class="line">        ts1.setName(&quot;Demo01&quot;);</span><br><span class="line">        Singleton ts2 = Singleton.getInstance();</span><br><span class="line">        ts2.setName(&quot;Demo02&quot;);</span><br><span class="line">        ts1.printInfo();</span><br><span class="line">        ts2.printInfo();</span><br><span class="line">        if(ts1 == ts2)</span><br><span class="line">             System.out.println(&quot;创建的是同一个实例&quot;);</span><br><span class="line">        else</span><br><span class="line">            System.out.println(&quot;创建的不是同一个实例&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>输出结果：</strong></p>
-<p><code>The name is Demo02</code></p>
-<p><code>The name is Demo02</code></p>
-<p><code>创建的是同一个实例</code></p>
-<p>以下是一个单例类使用的例子，饿汉式：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">package cn.czy.test;</span><br><span class="line"></span><br><span class="line">public class Singleton2 &#123;</span><br><span class="line">	String name = null;</span><br><span class="line">    //饿汉式单例模式</span><br><span class="line">    private Singleton2()&#123;&#125;</span><br><span class="line">    private static final Singleton2 INSTANCE = new Singleton2();</span><br><span class="line">    public static Singleton2 getInstance()&#123;</span><br><span class="line">        return INSTANCE;</span><br><span class="line">    &#125;</span><br><span class="line">    public String getName()&#123;</span><br><span class="line">        return this.name;</span><br><span class="line">    &#125;</span><br><span class="line">    public void setName(String name)&#123;</span><br><span class="line">        this.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    public void printInfo()&#123;</span><br><span class="line">        System.out.println(&quot;The name is &quot;+this.name);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        Singleton2 ts1 = Singleton2.getInstance();</span><br><span class="line">        ts1.setName(&quot;Demo01&quot;);</span><br><span class="line">        Singleton2 ts2 = Singleton2.getInstance();</span><br><span class="line">        ts2.setName(&quot;Demo02&quot;);</span><br><span class="line">        ts1.printInfo();</span><br><span class="line">        ts2.printInfo();</span><br><span class="line">        if(ts1 == ts2)</span><br><span class="line">             System.out.println(&quot;创建的是同一个实例&quot;);</span><br><span class="line">        else</span><br><span class="line">            System.out.println(&quot;创建的不是同一个实例&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>输出结果：</strong></p>
-<p><code>The name is Demo02</code></p>
-<p><code>The name is Demo02</code></p>
-<p><code>创建的是同一个实例</code></p>
+<p>​     传统架构→分布式       </p>
+<div align="center"><img src="\images\20180122090547525.png" alt="img"></div>
+
+<p>​         起初，系统之间仅仅是把表现层、业务层、持久层分离开，可以实现解耦合，但是这是在同一台服务器上运行整个系统，客户端可以有多个，他们都将访问同一个终端处理器。但是这种单机部署很可能带来这些问题：系统难以维护、发生单点故障、扩展性差等问题。</p>
+<p>​         当我们单机性能达到瓶颈的时候，第一，可以使用更高级的硬件来提升性能。随之成本也会越来越高。对于一些中小企业根本无法承受。第二，我们可以采用分布式，水平扩展，相对来说，还是比较划算的。</p>
+<p>​         举个例子：</p>
+<p>​        当我们用一台单机的tomcat部署时，理想情况下可以实现500的并发。当我们有1000个并发量的时候，需要2台tomcat服务器，这时就成了这样的结构：     </p>
+<div align="center"><img src="\images\20180122092452707.png" alt="img"></div>
+
+<p>​      这时出现了问题：</p>
+<p>​         1、tomcat的性能瓶颈：当很大很大的并发量的时候，当然需要很多台tomcat服务器，但随着tomcat服务器的量越来越大，服务器的能力会先增加，后下降。一般5台就差不多了到量了。</p>
+<p>​         2、tomcat之间的数据同步问题。tomcat之间会互发消息，当其中一台改变了数据，会给其他tomcat发消息，其他tomcat也会做相应的更新同步。但这会出现一个问题，当tomcat量多的时候，发送消息也多，会出现消息风暴，扰乱整个系统的同步。</p>
+<p>​        解决方案：</p>
+<p>​       既然，一整个系统无法用tomcat来平衡数据量，但是我们可以把整个系统拆分成多个业务，把每个业务当成一个子系统即可。这是垂直拆分。（分布式）而我们把各个业务都部署上多台服务器来均衡这些数据量，每台服务器承担一部分的用户访问量，每台上的系统是一样的。这是水平扩展。（集群）</p>
+<p>​       结论：分布式架构就是多个子系统互相协作才能完成整个业务流程，系统之间需要进行通信。集群就是同一个工程部署到多台服务器上。</p>
+<p>​       分布式架构的优点：</p>
+<p>​     1、解耦合、系统之间用接口通信。</p>
+<p>​     2、项目拆分，不同的团队负责不同的子项目</p>
+<p>​     3、利于扩展，增加功能，只需增加子项目，调用其他系统接口就好了。</p>
+<p>​     4、可以灵活的进行分布式部署。</p>
+<p>​      缺点：</p>
+<p>​     1、系统之间交互需要远程通信，接口发开增加工作量</p>
+<p>​     2、各模块有一些通用业务逻辑无法公用。</p>
+<p>​          <img src="\images\20180122101850197.png" alt="img"> </p>
+<h3 id="分布式架构→soa架构"><a href="#分布式架构→soa架构" class="headerlink" title="分布式架构→soa架构"></a>分布式架构→soa架构</h3><p>​      SOA:（Service Oriented Architecture） 面向服务的架构。把工程拆分成服务层、表现层两个工程，服务层中包含业务逻辑，只需要对外提供服务即可。表现层只需处理和页面的交互，业务逻辑都是调用服务层的服务来实现。 </p>
+<p>​      SOA是一个组件模型，它将应用程序的不同功能单元（成为服务），通过这些服务之间定义良好的接口和契约联系起来。接口是采用中立的方式进行定义的，他应该独立于实现服务的硬件平台、操作系统、和变成语言。这是的构建在各种各样的系统中的服务可以从一种统一和通用的方式进行交互。</p>
+<p>​     SOA是把服务分成了若干，表现层分成了若干。表现层和服务层没有耦合关系，表现层可以用任意一个服务层，开发的时候，仅仅是增加服务层和Web层2个工程，并不会把服务层和Web层当成一个整个工程。他们是独立的。而分布式架构是Web和服务层紧紧联系到了一起，一个web层对应一个服务层。所以SOA比分布式架构更加解耦合。扩展也更容易。</p>
+<p>​    SOA的特征：</p>
+<p>​    1、可重用。解决了分布式的缺点。不同的web层可以共用一个服务层。</p>
+<p>​    2、松耦合。服务请求者到服务提供者的绑定与服务之间是松耦合的，服务请求者不需要知道服务提供者实现的技术细节。</p>
+<p>​    3、明确定义的接口。</p>
+<p>  4、无状态的服务设计。服务不应该依赖其他服务的上下文和状态。当产生依赖时，他们可以定义成通用的业务流程，函数和数据模型。</p>
+<p>   5、基于开放标准。</p>
+<h3 id="SOA体系结构中的角色包括："><a href="#SOA体系结构中的角色包括：" class="headerlink" title="SOA体系结构中的角色包括："></a>SOA体系结构中的角色包括：</h3><p> 1、服务请求者</p>
+<p>​      是一个应用程序、一个软件模块、另一个服务。他发起对注册中心的服务的查询，通过传输绑定服务、并且执行服务功能，服务请求者根据接口契约来执行服务。</p>
+<p> 2、服务提供者</p>
+<p>​      是一个可通过网络寻址的实体，他接受和执行来自请求者的请求，他将自己的服务和接口契约发布到服务注册中心。</p>
+<p>  3、服务注册中心</p>
+<p>​       是服务发现的支持者，他包含一个可用服务的存储库，并运行感兴趣的服务请求者查询服务提供者接口。</p>
+<h3 id="小结："><a href="#小结：" class="headerlink" title="小结："></a>小结：</h3><pre><code>最新的发展潮流已经来临，基于容器，云原生的应用，这些自动化的设计将颠覆程序猿的世界，在了解架构发展的同时，也要紧跟时代潮流。
+</code></pre><hr>
+<p>原文：<a href="https://blog.csdn.net/binggetong/article/details/79126359" target="_blank" rel="noopener">https://blog.csdn.net/binggetong/article/details/79126359</a> </p>
 
       
 
@@ -269,7 +280,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">分布式与SOA架构</a>
         		</li>
       		
 		</ul>
@@ -284,7 +295,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/java设计模式//" class="article-tag-list-link color4">java设计模式</a>
+        			<a href="/categories/java//" class="article-tag-list-link color5">java</a>
         		</li>
       		
 		</ul>
@@ -339,7 +350,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/06/19/java中单例模式是一种常见的设计模式，单例模式分三种：懒汉式单例、饿汉式单例、登记式单例三种/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/07/13/分布式系统/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -353,18 +364,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/06/20/HashMap,HashSet,HashTable等相关问题/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          HashMap,HashSet,HasTable
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/06/03/http1.0和http2.0的区别/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">不看不懂一看秒懂的http</div>
+    <a href="/2019/07/08/Spring框架IOC和AOP的实现原理与详解/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Spring框架IOC和AOP的实现原理与详解</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -391,7 +393,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#a、懒汉式单例"><span class="toc-number">1.</span> <span class="toc-text">a、懒汉式单例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#b、饿汉式单例"><span class="toc-number">2.</span> <span class="toc-text">b、饿汉式单例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#c、登记式单例"><span class="toc-number">3.</span> <span class="toc-text">c、登记式单例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#应用"><span class="toc-number">4.</span> <span class="toc-text">应用</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#分布式系统"><span class="toc-number">1.</span> <span class="toc-text">分布式系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#分布式架构→soa架构"><span class="toc-number">1.1.</span> <span class="toc-text">分布式架构→soa架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SOA体系结构中的角色包括："><span class="toc-number">1.2.</span> <span class="toc-text">SOA体系结构中的角色包括：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#小结："><span class="toc-number">1.3.</span> <span class="toc-text">小结：</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -425,7 +427,7 @@
             <div id="toc-article" class="toc-article">
                 <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
                 <strong class="toc-title">文章目录</strong>
-                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#a、懒汉式单例"><span class="toc-number">1.</span> <span class="toc-text">a、懒汉式单例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#b、饿汉式单例"><span class="toc-number">2.</span> <span class="toc-text">b、饿汉式单例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#c、登记式单例"><span class="toc-number">3.</span> <span class="toc-text">c、登记式单例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#应用"><span class="toc-number">4.</span> <span class="toc-text">应用</span></a></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#分布式系统"><span class="toc-number">1.</span> <span class="toc-text">分布式系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#分布式架构→soa架构"><span class="toc-number">1.1.</span> <span class="toc-text">分布式架构→soa架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SOA体系结构中的角色包括："><span class="toc-number">1.2.</span> <span class="toc-text">SOA体系结构中的角色包括：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#小结："><span class="toc-number">1.3.</span> <span class="toc-text">小结：</span></a></li></ol></li></ol>
            </div>
            <script type="text/javascript">
             function showToc(){
