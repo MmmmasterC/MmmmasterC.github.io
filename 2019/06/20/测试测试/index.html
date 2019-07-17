@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>MmmmasterC的小博客</title>
+  <title>synchronized 关键字和 volatile 关键字的区别 | MmmmasterC的小博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="测试测试">
+  <meta name="description" content="synchronized关键字和volatile关键字比较 volatile关键字是线程同步的轻量级实现，所以volatile性能肯定比synchronized关键字要好。但是volatile关键字只能用于变量而synchronized关键字可以修饰方法以及代码块。synchronized关键字在JavaSE1.6之后进行了主要包括为了减少获得锁和释放锁带来的性能消耗而引入的偏向锁和轻量级锁以及其">
+<meta name="keywords" content="volatile">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MmmmasterC的小博客">
+<meta property="og:title" content="synchronized 关键字和 volatile 关键字的区别">
 <meta property="og:url" content="http://yoursite.com/2019/06/20/测试测试/index.html">
 <meta property="og:site_name" content="MmmmasterC的小博客">
-<meta property="og:description" content="测试测试">
+<meta property="og:description" content="synchronized关键字和volatile关键字比较 volatile关键字是线程同步的轻量级实现，所以volatile性能肯定比synchronized关键字要好。但是volatile关键字只能用于变量而synchronized关键字可以修饰方法以及代码块。synchronized关键字在JavaSE1.6之后进行了主要包括为了减少获得锁和释放锁带来的性能消耗而引入的偏向锁和轻量级锁以及其">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-06-20T08:20:28.223Z">
+<meta property="og:updated_time" content="2019-07-17T09:11:56.514Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MmmmasterC的小博客">
-<meta name="twitter:description" content="测试测试">
+<meta name="twitter:title" content="synchronized 关键字和 volatile 关键字的区别">
+<meta name="twitter:description" content="synchronized关键字和volatile关键字比较 volatile关键字是线程同步的轻量级实现，所以volatile性能肯定比synchronized关键字要好。但是volatile关键字只能用于变量而synchronized关键字可以修饰方法以及代码块。synchronized关键字在JavaSE1.6之后进行了主要包括为了减少获得锁和释放锁带来的性能消耗而引入的偏向锁和轻量级锁以及其">
   
     <link rel="alternative" href="/atom.xml" title="MmmmasterC的小博客" type="application/atom+xml">
   
@@ -169,9 +170,34 @@
             <article id="post-测试测试" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      synchronized 关键字和 volatile 关键字的区别
+    </h1>
+  
+
+        
+        <a href="/2019/06/20/测试测试/" class="archive-article-date">
+  	<time datetime="2019-06-20T08:20:28.165Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-20</time>
+</a>
+        
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
-        <p>测试测试</p>
+        <h3 id="synchronized关键字和volatile关键字比较"><a href="#synchronized关键字和volatile关键字比较" class="headerlink" title="synchronized关键字和volatile关键字比较"></a>synchronized关键字和volatile关键字比较</h3><ul>
+<li><p><strong>volatile关键字</strong>是线程同步的<strong>轻量级实现</strong>，所以<strong>volatile性能肯定比synchronized关键字要好</strong>。<strong>但是volatile关键字只能用于变量而synchronized关键字可以修饰方法以及代码块</strong>。synchronized关键字在JavaSE1.6之后进行了主要包括为了减少获得锁和释放锁带来的性能消耗而引入的偏向锁和轻量级锁以及其它各种优化之后执行效率有了显著提升，<strong>实际开发中使用 synchronized 关键字的场景还是更多一些。</strong></p>
+</li>
+<li><p><strong>多线程访问volatile关键字不会发生阻塞，而synchronized关键字可能会发生阻塞</strong></p>
+</li>
+<li><p><strong>volatile关键字能保证数据的可见性，但不能保证数据的原子性。synchronized关键字两者都能保证。</strong></p>
+</li>
+<li><p><strong>volatile关键字主要用于解决变量在多个线程之间的可见性，而 synchronized关键字解决的是多个线程之间访问资源的同步性。</strong></p>
+</li>
+</ul>
+<h3 id="Synchronized和Volatile的比较"><a href="#Synchronized和Volatile的比较" class="headerlink" title="Synchronized和Volatile的比较"></a>Synchronized和Volatile的比较</h3><p>​    1）Synchronized保证<strong>内存可见性</strong>和操作的<strong>原子性</strong><br>​    2）Volatile只能保证<strong>内存可见性</strong><br>​    3）Volatile<strong>不需要加锁</strong>，比Synchronized更轻量级，并<strong>不会阻塞线程</strong>（volatile不会造成线程的阻塞；Synchronized可能会造成线程的阻塞。）<br>​    4）volatile标记的变量不会被编译器优化,而synchronized标记的变量可以被编译器优化（如<strong>编译器重排序</strong>的优化）.<br>​    5）volatile是<strong>变量修饰符，仅能用于变量，</strong>而synchronized是一个<strong>方法或块的修饰符</strong>。<br>​      volatile本质是在告诉JVM当前变量在寄存器中的值是不确定的，使用前，需要先从主存中读取，因此可以实现可见性。而对<strong>n=n+1,n++等操作时，volatile关键字将失效</strong>，不能起到像synchronized一样的<strong>线程同步（原子性）</strong>的效果。</p>
 
       
 
@@ -211,10 +237,32 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">volatile</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 	  <span id="busuanzi_container_page_pv">
 	    本文总阅读量<span id="busuanzi_value_page_pv"></span>次
 	  </span>
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/java并发//" class="article-tag-list-link color2">java并发</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
 
@@ -309,6 +357,19 @@
         </div>
         
         
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#synchronized关键字和volatile关键字比较"><span class="toc-number">1.</span> <span class="toc-text">synchronized关键字和volatile关键字比较</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Synchronized和Volatile的比较"><span class="toc-number">2.</span> <span class="toc-text">Synchronized和Volatile的比较</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
     </div>
 </aside>
 
@@ -329,6 +390,30 @@
 
 
 		<!-- 目录内容 -->
+        
+            <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+            <span class="btn-bg"></span>
+            <span class="btn-text">文章导航</span>
+            </p>
+            <div id="toc-article" class="toc-article">
+                <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+                <strong class="toc-title">文章目录</strong>
+                <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#synchronized关键字和volatile关键字比较"><span class="toc-number">1.</span> <span class="toc-text">synchronized关键字和volatile关键字比较</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Synchronized和Volatile的比较"><span class="toc-number">2.</span> <span class="toc-text">Synchronized和Volatile的比较</span></a></li></ol>
+           </div>
+           <script type="text/javascript">
+            function showToc(){
+                var toc_article = document.getElementById("toc-article");
+                var show_toc_btn = document.getElementById("show-toc-btn");
+                toc_article.setAttribute("style","display:block");
+                show_toc_btn.setAttribute("style","display:none");
+                };
+            function showBtn(){
+                var toc_article = document.getElementById("toc-article");
+                var show_toc_btn = document.getElementById("show-toc-btn");
+                toc_article.setAttribute("style","display:none");
+                show_toc_btn.setAttribute("style","display:block");
+                };
+           </script>
              
         <!-- 目录内容结束 -->
 
@@ -455,6 +540,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">casual</a>
               </li>
              
@@ -463,15 +552,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">分布式与SOA架构</a>
+                <a href="javascript:void(0)" class="js-tag color4">volatile</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">线性回归与梯度下降算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">分布式与SOA架构</a>
               </li>
              
               <li class="article-tag-list-item">
