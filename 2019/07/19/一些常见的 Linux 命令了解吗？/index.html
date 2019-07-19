@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>MmmmasterC的小博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="ReenTrantLock可重入锁（和synchronized的区别）总结可重入性： 从名字上理解，ReenTrantLock的字面意思就是再进入的锁，其实synchronized关键字所使用的锁也是可重入的，两者关于这个的区别不大。两者都是同一个线程没进入一次，锁的计数器都自增1，所以要等到锁的计数器下降为0时才能释放锁。 锁的实现： Synchronized是依赖于JVM实现的，而ReenTr">
+  <meta name="description" content="一些常见的 Linux 命令了解吗？目录切换命令cd usr ： 切换到该目录下usr目录cd ..（或cd../） ： 切换到上一层目录cd / ： 切换到系统根目录cd ~ ： 切换到用户主目录cd - ： 切换到上一个所在目录 目录的操作命令（增删改查） mkdir 目录名称 ： 增加目录  ls或者ll （ll是ls -l的缩写，ll命令以看到该目录下的所有目录和文件的详细信息）：查看目录">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MmmmasterC的小博客">
-<meta property="og:url" content="http://yoursite.com/2019/07/04/ReenTrantLock可重入锁（和synchronized的区别）总结/index.html">
+<meta property="og:url" content="http://yoursite.com/2019/07/19/一些常见的 Linux 命令了解吗？/index.html">
 <meta property="og:site_name" content="MmmmasterC的小博客">
-<meta property="og:description" content="ReenTrantLock可重入锁（和synchronized的区别）总结可重入性： 从名字上理解，ReenTrantLock的字面意思就是再进入的锁，其实synchronized关键字所使用的锁也是可重入的，两者关于这个的区别不大。两者都是同一个线程没进入一次，锁的计数器都自增1，所以要等到锁的计数器下降为0时才能释放锁。 锁的实现： Synchronized是依赖于JVM实现的，而ReenTr">
+<meta property="og:description" content="一些常见的 Linux 命令了解吗？目录切换命令cd usr ： 切换到该目录下usr目录cd ..（或cd../） ： 切换到上一层目录cd / ： 切换到系统根目录cd ~ ： 切换到用户主目录cd - ： 切换到上一个所在目录 目录的操作命令（增删改查） mkdir 目录名称 ： 增加目录  ls或者ll （ll是ls -l的缩写，ll命令以看到该目录下的所有目录和文件的详细信息）：查看目录">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-07-04T06:45:55.423Z">
+<meta property="og:updated_time" content="2019-07-19T08:04:47.572Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MmmmasterC的小博客">
-<meta name="twitter:description" content="ReenTrantLock可重入锁（和synchronized的区别）总结可重入性： 从名字上理解，ReenTrantLock的字面意思就是再进入的锁，其实synchronized关键字所使用的锁也是可重入的，两者关于这个的区别不大。两者都是同一个线程没进入一次，锁的计数器都自增1，所以要等到锁的计数器下降为0时才能释放锁。 锁的实现： Synchronized是依赖于JVM实现的，而ReenTr">
+<meta name="twitter:description" content="一些常见的 Linux 命令了解吗？目录切换命令cd usr ： 切换到该目录下usr目录cd ..（或cd../） ： 切换到上一层目录cd / ： 切换到系统根目录cd ~ ： 切换到用户主目录cd - ： 切换到上一个所在目录 目录的操作命令（增删改查） mkdir 目录名称 ： 增加目录  ls或者ll （ll是ls -l的缩写，ll命令以看到该目录下的所有目录和文件的详细信息）：查看目录">
   
     <link rel="alternative" href="/atom.xml" title="MmmmasterC的小博客" type="application/atom+xml">
   
@@ -166,34 +166,46 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-ReenTrantLock可重入锁（和synchronized的区别）总结" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-一些常见的 Linux 命令了解吗？" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="ReenTrantLock可重入锁（和synchronized的区别）总结"><a href="#ReenTrantLock可重入锁（和synchronized的区别）总结" class="headerlink" title="ReenTrantLock可重入锁（和synchronized的区别）总结"></a>ReenTrantLock可重入锁（和synchronized的区别）总结</h2><p><strong>可重入性：</strong></p>
-<p>从名字上理解，ReenTrantLock的字面意思就是再进入的锁，其实synchronized关键字所使用的锁也是可重入的，两者关于这个的区别不大。两者都是同一个线程没进入一次，锁的计数器都自增1，所以要等到锁的计数器下降为0时才能释放锁。</p>
-<p><strong>锁的实现：</strong></p>
-<p>Synchronized是依赖于JVM实现的，而ReenTrantLock是JDK实现的，有什么区别，说白了就类似于<a href="http://lib.csdn.net/base/operatingsystem" target="_blank" rel="noopener">操作系统</a>来控制实现和用户自己敲代码实现的区别。前者的实现是比较难见到的，后者有直接的源码可供阅读。</p>
- <a id="more"></a>
-<p><strong>性能的区别：</strong></p>
-<p>在Synchronized优化以前，synchronized的性能是比ReenTrantLock差很多的，但是自从Synchronized引入了偏向锁，轻量级锁（自旋锁）后，两者的性能就差不多了，在两种方法都可用的情况下，官方甚至建议使用synchronized，其实synchronized的优化我感觉就借鉴了ReenTrantLock中的CAS技术。都是试图在用户态就把加锁问题解决，避免进入内核态的线程阻塞。</p>
-<p><strong>功能区别：</strong></p>
-<p>便利性：很明显Synchronized的使用比较方便简洁，并且由编译器去保证锁的加锁和释放，而ReenTrantLock需要手工声明来加锁和释放锁，为了避免忘记手工释放锁造成死锁，所以最好在finally中声明释放锁。</p>
-<p>锁的细粒度和灵活度：很明显ReenTrantLock优于Synchronized</p>
-<p><strong>ReenTrantLock独有的能力：</strong></p>
-<ol>
-<li><p>ReenTrantLock可以指定是公平锁还是非公平锁。而synchronized只能是非公平锁。所谓的公平锁就是先等待的线程先获得锁。</p>
+        <h3 id="一些常见的-Linux-命令了解吗？"><a href="#一些常见的-Linux-命令了解吗？" class="headerlink" title="一些常见的 Linux 命令了解吗？"></a>一些常见的 Linux 命令了解吗？</h3><h4 id="目录切换命令"><a href="#目录切换命令" class="headerlink" title="目录切换命令"></a>目录切换命令</h4><p><strong>cd usr</strong> ： 切换到该目录下usr目录<br><strong>cd ..（或cd../）</strong> ： 切换到上一层目录<br><strong>cd /</strong> ： 切换到系统根目录<br><strong>cd ~</strong> ： 切换到用户主目录<br><strong>cd -</strong> ： 切换到上一个所在目录</p>
+<h4 id="目录的操作命令（增删改查）"><a href="#目录的操作命令（增删改查）" class="headerlink" title="目录的操作命令（增删改查）"></a>目录的操作命令（增删改查）</h4><ol>
+<li><p><strong>mkdir 目录名称</strong> ： 增加目录</p>
 </li>
-<li><p>ReenTrantLock提供了一个Condition（条件）类，用来实现分组唤醒需要唤醒的线程们，而不是像synchronized要么随机唤醒一个线程要么唤醒全部线程。</p>
+<li><p><strong>ls或者ll</strong> （ll是ls -l的缩写，ll命令以看到该目录下的所有目录和文件的详细信息）：查看目录信息</p>
 </li>
-<li><p>ReenTrantLock提供了一种能够中断等待锁的线程的机制，通过lock.lockInterruptibly()来实现这个机制。</p>
+<li><p><strong>find</strong> 目录 参数 ： 寻找目录（查）</p>
+</li>
+<li><p><strong>mv 目录名称 新目录名称</strong> ： 修改目录的名称（改）<br>注意：mv的语法不仅可以对目录进行重命名而且也可以对各种文件，压缩包等进行 重命名的操作。mv命令用<br>来对文件或目录重新命名，或者将文件从一个目录移到另一个目录中。后面会介绍到mv命令的另一个用法。</p>
+</li>
+<li><p><strong>mv 目录名称 目录的新位置</strong> ： 移动目录的位置—剪切（改）<br>注意：mv语法不仅可以对目录进行剪切操作，对文件和压缩包等都可执行剪切操作。另外mv与cp的结果不<br>同，mv好像文件“搬家”，文件个数并未增加。而cp对文件进行复制，文件个数增加了。</p>
+</li>
+<li><p><strong>cp -r 目录名称 目录拷贝的目标位置</strong> ： 拷贝目录（改），-r代表递归拷贝<br>注意：cp命令不仅可以拷贝目录还可以拷贝文件，压缩包等，拷贝文件和压缩包时不 用写-r递归</p>
+</li>
+<li><p><strong>rm [-rf] 目录</strong> : 删除目录（删）<br>注意：rm不仅可以删除目录，也可以删除其他文件或压缩包，为了增强大家的记忆， 无论删除任何目录或文<br>件，都直接使用 rm -rf 目录/文件/压缩包</p>
+<h4 id="文件的操作命令（增删改查）"><a href="#文件的操作命令（增删改查）" class="headerlink" title="文件的操作命令（增删改查）"></a>文件的操作命令（增删改查）</h4></li>
+<li><p><strong>touch 文件名称</strong> : 文件的创建（增）</p>
+</li>
+<li><p><strong>cat/more/less/tail</strong> 文件名称 文件的查看（查）<br>cat ： 只能显示最后一屏内容<br>more ： 可以显示百分比，回车可以向下一行， 空格可以向下一页，q可以退出查看<br>less ： 可以使用键盘上的PgUp和PgDn向上 和向下翻页，q结束查看<br>tail-10 ： 查看文件的后10行，Ctrl+C结束<br>注意：命令 tail -f 文件 可以对某个文件进行动态监控，例如tomcat的日志文件， 会随着程序的运行，日志会变<br>化，可以使用tail -f catalina-2016-11-11.log 监控 文 件的变化</p>
+</li>
+<li><p><strong>vim 文件</strong> ： 修改文件的内容（改）<br>vim编辑器是Linux中的强大组件，是vi编辑器的加强版，vim编辑器的命令和快捷方式有很多，但此处不一一阐<br>述，大家也无需研究的很透彻，使用vim编辑修改文件的方式基本会使用就可以了。<br>在实际开发中，使用vim编辑器主要作用就是修改配置文件，下面是一般步骤：<br>vim 文件——&gt;进入文件—–&gt;命令模式——&gt;按i进入编辑模式—–&gt;编辑文件 ——-&gt;按Esc进入底行模式—–&gt;输<br>入:wq/q! （输入wq代表写入内容并退出，即保存；输入q!代表强制退出不保存。）</p>
+</li>
+<li><p><strong>rm -rf 文件</strong> ： 删除文件（删）<br>同目录删除：熟记  rm -rf 文件 即可</p>
+<h4 id="压缩文件的操作命令"><a href="#压缩文件的操作命令" class="headerlink" title="压缩文件的操作命令"></a>压缩文件的操作命令</h4><p>1）<strong>打包并压缩文件</strong>：<br>Linux中的打包文件一般是以.tar结尾的，压缩的命令一般是以.gz结尾的。<br>而一般情况下打包和压缩是一起进行的，打包并压缩后的文件的后缀名一般.tar.gz。 命令： <strong>tar -zcvf 打包压缩后的文件名</strong> 要打包压缩的文件 其中：<br>z：调用gzip压缩命令进行压缩<br>c：打包文件<br>v：显示运行过程<br>f：指定文件名<br>比如：加入test目录下有三个文件分别是 :aaa.txt bbb.txt ccc.txt,如果我们要打包test目录并指定压缩后的压缩包名称为test.tar.gz可以使用命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zcvf test.tar.gz aaa.txt bbb.txt ccc.txt</span><br></pre></td></tr></table></figure>
+<p> 或：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zcvf test.tar.gz /test/</span><br></pre></td></tr></table></figure>
+<p>2）<strong>解压压缩包</strong>：<br>命令：tar [-xvf] 压缩文件<br>其中：x：代表解压<br>示例：<br>1 将/test下的test.tar.gz解压到当前目录下可以使用命令： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -xvf test.tar.gz</span><br></pre></td></tr></table></figure>
+<p>2 将/test下的test.tar.gz解压到根目录/usr下: </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -xvf xxx.tar.gz -C /usr （- C代表指定解压的位置）</span><br></pre></td></tr></table></figure>
+<h4 id="其他常用命令"><a href="#其他常用命令" class="headerlink" title="其他常用命令"></a>其他常用命令</h4><p><strong>pwd</strong> ： 显示当前所在位置<br><strong>grep</strong> 要搜索的字符串 要搜索的文件 –color ： 搜索命令，–color代表高亮显示<br><strong>ps -ef / ps aux</strong> ： 这两个命令都是查看当前系统正在运行进程，两者的区别是展示格式不同。如果想要查看<br>特定的进程可以使用这样的格式： ps aux|grep redis （查看包括redis字符串的进程）<br>注意：如果直接用ps（（Process Status））命令，会显示所有进程的状态，通常结合grep命令查看某进程的<br>状态。<br><strong>kill -9</strong> 进程的pid ： 杀死进程（-9 表示强制终止。）<br>先用ps查找进程，然后用kill杀掉<br>网络通信命令：<br>查看当前系统的网卡信息：<strong>ifconfig</strong><br>查看与某台机器的连接情况：<strong>ping</strong><br>查看当前系统的端口使用：<strong>netstat -an</strong><br><strong>shutdown</strong> ：  shutdown -h now ： 指定现在立即关机； <strong>shutdown +5</strong> “System will shutdown after 5<br>minutes” :指定5分钟后关机，同时送出警告信息给登入用户。<br><strong>reboot</strong> ：  reboot ： 重开机。 <strong>reboot -w</strong> ： 做个重开机的模拟（只有纪录并不会真的重开机）。</p>
+<h4 id="压缩文件的操作命令-1"><a href="#压缩文件的操作命令-1" class="headerlink" title="压缩文件的操作命令"></a>压缩文件的操作命令</h4><p>1）<strong>打包并压缩文件</strong>：<br>Linux中的打包文件一般是以.tar结尾的，压缩的命令一般是以.gz结尾的。<br>而一般情况下打包和压缩是一起进行的，打包并压缩后的文件的后缀名一般.tar.gz。 命令： <strong>tar -zcvf 打包压缩后的文件名</strong> 要打包压缩的文件 其中：<br>z：调用gzip压缩命令进行压缩<br>c：打包文件<br>v：显示运行过程<br>f：指定文件名<br>比如：加入test目录下有三个文件分别是 :aaa.txt bbb.txt ccc.txt,如果我们要打包test目录并指定压缩后的压缩包名<br>称为test.tar.gz可以使用命令： 或： tar -zcvf<br>test.tar.gz /test/<br>2）解压压缩包：<br>命令：tar [-xvf] 压缩文件<br>其中：x：代表解压<br>示例：<br>1 将/test下的test.tar.gz解压到当前目录下可以使用命令： tar -xvf test.tar.gz<br>2 将/test下的test.tar.gz解压到根目录/usr下: tar -xvf xxx.tar.gz -C /usr （- C代表指定解压的位置）<br>其他常用命令<br>pwd ： 显示当前所在位置<br>grep 要搜索的字符串 要搜索的文件 –color ： 搜索命令，–color代表高亮显示<br>ps -ef / ps aux ： 这两个命令都是查看当前系统正在运行进程，两者的区别是展示格式不同。如果想要查看<br>特定的进程可以使用这样的格式： ps aux|grep redis （查看包括redis字符串的进程）<br>注意：如果直接用ps（（Process Status））命令，会显示所有进程的状态，通常结合grep命令查看某进程的<br>状态。<br>kill -9 进程的pid ： 杀死进程（-9 表示强制终止。）<br>先用ps查找进程，然后用kill杀掉<br>网络通信命令：<br>查看当前系统的网卡信息：ifconfig<br>查看与某台机器的连接情况：ping<br>查看当前系统的端口使用：netstat -an<br>shutdown ：  shutdown -h now ： 指定现在立即关机； shutdown +5 “System will shutdown after 5<br>minutes” :指定5分钟后关机，同时送出警告信息给登入用户。<br>reboot ：  reboot ： 重开机。 reboot -w ： 做个重开机的模拟（只有纪录并不会真的重开机）。</p>
 </li>
 </ol>
-<p><strong>ReenTrantLock实现的原理：</strong></p>
-<p>在网上看到相关的源码分析，本来这块应该是本文的核心，但是感觉比较复杂就不一一详解了，简单来说，ReenTrantLock的实现是一种自旋锁，通过循环调用CAS操作来实现加锁。它的性能比较好也是因为避免了使线程进入内核态的阻塞状态。<strong>想尽办法避免线程进入内核的阻塞状态是我们去分析和理解锁设计的关键钥匙。</strong></p>
-<p><strong>什么情况下使用ReenTrantLock：</strong></p>
-<p>答案是，如果你需要实现ReenTrantLock的三个独有功能时。</p>
 
       
 
@@ -286,7 +298,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/07/04/ReenTrantLock可重入锁（和synchronized的区别）总结/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/07/19/一些常见的 Linux 命令了解吗？/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -300,18 +312,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/07/08/Spring框架IOC和AOP的实现原理与详解/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Spring框架IOC和AOP的实现原理与详解
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/07/03/HashMap的底层实现/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title"></div>
+    <a href="/2019/07/13/分布式系统/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">分布式与SOA架构</div>
       <i class="icon-circle-right"></i>
     </a>
   
