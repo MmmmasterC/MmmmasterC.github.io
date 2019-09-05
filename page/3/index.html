@@ -167,6 +167,139 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-CMS垃圾收集器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/22/CMS垃圾收集器/">CMS垃圾回收器</a>
+    </h1>
+  
+
+        
+        <a href="/2019/04/22/CMS垃圾收集器/" class="archive-article-date">
+  	<time datetime="2019-04-22T07:07:31.001Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><ul>
+<li>CMS垃圾回收器的全称是Concurrent Mark-Sweep Collector，从名字上可以看出两点，一个是使用的是并发收集，第二个是使用的收集算法是Mark-Sweep。从而也可以推测出该收集器的特点是低延迟并且会有浮动垃圾的问题。下面详细介绍一下这个收集器的特点。</li>
+</ul>
+<h2 id="CMS收集器"><a href="#CMS收集器" class="headerlink" title="CMS收集器"></a>CMS收集器</h2><ul>
+<li>CMS收集器是为了低延迟而生，通过尽可能的并行执行垃圾回收的几个阶段来把延迟控制到最低。CMS收集器是老年代的垃圾收集器，一般情况下会有ParNew来配合执行(默认情况下也是ParNew)，ParNew也是使用并行的算法来执行年轻代的回收。当然除此之外，你还可以选择使用Serial收集器来收集年轻代，不过一般很少这样使用。通过咱们说的CMS收集器是指广义上的CMS收集器，包含以下几个：ParNew（Young）GC + CMS（Old）GC ＋ Serial GC 算法（应对核心的CMS GC某些时候的不赶趟，开销很大）。本文重点介绍一些CMS在Old区域的回收。</li>
+</ul>
+<h2 id="触发条件"><a href="#触发条件" class="headerlink" title="触发条件"></a>触发条件</h2><p>CMS垃圾收集器的触发条件有以下几个：  </p>
+<ol>
+<li>如果没有设置-XX:+UseCMSInitiatingOccupancyOnly，虚拟机会根据收集的数据决定是否触发（建议带上这个参数）。   </li>
+<li>老年代使用率达到阈值 CMSInitiatingOccupancyFraction，默认92%，前提是配置了第一个参数。  </li>
+<li>永久代的使用率达到阈值CMSInitiatingPermOccupancyFraction，默认92%，前提是开启 CMSClassUnloadingEnabled并且配置了第一个参数。  </li>
+<li>新生代的晋升担保失败。</li>
+</ol>
+<h2 id="CMS的收集阶段"><a href="#CMS的收集阶段" class="headerlink" title="CMS的收集阶段"></a>CMS的收集阶段</h2><p>CMS收集器在收集老年代的时候分为以下几个阶段：初始标记、并发标记、预清理、可中断预清理、最终标记、并发清除、并发重置。每个阶段的运行过程如下：<br>
+        
+          <a class="article-more-a" href="/2019/04/22/CMS垃圾收集器/#more">more >></a>
+        
+      
+
+      
+    </p></div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">GC</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+	  <span id="busuanzi_container_page_pv">
+	    本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	  </span>
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Java//" class="article-tag-list-link color5">Java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/04/22/CMS垃圾收集器/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
+
+
+		<!-- 目录内容 -->
+             
+        <!-- 目录内容结束 -->
+
+  
+    <section id="comments" style="margin:10px;padding:10px;background:#fff;">
+      <div id="vcomment" class="comment"></div> 
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+   var notify = 'true' == true ? true : false;
+   var verify = 'false' == true ? true : false;
+    window.onload = function() {
+        new Valine({
+            el: '.comment',
+            notify: notify,
+            verify: verify,
+            app_id: "kdu1FK6Cd4WD9NYHr5lR0iaL-gzGzoHsz",
+            app_key: "I6uqM2ESbwMiTsEuSYwLuEJG",
+            placeholder: "Just go go",
+            avatar:"monsterid"
+        });
+    }
+</script>
+    </section>
+  
+
+  
     <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -507,11 +640,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">casual</a>
+                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+                <a href="javascript:void(0)" class="js-tag color2">casual</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -520,6 +653,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Linux命令</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">java缓存</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -539,15 +676,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">java消息队列</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Spring</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">姿态估计</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">java消息队列</a>
               </li>
              
               <li class="article-tag-list-item">

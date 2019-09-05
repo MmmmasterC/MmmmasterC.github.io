@@ -167,19 +167,142 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-未命名" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-农行面试之缓存问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/24/未命名/">Java消息队列三道面试题详解</a>
+      <a class="article-title" href="/2019/09/04/农行面试之缓存问题/">农行面试之缓存问题</a>
     </h1>
   
 
         
-        <a href="/2019/08/24/未命名/" class="archive-article-date">
+        <a href="/2019/09/04/农行面试之缓存问题/" class="archive-article-date">
+  	<time datetime="2019-09-04T02:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>1、什么是缓存？</p>
+<p>2、常用的三大缓存策略？</p>
+<p>3、缓存可能会引发什么情况？</p>
+<p>4、谈谈你对内容分发网络（CDN）的理解？</p>
+        
+          <a class="article-more-a" href="/2019/09/04/农行面试之缓存问题/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">java缓存</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+	  <span id="busuanzi_container_page_pv">
+	    本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	  </span>
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Java//" class="article-tag-list-link color5">Java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/04/农行面试之缓存问题/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
+
+
+		<!-- 目录内容 -->
+             
+        <!-- 目录内容结束 -->
+
+  
+    <section id="comments" style="margin:10px;padding:10px;background:#fff;">
+      <div id="vcomment" class="comment"></div> 
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+   var notify = 'true' == true ? true : false;
+   var verify = 'false' == true ? true : false;
+    window.onload = function() {
+        new Valine({
+            el: '.comment',
+            notify: notify,
+            verify: verify,
+            app_id: "kdu1FK6Cd4WD9NYHr5lR0iaL-gzGzoHsz",
+            app_key: "I6uqM2ESbwMiTsEuSYwLuEJG",
+            placeholder: "Just go go",
+            avatar:"monsterid"
+        });
+    }
+</script>
+    </section>
+  
+
+  
+    <article id="post-java消息队列" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/24/java消息队列/">Java消息队列三道面试题详解</a>
+    </h1>
+  
+
+        
+        <a href="/2019/08/24/java消息队列/" class="archive-article-date">
   	<time datetime="2019-08-24T08:44:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-24</time>
 </a>
         
@@ -192,7 +315,7 @@
 <p>其实面试官主要是想看看：</p>
 <p>第一，你知不知道你们系统里为什么要用消息队列这个东西？ 不少候选人，说自己项目里用了 Redis、MQ，但是其实他并不知道自己为什么要用这个东西。其实说白了，就是为了用而用，或者是别人设计的架构，他从头到尾都没思考过。 没有对自己的架构问过为什么的人，一定是平时没有思考的人，面试官对这类候选人印象通常很不好。因为面试官担心你进了团队之后只会木头木脑的干呆活儿，不会自己思考。 第二，你既然用了消息队列这个东西，你知不知道用了有什么好处&amp;坏处？ 你要是没考虑过这个，那你盲目弄个 MQ 进系统里，后面出了问题你是不是就自己溜了给公司留坑？你要是没考虑过引入一个技术可能存在的弊端和风险，面试官把这类候选人招进来了，基本可能就是挖坑型选手。就怕你干 1 年挖一堆坑，自己跳槽了，给公司留下无穷后患。 第三，既然你用了 MQ，可能是某一种 MQ，那么你当时做没做过调研？ 你别傻乎乎的自己拍脑袋看个人喜好就瞎用了一个 MQ，比如 Kafka，甚至都从没调研过业界流行的 MQ 到底有哪几种。每一个 MQ 的优点和缺点是什么。每一个 MQ 没有绝对的好坏，但是就是看用在哪个场景可以扬长避短，利用其优势，规避其劣势。 如果是一个不考虑技术选型的候选人招进了团队，leader 交给他一个任务，去设计个什么系统，他在里面用一些技术，可能都没考虑过选型，最后选的技术可能并不一定合适，一样是留坑。 面试题剖析</p>
         
-          <a class="article-more-a" href="/2019/08/24/未命名/#more">more >></a>
+          <a class="article-more-a" href="/2019/08/24/java消息队列/#more">more >></a>
         
       
 
@@ -230,7 +353,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/24/未命名/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/08/24/java消息队列/">展开全文 >></a>
         </p>
       
 
@@ -535,7 +658,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="1-synchronized-是可重入锁吗？为什么？"><a href="#1-synchronized-是可重入锁吗？为什么？" class="headerlink" title="1.synchronized 是可重入锁吗？为什么？"></a><a href="https://www.cnblogs.com/incognitor/p/9894604.html" target="_blank" rel="noopener">1.synchronized 是可重入锁吗？为什么？</a></h1><h1 id="2-Java面试题：详细说明一下可重入锁ReentrantLock的原理"><a href="#2-Java面试题：详细说明一下可重入锁ReentrantLock的原理" class="headerlink" title="2.Java面试题：详细说明一下可重入锁ReentrantLock的原理"></a><a href="https://blog.csdn.net/BlackPlus28/article/details/82764772" target="_blank" rel="noopener">2.Java面试题：详细说明一下可重入锁ReentrantLock的原理</a></h1><h1 id="3-面试中关于Spring-AOP和代理模式的那些事"><a href="#3-面试中关于Spring-AOP和代理模式的那些事" class="headerlink" title="3.面试中关于Spring AOP和代理模式的那些事"></a><a href="https://blog.csdn.net/eson_15/article/details/84933442" target="_blank" rel="noopener">3.面试中关于Spring AOP和代理模式的那些事</a></h1><h1 id="4-ReentrantLock-重入锁-功能详解和应用演示"><a href="#4-ReentrantLock-重入锁-功能详解和应用演示" class="headerlink" title="4.ReentrantLock(重入锁)功能详解和应用演示"></a><a href="https://www.cnblogs.com/takumicx/p/9338983.html" target="_blank" rel="noopener">4.ReentrantLock(重入锁)功能详解和应用演示</a></h1>
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">title: 一些java好文</span><br></pre></td></tr></table></figure>
+<h1 id="1-synchronized-是可重入锁吗？为什么？"><a href="#1-synchronized-是可重入锁吗？为什么？" class="headerlink" title="1.synchronized 是可重入锁吗？为什么？"></a><a href="https://www.cnblogs.com/incognitor/p/9894604.html" target="_blank" rel="noopener">1.synchronized 是可重入锁吗？为什么？</a></h1><h1 id="2-Java面试题：详细说明一下可重入锁ReentrantLock的原理"><a href="#2-Java面试题：详细说明一下可重入锁ReentrantLock的原理" class="headerlink" title="2.Java面试题：详细说明一下可重入锁ReentrantLock的原理"></a><a href="https://blog.csdn.net/BlackPlus28/article/details/82764772" target="_blank" rel="noopener">2.Java面试题：详细说明一下可重入锁ReentrantLock的原理</a></h1><h1 id="3-面试中关于Spring-AOP和代理模式的那些事"><a href="#3-面试中关于Spring-AOP和代理模式的那些事" class="headerlink" title="3.面试中关于Spring AOP和代理模式的那些事"></a><a href="https://blog.csdn.net/eson_15/article/details/84933442" target="_blank" rel="noopener">3.面试中关于Spring AOP和代理模式的那些事</a></h1><h1 id="4-ReentrantLock-重入锁-功能详解和应用演示"><a href="#4-ReentrantLock-重入锁-功能详解和应用演示" class="headerlink" title="4.ReentrantLock(重入锁)功能详解和应用演示"></a><a href="https://www.cnblogs.com/takumicx/p/9338983.html" target="_blank" rel="noopener">4.ReentrantLock(重入锁)功能详解和应用演示</a></h1>
       
 
       
@@ -1143,129 +1267,6 @@
   
 
   
-    <article id="post-HashMap并发问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/03/HashMap并发问题/">HashMap并发问题</a>
-    </h1>
-  
-
-        
-        <a href="/2019/07/03/HashMap并发问题/" class="archive-article-date">
-  	<time datetime="2019-07-03T08:14:41.367Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="HashMap并发问题"><a href="#HashMap并发问题" class="headerlink" title="HashMap并发问题"></a>HashMap并发问题</h1><p>在讲HashMap的时候提到过HashMap线程不安全，在并发环境下会发生死锁问题，将导致CPU占用率接近100%。其实死锁的说法并不很贴切，应该说是一种死循环。在JDK 1.8中，Map相关类的实现发生了很大变化，引入了红黑树的概念，本篇以JDK 1.7中的实现方式讲解HashMap的并发问题，以方便理解。</p>
-<p>说明</p>
-<p>JDK 1.8和JDK 1.7中，Map相关类的大体实现思想变化不大，知识引入了红黑树的概念，使得类中增加了生成红黑树的方法，相关的一些重要方法，例如添加元素，重置集合大小等方法也做出相应改变。<br>上述这些变化主要是为了提高集合的查询效率，思想还是原来的思想，因此JDK 1.7中的源代码更能方便理解。</p>
-<p>HashMap并发死锁问题</p>
-        
-          <a class="article-more-a" href="/2019/07/03/HashMap并发问题/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-	  <span id="busuanzi_container_page_pv">
-	    本文总阅读量<span id="busuanzi_value_page_pv"></span>次
-	  </span>
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/java语法//" class="article-tag-list-link color2">java语法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/07/03/HashMap并发问题/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-
-
-
-		<!-- 目录内容 -->
-             
-        <!-- 目录内容结束 -->
-
-  
-    <section id="comments" style="margin:10px;padding:10px;background:#fff;">
-      <div id="vcomment" class="comment"></div> 
-<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
-<script>
-   var notify = 'true' == true ? true : false;
-   var verify = 'false' == true ? true : false;
-    window.onload = function() {
-        new Valine({
-            el: '.comment',
-            notify: notify,
-            verify: verify,
-            app_id: "kdu1FK6Cd4WD9NYHr5lR0iaL-gzGzoHsz",
-            app_key: "I6uqM2ESbwMiTsEuSYwLuEJG",
-            placeholder: "Just go go",
-            avatar:"monsterid"
-        });
-    }
-</script>
-    </section>
-  
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1373,11 +1374,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">casual</a>
+                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+                <a href="javascript:void(0)" class="js-tag color2">casual</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1386,6 +1387,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Linux命令</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">java缓存</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1405,15 +1410,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">java消息队列</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Spring</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">姿态估计</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">java消息队列</a>
               </li>
              
               <li class="article-tag-list-item">

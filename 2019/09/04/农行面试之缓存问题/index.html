@@ -6,18 +6,25 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Category: java并发 | MmmmasterC的小博客</title>
+  <title>农行面试之缓存问题 | MmmmasterC的小博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="sss">
-<meta property="og:type" content="website">
-<meta property="og:title" content="MmmmasterC的小博客">
-<meta property="og:url" content="http://yoursite.com/categories/java并发/index.html">
+  <meta name="description" content="1、什么是缓存？ 2、常用的三大缓存策略？ 3、缓存可能会引发什么情况？ 4、谈谈你对内容分发网络（CDN）的理解？">
+<meta name="keywords" content="java缓存">
+<meta property="og:type" content="article">
+<meta property="og:title" content="农行面试之缓存问题">
+<meta property="og:url" content="http://yoursite.com/2019/09/04/农行面试之缓存问题/index.html">
 <meta property="og:site_name" content="MmmmasterC的小博客">
-<meta property="og:description" content="sss">
+<meta property="og:description" content="1、什么是缓存？ 2、常用的三大缓存策略？ 3、缓存可能会引发什么情况？ 4、谈谈你对内容分发网络（CDN）的理解？">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/images/1343039394_3810.png">
+<meta property="og:image" content="http://yoursite.com/images/1337859321_3597.png">
+<meta property="og:image" content="http://yoursite.com/images/1339235284_4205.png">
+<meta property="og:image" content="https://gss3.bdstatic.com/-Po3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=f952c355e750352aa56c2d5a322a9097/4610b912c8fcc3ce005c05d19c45d688d53f20b0.jpg">
+<meta property="og:updated_time" content="2019-09-05T02:01:59.802Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MmmmasterC的小博客">
-<meta name="twitter:description" content="sss">
+<meta name="twitter:title" content="农行面试之缓存问题">
+<meta name="twitter:description" content="1、什么是缓存？ 2、常用的三大缓存策略？ 3、缓存可能会引发什么情况？ 4、谈谈你对内容分发网络（CDN）的理解？">
+<meta name="twitter:image" content="http://yoursite.com/images/1343039394_3810.png">
   
     <link rel="alternative" href="/atom.xml" title="MmmmasterC的小博客" type="application/atom+xml">
   
@@ -165,72 +172,293 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-农行面试之缓存问题" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/06/20/测试测试/" class="archive-article-date">
-  	<time datetime="2019-06-20T08:20:28.165Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-20</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/06/20/测试测试/">synchronized 关键字和 volatile 关键字的区别</a>
+    <h1 class="article-title" itemprop="name">
+      农行面试之缓存问题
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2019/09/04/农行面试之缓存问题/" class="archive-article-date">
+  	<time datetime="2019-09-04T02:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>1、什么是缓存？</p>
+<p>2、常用的三大缓存策略？</p>
+<p>3、缓存可能会引发什么情况？</p>
+<p>4、谈谈你对内容分发网络（CDN）的理解？</p>
+<a id="more"></a>
+<h3 id="1-什么是缓存？"><a href="#1-什么是缓存？" class="headerlink" title="1.什么是缓存？"></a>1.什么是缓存？</h3><p><strong>外存：</strong></p>
+<p>　　也就是我们经常说的（CDEF盘的大小）外储存器是指除计算机内存及CPU缓存以外的储存器，此类储存器一般断电后仍然能保存数据。常见的外存储器有硬盘、软盘、光盘、U盘等，一般的软件都是安装在外存中</p>
+<p><strong>内存：</strong></p>
+<p>　　内存是计算机中重要的部件之一，它是与CPU进行沟通的桥梁。计算机中所有程序的运行都是在内存中进行的，因此内存的性能对计算机的影响非常大。内存(Memory)也被称为内存储器，其作用是用于暂时存放CPU中的运算数据，以及与硬盘等外部存储器交换的数据。只要计算机在运行中，CPU就会把需要运算的数据调到内存中进行运算，当运算完成后CPU再将结果传送出来，内存的运行也决定了计算机的稳定运行，此类储存器一般断电后数据就会被清空</p>
+<p><strong>高速缓存：</strong></p>
+<p>　　<strong>高速缓存是用来协调CPU与主存之间存取速度的差异而设置的。</strong>一般情况下，CPU的工作速度高，但内存的工作速度相对较低，为了解决这个问题，通常使用高速缓存，高速缓存的存取速度介于CPU和主存之间。系统将一些CPU在近几个时间段经常访问的内容存入高速缓冲，当CPU需要使用数据时，先在高速缓存中找，如果找到，就不必访问内存了，找不到时，再找内存，这样就在一定程度上缓解了由于主存速度低造成的CPU“停工待料”的情况</p>
+<p>在Java中最常见的一种实现缓存的方式就是使用Map, 基本的步骤是：<br>1、 先到缓存里面查找，看看是否存在需要使用的数据</p>
+<p>2、如果没有找到，那么就创建一个满足要求的数据，然后把这个数据设置回到缓存中，以备下次使用 </p>
+<p>3、如果找到了相应的数据，或者是创建了相应的数据，那就直接使用这个数据。</p>
+<h3 id="2-常用的三大缓存过期策略"><a href="#2-常用的三大缓存过期策略" class="headerlink" title="2.常用的三大缓存过期策略"></a>2.常用的三大缓存过期策略</h3><p><strong>FIFO</strong>：First In First Out，先进先出</p>
+<p><img src="/images/1343039394_3810.png" alt="img"></p>
+<p><strong>LRU</strong>：Least Recently Used，最近最少使用</p>
+<p><img src="/images/1337859321_3597.png" alt="img"></p>
+<p><strong>LFU</strong>：Least Frequently Used，最不经常使用</p>
+<p><img src="/images/1339235284_4205.png" alt="img"></p>
+<p><strong>一、FIFO</strong>按照“先进先出（<strong>用队列来实现</strong>）”的原理淘汰数据，正好符合队列的特性，数据结构上使用队列Queue来实现。</p>
+<p><strong>二、LRU</strong>（<strong>使用一个链表保存缓存数据</strong>）算法根据数据的历史访问记录来进行淘汰数据，其核心思想是“如果数据最近被访问过，那么将来被访问的几率也更高”</p>
+<p><strong>三、LFU</strong>（<strong>每个数据块都有一个引用计数，所有数据块按照引用计数排序，具有相同引用计数的数据块则按照时间排序</strong>）算法根据数据的历史访问频率来淘汰数据，其核心思想是“如果数据过去被访问多次，那么将来被访问的频率也更高”。</p>
+<h3 id="3-缓存可能引发什么情况？"><a href="#3-缓存可能引发什么情况？" class="headerlink" title="3.缓存可能引发什么情况？"></a>3.缓存可能引发什么情况？</h3><h4 id="3-1-缓存穿透"><a href="#3-1-缓存穿透" class="headerlink" title="3.1 缓存穿透"></a>3.1 缓存穿透</h4><p>缓存穿透是指查询一个一定不存在的数据，<strong>因为缓存中也无该数据的信息，则会直接去数据库层进行查询</strong>，从系统层面来看像是穿透了缓存层直接达到db，从而称为<strong>缓存穿透</strong>，没有了缓存层的保护，这种查询一定不存在的数据对系统来说可能是一种危险，如果有人恶意用这种一定不存在的数据来频繁请求系统，不，准确的说是攻击系统，请求都会到达数据库层导致db瘫痪从而引起系统故障。</p>
+<h4 id="3-2-解决方案"><a href="#3-2-解决方案" class="headerlink" title="3.2 解决方案"></a>3.2 解决方案</h4><p>缓存穿透业内的解决方案已经比较成熟，主要常用的有以下几种：</p>
+<p><strong>bloom filter</strong>：类似于哈希表的一种算法，用所有可能的查询条件生成一个bitmap，在进行数据库查询之前会使用这个bitmap进行过滤，如果不在其中则直接过滤，从而减轻数据库层面的压力。guava中有实现BloomFilter算法。</p>
+<p><strong>空值缓存</strong>：一种比较简单的解决办法，在第一次查询完不存在的数据后，将该key与对应的空值也放入缓存中，只不过设定为较短的失效时间，例如几分钟，这样则可以应对短时间的大量的该key攻击，设置为较短的失效时间是因为该值可能业务无关，存在意义不大，且该次的查询也未必是攻击者发起，无过久存储的必要，故可以早点失效。</p>
+<h4 id="3-3-缓存雪崩"><a href="#3-3-缓存雪崩" class="headerlink" title="3.3 缓存雪崩"></a>3.3 缓存雪崩</h4><p>在普通的缓存系统中一般例如redis、memcache等中，我们会给缓存设置一个<strong>失效时间</strong>，<strong>但是如果所有的缓存的失效时间相同，那么在同一时间失效时，所有系统的请求都会发送到数据库层，db可能无法承受如此大的压力导致系统崩溃</strong>。</p>
+<h4 id="3-4-解决方案"><a href="#3-4-解决方案" class="headerlink" title="3.4 解决方案"></a>3.4 解决方案</h4><p><strong>线程互斥</strong>：只让一个线程构建缓存，其他线程等待构建缓存的线程执行完，重新从缓存获取数据才可以，每个时刻只有一个线程在执行请求，减轻了db的压力，但缺点也很明显，降低了系统的qps。</p>
+<p><strong>交错失效时间</strong>：这种方法时间比较简单粗暴，既然在同一时间失效会造成请求过多雪崩，那我们错开不同的失效时间即可从一定长度上避免这种问题，在缓存进行失效时间设置的时候，从某个适当的值域中随机一个时间作为失效时间即可。</p>
+<h4 id="3-5-缓存击穿"><a href="#3-5-缓存击穿" class="headerlink" title="3.5 缓存击穿"></a>3.5 缓存击穿</h4><p>缓存击穿实际上是缓存雪崩的一个特例，大家使用过微博的应该都知道，微博有一个热门话题的功能，用户对于热门话题的搜索量往往在一些时刻会大大的高于其他话题，这种我们成为系统的“热点“，由于系统中对这些<strong>热点的数据</strong>缓存也存在失效时间，<strong>在热点的缓存到达失效时间时，此时可能依然会有大量的请求到达系统，没有了缓存层的保护，这些请求同样的会到达db从而可能引起故障</strong>。击穿与雪崩的区别即在于<strong>击穿是对于特定的热点数据来说，而雪崩是全部数据</strong>。</p>
+<h4 id="3-6-解决方案"><a href="#3-6-解决方案" class="headerlink" title="3.6 解决方案"></a>3.6 解决方案</h4><p>二级缓存：对于热点数据进行二级缓存，并对于不同级别的缓存设定不同的失效时间，则请求不会直接击穿缓存层到达数据库。</p>
+<p>这里参考了阿里双11万亿流量的缓存击穿解决方案，解决此问题的关键在于热点访问。由于热点可能随着时间的变化而变化，针对固定的数据进行特殊缓存是不能起到治本作用的，结合LRU算法能够较好的帮我们解决这个问题。那么LRU是什么，下面粗略的介绍一下，有兴趣的可以点击上面的链接查看.</p>
+<h3 id="4、内容分发网络CDN"><a href="#4、内容分发网络CDN" class="headerlink" title="4、内容分发网络CDN"></a>4、内容分发网络CDN</h3><p>CDN的全称是Content Delivery Network，即<a href="https://baike.baidu.com/item/内容分发网络/4034265" target="_blank" rel="noopener">内容分发网络</a>。CDN是构建在现有网络基础之上的智能虚拟网络，依靠部署在各地的边缘服务器，通过中心平台的负载均衡、内容分发、调度等功能模块，使用户就近获取所需内容，降低网络拥塞，提高用户访问响应速度和命中率。CDN的关键技术主要有内容存储和分发技术。</p>
+<p><img src="https://gss3.bdstatic.com/-Po3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=f952c355e750352aa56c2d5a322a9097/4610b912c8fcc3ce005c05d19c45d688d53f20b0.jpg" alt="img"></p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/wechatpay.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">volatile</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">java缓存</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+	  <span id="busuanzi_container_page_pv">
+	    本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	  </span>
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/java并发//" class="article-tag-list-link color2">java并发</a>
+        			<a href="/categories/Java//" class="article-tag-list-link color5">Java</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/09/04/农行面试之缓存问题/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2019/08/24/java消息队列/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java消息队列三道面试题详解</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-什么是缓存？"><span class="toc-number">1.</span> <span class="toc-text">1.什么是缓存？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-常用的三大缓存过期策略"><span class="toc-number">2.</span> <span class="toc-text">2.常用的三大缓存过期策略</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-缓存可能引发什么情况？"><span class="toc-number">3.</span> <span class="toc-text">3.缓存可能引发什么情况？</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-缓存穿透"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 缓存穿透</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-解决方案"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 解决方案</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-缓存雪崩"><span class="toc-number">3.3.</span> <span class="toc-text">3.3 缓存雪崩</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-4-解决方案"><span class="toc-number">3.4.</span> <span class="toc-text">3.4 解决方案</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-5-缓存击穿"><span class="toc-number">3.5.</span> <span class="toc-text">3.5 缓存击穿</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-6-解决方案"><span class="toc-number">3.6.</span> <span class="toc-text">3.6 解决方案</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4、内容分发网络CDN"><span class="toc-number">4.</span> <span class="toc-text">4、内容分发网络CDN</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
 
+  
+
+  
+
+
+
+
+
+		<!-- 目录内容 -->
+        
+            <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+            <span class="btn-bg"></span>
+            <span class="btn-text">文章导航</span>
+            </p>
+            <div id="toc-article" class="toc-article">
+                <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+                <strong class="toc-title">文章目录</strong>
+                <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-什么是缓存？"><span class="toc-number">1.</span> <span class="toc-text">1.什么是缓存？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-常用的三大缓存过期策略"><span class="toc-number">2.</span> <span class="toc-text">2.常用的三大缓存过期策略</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-缓存可能引发什么情况？"><span class="toc-number">3.</span> <span class="toc-text">3.缓存可能引发什么情况？</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-缓存穿透"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 缓存穿透</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-解决方案"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 解决方案</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-缓存雪崩"><span class="toc-number">3.3.</span> <span class="toc-text">3.3 缓存雪崩</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-4-解决方案"><span class="toc-number">3.4.</span> <span class="toc-text">3.4 解决方案</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-5-缓存击穿"><span class="toc-number">3.5.</span> <span class="toc-text">3.5 缓存击穿</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-6-解决方案"><span class="toc-number">3.6.</span> <span class="toc-text">3.6 解决方案</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4、内容分发网络CDN"><span class="toc-number">4.</span> <span class="toc-text">4、内容分发网络CDN</span></a></li></ol>
+           </div>
+           <script type="text/javascript">
+            function showToc(){
+                var toc_article = document.getElementById("toc-article");
+                var show_toc_btn = document.getElementById("show-toc-btn");
+                toc_article.setAttribute("style","display:block");
+                show_toc_btn.setAttribute("style","display:none");
+                };
+            function showBtn(){
+                var toc_article = document.getElementById("toc-article");
+                var show_toc_btn = document.getElementById("show-toc-btn");
+                toc_article.setAttribute("style","display:none");
+                show_toc_btn.setAttribute("style","display:block");
+                };
+           </script>
+             
+        <!-- 目录内容结束 -->
+
+  
+    <section id="comments" style="margin:10px;padding:10px;background:#fff;">
+      <div id="vcomment" class="comment"></div> 
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+   var notify = 'true' == true ? true : false;
+   var verify = 'false' == true ? true : false;
+    window.onload = function() {
+        new Valine({
+            el: '.comment',
+            notify: notify,
+            verify: verify,
+            app_id: "kdu1FK6Cd4WD9NYHr5lR0iaL-gzGzoHsz",
+            app_key: "I6uqM2ESbwMiTsEuSYwLuEJG",
+            placeholder: "Just go go",
+            avatar:"monsterid"
+        });
+    }
+</script>
+    </section>
+  
 
           </div>
         </div>
@@ -254,10 +482,10 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
-		isCategory: true,
+		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
 		root: "/",
