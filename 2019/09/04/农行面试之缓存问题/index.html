@@ -20,7 +20,7 @@
 <meta property="og:image" content="http://yoursite.com/images/1337859321_3597.png">
 <meta property="og:image" content="http://yoursite.com/images/1339235284_4205.png">
 <meta property="og:image" content="https://gss3.bdstatic.com/-Po3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=f952c355e750352aa56c2d5a322a9097/4610b912c8fcc3ce005c05d19c45d688d53f20b0.jpg">
-<meta property="og:updated_time" content="2019-09-05T02:01:59.802Z">
+<meta property="og:updated_time" content="2019-09-05T12:47:34.885Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="农行面试之缓存问题">
 <meta name="twitter:description" content="1、什么是缓存？ 2、常用的三大缓存策略？ 3、缓存可能会引发什么情况？ 4、谈谈你对内容分发网络（CDN）的理解？">
@@ -225,7 +225,7 @@
 <h4 id="3-5-缓存击穿"><a href="#3-5-缓存击穿" class="headerlink" title="3.5 缓存击穿"></a>3.5 缓存击穿</h4><p>缓存击穿实际上是缓存雪崩的一个特例，大家使用过微博的应该都知道，微博有一个热门话题的功能，用户对于热门话题的搜索量往往在一些时刻会大大的高于其他话题，这种我们成为系统的“热点“，由于系统中对这些<strong>热点的数据</strong>缓存也存在失效时间，<strong>在热点的缓存到达失效时间时，此时可能依然会有大量的请求到达系统，没有了缓存层的保护，这些请求同样的会到达db从而可能引起故障</strong>。击穿与雪崩的区别即在于<strong>击穿是对于特定的热点数据来说，而雪崩是全部数据</strong>。</p>
 <h4 id="3-6-解决方案"><a href="#3-6-解决方案" class="headerlink" title="3.6 解决方案"></a>3.6 解决方案</h4><p>二级缓存：对于热点数据进行二级缓存，并对于不同级别的缓存设定不同的失效时间，则请求不会直接击穿缓存层到达数据库。</p>
 <p>这里参考了阿里双11万亿流量的缓存击穿解决方案，解决此问题的关键在于热点访问。由于热点可能随着时间的变化而变化，针对固定的数据进行特殊缓存是不能起到治本作用的，结合LRU算法能够较好的帮我们解决这个问题。那么LRU是什么，下面粗略的介绍一下，有兴趣的可以点击上面的链接查看.</p>
-<h3 id="4、内容分发网络CDN"><a href="#4、内容分发网络CDN" class="headerlink" title="4、内容分发网络CDN"></a>4、内容分发网络CDN</h3><p>CDN的全称是Content Delivery Network，即<a href="https://baike.baidu.com/item/内容分发网络/4034265" target="_blank" rel="noopener">内容分发网络</a>。CDN是构建在现有网络基础之上的智能虚拟网络，依靠部署在各地的边缘服务器，通过中心平台的负载均衡、内容分发、调度等功能模块，使用户就近获取所需内容，降低网络拥塞，提高用户访问响应速度和命中率。CDN的关键技术主要有内容存储和分发技术。</p>
+<h3 id="4、内容分发网络CDN"><a href="#4、内容分发网络CDN" class="headerlink" title="4、内容分发网络CDN"></a>4、内容分发网络CDN</h3><p>CDN的全称是Content Delivery Network，即<a href="https://baike.baidu.com/item/内容分发网络/4034265" target="_blank" rel="noopener">内容分发网络</a>。CDN是构建在现有网络基础之上的智能虚拟网络，依靠<strong>部署在各地的边缘服务器</strong>，通过<strong>中心平台的负载均衡、内容分发、调度</strong>等功能模块，使用户就近获取所需内容，<strong>降低网络拥塞</strong>，<strong>提高用户访问响应速度和命中率</strong>。CDN的关键技术主要有内容存储和分发技术。</p>
 <p><img src="https://gss3.bdstatic.com/-Po3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=f952c355e750352aa56c2d5a322a9097/4610b912c8fcc3ce005c05d19c45d688d53f20b0.jpg" alt="img"></p>
 
       
@@ -354,6 +354,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2019/09/05/JVM实现跨平台/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          JVM实现跨平台
+        
+      </div>
+    </a>
   
   
     <a href="/2019/08/24/java消息队列/" id="article-nav-older" class="article-nav-link-wrap">
@@ -556,15 +565,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Jvm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+                <a href="javascript:void(0)" class="js-tag color2">casual</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">casual</a>
+                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -596,11 +609,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">java消息队列</a>
+                <a href="javascript:void(0)" class="js-tag color2">Spring</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Spring</a>
+                <a href="javascript:void(0)" class="js-tag color4">java消息队列</a>
               </li>
              
               <li class="article-tag-list-item">
